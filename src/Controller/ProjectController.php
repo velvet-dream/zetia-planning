@@ -13,7 +13,7 @@ use App\Form\ProjectType;
 
 class ProjectController extends AbstractController
 {
-    #[Route('/projects', methods: ['GET', 'POST'])]
+    #[Route('/projects', methods: ['GET', 'POST'], name: 'project_index')]
     public function index(ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->findAll();
