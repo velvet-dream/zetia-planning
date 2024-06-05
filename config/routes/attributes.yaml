@@ -1,0 +1,11 @@
+# This configuration tells Symfony to look for routes defined as attributes on classes declared in the App\Controller namespace
+# and stored in the src/Controller/ directory which follows the PSR-4 standard.
+controllers:
+  resource:
+    path: ../../src/Controller/
+    namespace: App\Controller
+  type: attribute
+
+kernel:
+  resource: App\Kernel
+  type: attribute
