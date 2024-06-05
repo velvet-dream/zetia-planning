@@ -13,12 +13,12 @@ use App\Form\TaskType;
 
 class TaskController extends AbstractController
 {
-    #[Route('/task', name: 'app_task', methods: ['GET','POST'])]
+    #[Route('/task', name: 'app_task', methods: ['GET', 'POST'])]
     public function index(): Response
     {
         $this->getDoctrine()
-        ->getRepository(Task::class)
-        ->findAll();
+            ->getRepository(Task::class)
+            ->findAll();
         return $this->render('task/index.html.twig', [
             'tasks' => '$task',
         ]);
@@ -70,7 +70,7 @@ class TaskController extends AbstractController
     #[Route('/tasks/{id}', name: 'task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $task->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($task);
             $entityManager->flush();
