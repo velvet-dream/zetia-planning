@@ -16,7 +16,6 @@ class TaskController extends AbstractController
     #[Route('/task', name: 'app_task', methods: ['GET','POST'])]
     public function index(): Response
     {
-        $task=
         $this->getDoctrine()
         ->getRepository(Task::class)
         ->findAll();
