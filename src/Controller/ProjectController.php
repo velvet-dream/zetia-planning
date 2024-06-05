@@ -61,7 +61,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/projects/{id}', methods: ['DELETE'])]
+    #[Route('/projects/{id}/delete', methods: ['DELETE'])]
     public function delete(Request $request, Project $project): Response
     {
         if ($this->denyAccessUnlessGranted('ROLE_ADMIN')) {
