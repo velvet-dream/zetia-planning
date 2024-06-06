@@ -36,48 +36,49 @@ class Task
 
     #[ORM\Column(type: 'integer')]
     private int $stkId;
+
     // Getters
-    public function getTskId():?int
+    public function getTskId(): ?int
     {
         return $this->tskId;
     }
 
-    public function getTskTitle():?string
+    public function getTskTitle(): ?string
     {
         return $this->tskTitle;
     }
 
-    public function getTskDateDebut():?\DateTimeInterface
+    public function getTskDateDebut(): ?\DateTimeInterface
     {
         return $this->tskDateDebut;
     }
 
-    public function getTskDateFinPrevisionnelle():?\DateTimeInterface
+    public function getTskDateFinPrevisionnelle(): ?\DateTimeInterface
     {
         return $this->tskDateFinPrevisionnelle;
     }
 
-    public function getTskDescription():?string
+    public function getTskDescription(): ?string
     {
         return $this->tskDescription;
     }
 
-    public function getTskDateFinReelle():?\DateTimeInterface
+    public function getTskDateFinReelle(): ?\DateTimeInterface
     {
         return $this->tskDateFinReelle;
     }
 
-    public function getTskDuree():?float
+    public function getTskDuree(): ?float
     {
         return $this->tskDuree;
     }
 
-    public function getPctId():?int
+    public function getPctId(): ?int
     {
         return $this->pctId;
     }
 
-    public function getStkId():?int
+    public function getStkId(): ?int
     {
         return $this->stkId;
     }
@@ -86,65 +87,54 @@ class Task
     public function setTskId(int $tskId): self
     {
         $this->tskId = $tskId;
-
         return $this;
     }
 
     public function setTskTitle(string $tskTitle): self
     {
         $this->tskTitle = $tskTitle;
-
         return $this;
     }
 
     public function setTskDateDebut(\DateTimeInterface $tskDateDebut): self
     {
         $this->tskDateDebut = $tskDateDebut;
-
         return $this;
     }
 
     public function setTskDateFinPrevisionnelle(\DateTimeInterface $tskDateFinPrevisionnelle): self
     {
         $this->tskDateFinPrevisionnelle = $tskDateFinPrevisionnelle;
-
         return $this;
     }
 
     public function setTskDescription(string $tskDescription): self
     {
         $this->tskDescription = $tskDescription;
-
         return $this;
     }
 
     public function setTskDateFinReelle(\DateTimeInterface $tskDateFinReelle): self
     {
         $this->tskDateFinReelle = $tskDateFinReelle;
-
         return $this;
     }
 
     public function setTskDuree(float $tskDuree): self
     {
         $this->tskDuree = $tskDuree;
-
         return $this;
     }
 
     public function setPctId(int $pctId): self
     {
         $this->pctId = $pctId;
-
         return $this;
     }
 
     public function setStkId(int $stkId): self
     {
         $this->stkId = $stkId;
-
         return $this;
     }
 }
-
-
