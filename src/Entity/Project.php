@@ -33,7 +33,7 @@ class Project
     private ?\DateTimeImmutable $pctDateFinReelle = null;
 
     #[ORM\ManyToOne(inversedBy: 'managedProjects')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'usrId')]
     private ?User $projectAdmin = null;
 
     /**
@@ -43,7 +43,7 @@ class Project
     private Collection $tasks;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stpId')]
     private ?StatusProject $pctStatus = null;
 
     public function __construct()
