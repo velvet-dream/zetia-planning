@@ -35,15 +35,15 @@ class User
     private ?string $usrAvatar = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'jobId')]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
     private ?Job $job = null;
 
     /**
      * @var Collection<int, Task>
      */
     #[ORM\JoinTable(name: 'ass_usertask_uts')]
-    #[ORM\JoinColumn(referencedColumnName: 'usrId')]
-    #[ORM\InverseJoinColumn(referencedColumnName: 'tskId')]
+    #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
+    #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
     #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]
     private Collection $tasks;
 

@@ -48,11 +48,11 @@ class Task
     private Collection $users;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stkId')]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stk_id', name: 'stk_id')]
     private ?StatusTask $tskStatus = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'pctId')]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'pct_id', name: 'pct_id')]
     private ?Project $project = null;
 
     public function __construct()
