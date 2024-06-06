@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\TaskRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[ORM\Table('pct_task_tsk')]
 class Task
 {

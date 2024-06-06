@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\ProjectRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ORM\Table(name: 'usr_project_pct')]
 class Project
 {

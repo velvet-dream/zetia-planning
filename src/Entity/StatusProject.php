@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Repository\StatusProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: StatusProjectRepository::class)]
 #[ORM\Table(name: 'tsk_statusproject_stp')]
 class StatusProject
 {
