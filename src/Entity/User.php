@@ -1,11 +1,11 @@
 <?php
 
-// src/Entity/User.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\Table(name: 'app_user_usr')]
 class User
 {
     #[ORM\Id]
@@ -13,65 +13,63 @@ class User
     #[ORM\Column(type: 'integer')]
     private int $usrId;
 
-    #[ORM\Column(type: 'string', length: 90)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usrName;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usrFirstName;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usrMail;
 
-    #[ORM\Column(type: 'string', length: 150)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usrPassword;
 
-    #[ORM\Column(type: 'string', length: 250)]
+    #[ORM\Column(type: 'string', length: 255)]
     private string $usrRole;
 
-    #[ORM\Column(type: 'integer')]
-    private int $pstId;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $usrAvatar = null;
 
-    public function getUsrId():?int
+    public function getUsrId(): ?int
     {
         return $this->usrId;
     }
 
-    public function getUsrName():?string
+    public function getUsrName(): ?string
     {
         return $this->usrName;
     }
 
-    public function getUsrFirstName():?string
+    public function getUsrFirstName(): ?string
     {
         return $this->usrFirstName;
     }
 
-    public function getUsrMail():?string
+    public function getUsrMail(): ?string
     {
         return $this->usrMail;
     }
 
-    public function getUsrPassword():?string
+    public function getUsrPassword(): ?string
     {
         return $this->usrPassword;
     }
 
-    public function getUsrRole():?string
+    public function getUsrRole(): ?string
     {
         return $this->usrRole;
     }
 
-    public function getPstId():?int
+    public function getUsrAvatar(): ?string
     {
-        return $this->pstId;
+        return $this->usrAvatar;
     }
 
-    public function setPstId(int $pstId): self
+    public function setUsrAvatar(?string $usrAvatar): static
     {
-        $this->pstId = $pstId;
+        $this->usrAvatar = $usrAvatar;
 
         return $this;
     }
-
-    // Ajoutez des setters pour les autres champs si nécessaire
 }

@@ -2,15 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StatusProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-// src/Entity/StatusProject.php
-namespace App\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\Table(name: 'tsk_statusproject_stp')]
 class StatusProject
 {
     #[ORM\Id]
@@ -18,15 +14,15 @@ class StatusProject
     #[ORM\Column(type: 'integer')]
     private int $stpId;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $stpTitle;
 
-    public function getStpId():?int
+    public function getStpId(): ?int
     {
         return $this->stpId;
     }
 
-    public function getStpTitle():?string
+    public function getStpTitle(): ?string
     {
         return $this->stpTitle;
     }
