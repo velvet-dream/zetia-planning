@@ -1,10 +1,12 @@
 <?php
- 
+
 namespace App\Entity;
 
+use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
+#[ORM\Table(name: 'tsk_statustask_stk')]
 class StatusTask
 {
     #[ORM\Id]
@@ -12,15 +14,15 @@ class StatusTask
     #[ORM\Column(type: 'integer')]
     private int $stkId;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $stkTitle;
 
-    public function getStkId():?int
+    public function getStkId(): ?int
     {
         return $this->stkId;
     }
 
-    public function getStkTitle():?string
+    public function getStkTitle(): ?string
     {
         return $this->stkTitle;
     }

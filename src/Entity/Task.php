@@ -1,32 +1,36 @@
 <?php
-// src/Entity/Task.php
+
 namespace App\Entity;
 
+use App\Repository\TaskRepository;
+use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=TaskRepository::class)
- * @ORM\Table(name="tasks")
- */
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
+#[ORM\Table('pct_task_tsk')]
 class Task
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private int $tskId;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $tskTitle;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $tskDateDebut;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?DateTimeInterface $tskDateDebut;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $tskDateFinPrevisionnelle;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?DateTimeInterface $tskDateFinPrevisionnelle;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?DateTimeInterface $tskDateFinReelle;
 
     #[ORM\Column(type: 'text')]
     private string $tskDescription;
-
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $tskDateFinReelle;
 
     #[ORM\Column(type: 'float')]
     private float $tskDuree;
@@ -36,48 +40,68 @@ class Task
 
     #[ORM\Column(type: 'integer')]
     private int $stkId;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tasks')]
+    private Collection $users;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stkId')]
+    private ?StatusTask $tskStatus = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'pctId')]
+    private ?Project $project = null;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
     // Getters
-    public function getTskId():?int
+    public function getTskId(): ?int
     {
         return $this->tskId;
     }
 
-    public function getTskTitle():?string
+    public function getTskTitle(): ?string
     {
         return $this->tskTitle;
     }
 
-    public function getTskDateDebut():?\DateTimeInterface
+    public function getTskDateDebut(): ?DateTimeInterface
     {
         return $this->tskDateDebut;
     }
 
-    public function getTskDateFinPrevisionnelle():?\DateTimeInterface
+    public function getTskDateFinPrevisionnelle(): ?DateTimeInterface
     {
         return $this->tskDateFinPrevisionnelle;
     }
 
-    public function getTskDescription():?string
+    public function getTskDescription(): ?string
     {
         return $this->tskDescription;
     }
 
-    public function getTskDateFinReelle():?\DateTimeInterface
+    public function getTskDateFinReelle(): ?DateTimeInterface
     {
         return $this->tskDateFinReelle;
     }
 
-    public function getTskDuree():?float
+    public function getTskDuree(): ?float
     {
         return $this->tskDuree;
     }
 
-    public function getPctId():?int
+    public function getPctId(): ?int
     {
         return $this->pctId;
     }
 
-    public function getStkId():?int
+    public function getStkId(): ?int
     {
         return $this->stkId;
     }
@@ -97,14 +121,14 @@ class Task
         return $this;
     }
 
-    public function setTskDateDebut(\DateTimeInterface $tskDateDebut): self
+    public function setTskDateDebut(DateTimeInterface $tskDateDebut): self
     {
         $this->tskDateDebut = $tskDateDebut;
 
         return $this;
     }
 
-    public function setTskDateFinPrevisionnelle(\DateTimeInterface $tskDateFinPrevisionnelle): self
+    public function setTskDateFinPrevisionnelle(DateTimeInterface $tskDateFinPrevisionnelle): self
     {
         $this->tskDateFinPrevisionnelle = $tskDateFinPrevisionnelle;
 
@@ -118,7 +142,7 @@ class Task
         return $this;
     }
 
-    public function setTskDateFinReelle(\DateTimeInterface $tskDateFinReelle): self
+    public function setTskDateFinReelle(DateTimeInterface $tskDateFinReelle): self
     {
         $this->tskDateFinReelle = $tskDateFinReelle;
 
@@ -145,6 +169,55 @@ class Task
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTask($this);
+        }
+
+        return $this;
+    }
+
+    public function getTskStatus(): ?StatusTask
+    {
+        return $this->tskStatus;
+    }
+
+    public function setTskStatus(?StatusTask $tskStatus): static
+    {
+        $this->tskStatus = $tskStatus;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): static
+    {
+        $this->project = $project;
+
+        return $this;
+    }
 }
-
-
