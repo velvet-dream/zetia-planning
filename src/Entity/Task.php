@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
@@ -38,6 +40,25 @@ class Task
 
     #[ORM\Column(type: 'integer')]
     private int $stkId;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tasks')]
+    private Collection $users;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?StatusTask $tskStatus = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Project $project = null;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     // Getters
     public function getTskId(): ?int
@@ -145,6 +166,57 @@ class Task
     public function setStkId(int $stkId): self
     {
         $this->stkId = $stkId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTask($this);
+        }
+
+        return $this;
+    }
+
+    public function getTskStatus(): ?StatusTask
+    {
+        return $this->tskStatus;
+    }
+
+    public function setTskStatus(?StatusTask $tskStatus): static
+    {
+        $this->tskStatus = $tskStatus;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): static
+    {
+        $this->project = $project;
 
         return $this;
     }
