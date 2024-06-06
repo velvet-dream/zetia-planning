@@ -36,7 +36,7 @@ class User
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Job $jobId = null;
+    private ?Job $job = null;
 
     /**
      * @var Collection<int, Task>
@@ -98,14 +98,14 @@ class User
         return $this;
     }
 
-    public function getJobId(): ?Job
+    public function getJob(): ?Job
     {
-        return $this->jobId;
+        return $this->job;
     }
 
-    public function setJobId(?Job $jobId): static
+    public function setJob(?Job $job): static
     {
-        $this->jobId = $jobId;
+        $this->job = $job;
 
         return $this;
     }
