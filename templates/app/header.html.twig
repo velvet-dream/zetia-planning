@@ -8,7 +8,7 @@
         <div class="burger-icon" id="burger-icon">&#9776;</div>
     </div>
     {% block searchBar %}<input>{% endblock %}
-    <div>
+    <div class="icons-container">
 
         {# {% if (is_granted('IS_AUTHENTICATED_FULLY')) %} #}
         <a href="{{ path('app_index') }}">
@@ -21,7 +21,5 @@
 
     </div>
 
-    {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
-    <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
 </nav>
 {% endblock %}

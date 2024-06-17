@@ -13,26 +13,3 @@
 //    color: $textcolor;
 //    font-size: $fontsize;
 //  } 
-
-header {
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .icon {
-        height: 40px;
-        width: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: whitesmoke;
-        text-align: center;
-        border-radius: 100%;
-    }
-}
