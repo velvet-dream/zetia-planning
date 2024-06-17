@@ -1,0 +1,27 @@
+{% block header %}
+<nav>
+    <div class="logo-container">
+        {# Note : mettre l'icone du logo à la place de "Z" #}
+        <a class="logo" href="{{ path('app_index') }}">
+            <div class="icon">Z</div>
+        </a>
+        <div class="burger-icon" id="burger-icon">&#9776;</div>
+    </div>
+    {% block searchBar %}<input>{% endblock %}
+    <div>
+
+        {# {% if (is_granted('IS_AUTHENTICATED_FULLY')) %} #}
+        <a href="{{ path('app_index') }}">
+            <div class="icon user-icon">👤​</div>
+        </a>
+        <a href="{{ path('app_index') }}">
+            <div class="icon param-icon">⚙️​</div>
+        </a>
+        {# {% endif %} #}
+
+    </div>
+
+    {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
+    <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
+</nav>
+{% endblock %}
