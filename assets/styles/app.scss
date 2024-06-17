@@ -1,14 +1,38 @@
 // Put general styles to apply to the entire application here
+// Font-related declarations, for example should be put here
 
- /* EXAMPLE */
- /* Define standard variables and values for website */
+/* EXAMPLE */
+/* Define standard variables and values for website */
 //  $bgcolor: lightblue;
 //  $textcolor: darkblue;
 //  $fontsize: 18px;
- 
- /* Use the variables */
+
+/* Use the variables */
 //  body {
 //    background-color: $bgcolor;
 //    color: $textcolor;
 //    font-size: $fontsize;
 //  } 
+
+header {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .icon {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: whitesmoke;
+        text-align: center;
+        border-radius: 100%;
+    }
+}
