@@ -1,14 +1,22 @@
 // Put general styles to apply to the entire application here
+// Font-related declarations, for example should be put here
 
- /* EXAMPLE */
- /* Define standard variables and values for website */
+/* EXAMPLE */
+/* Define standard variables and values for website */
 //  $bgcolor: lightblue;
 //  $textcolor: darkblue;
 //  $fontsize: 18px;
- 
- /* Use the variables */
+
+/* Use the variables */
 //  body {
 //    background-color: $bgcolor;
 //    color: $textcolor;
 //    font-size: $fontsize;
-//  } 
+//  }
+
+// Pour les plus petits écrans / téléphone
+@media only screen and (max-width: 768px) {
+    .mobile-hidden {
+        display: none;
+    }
+}

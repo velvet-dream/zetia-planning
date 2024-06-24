@@ -1,0 +1,28 @@
+{% block header %}
+<nav>
+    <div class="logo-container">
+        {# Note : mettre l'icone du logo à la place de "Z" #}
+        <a class="logo" href="{{ path('app_index') }}">
+            <div class="icon">Z</div>
+        </a>
+        <div class="burger-icon" id="burger-icon">&#9776;</div>
+    </div>
+    {% block searchBar %}
+    {# à remplacer par un vrai formulaire de recherche, peut-être écrit en TS #}
+    <input>
+    {% endblock %}
+    <div class="icons-container">
+
+        {# {% if (is_granted('IS_AUTHENTICATED_FULLY')) %} #}
+        <a href="{{ path('app_index') }}">
+            <div class="icon user-icon">👤​</div>
+        </a>
+        <a href="{{ path('app_index') }}">
+            <div class="icon param-icon">⚙️​</div>
+        </a>
+        {# {% endif %} #}
+
+    </div>
+
+</nav>
+{% endblock %}
