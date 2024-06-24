@@ -12,4 +12,11 @@
 //    background-color: $bgcolor;
 //    color: $textcolor;
 //    font-size: $fontsize;
-//  } 
+//  }
+
+// Pour les plus petits écrans / téléphone
+@media only screen and (max-width: 768px) {
+    .mobile-hidden {
+        display: none;
+    }
+}
