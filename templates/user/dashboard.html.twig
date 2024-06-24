@@ -4,7 +4,14 @@
 
 {# Pour l'instant on fait comme si c'était un employé #}
 {% block main %}
-<section>
+<section class="mobile-hidden">
+    <div>
+        <div class="icon">📂​</div>
+        <h2>Projet 1</h2>
+    </div>
+</section>
+
+<section class="daily-tasks-view">
     <h2>Tâches de la journée</h2>
     <div>
         {# injecter chaque tâche fetchée par le back ici #}
@@ -22,6 +29,10 @@
             <p class="task-end-date">02/05/2024</p>
         </div>
     </div>
+</section>
+
+<section class="mobile-hidden stat-view">
+    <p>Statistiques du projet choisi si possible</p>
 </section>
 
 <section>
@@ -51,7 +62,10 @@
                 <div class="icon">👤</div>
                 <div class="icon">👤</div>
             </td>
-            <td><a>voir</a> <a>valider</a></td>
+            <td>
+                <a>voir</a>&nbsp;
+                <a>valider</a>
+            </td>
         </tr>
         <tr>
             <td>Nom de la tâche 14</td>
@@ -61,7 +75,10 @@
                 <div class="icon">👤</div>
                 <div class="icon">👤</div>
             </td>
-            <td><a>voir</a> <a>valider</a></td>
+            <td>
+                <a>voir</a>&nbsp;
+                <a>valider</a>
+            </td>
         </tr>
     </table>
 
