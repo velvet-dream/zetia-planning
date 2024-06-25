@@ -14,7 +14,13 @@ class DashboardController extends AbstractController
     {
         $user = $security->getUser();
 
-        return $this->render('dashboard/dashboard.html.twig', [
+        // Check if the user is authenticated before rendering the dashboard
+        if (!$user) {
+            // Redirect to login if user is not authenticated
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('dashboard/index.html.twig', [
             'user' => $user,
         ]);
     }

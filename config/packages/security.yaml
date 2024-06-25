@@ -16,12 +16,12 @@ security:
             lazy: true
             provider: app_user_provider
             form_login:
-                login_path: security_login
-                check_path: security_login
+                login_path: app_login
+                check_path: app_login
                 default_target_path: app_dashboard
             logout:
                 path: app_logout
-                target: security_login # Redirection après la déconnexion
+                target: app_login # Redirection après la déconnexion
 
     access_control:
         

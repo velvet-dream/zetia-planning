@@ -3,16 +3,17 @@
 // src/Form/UserType.php
 namespace App\Form;
 
-use App\Entity\Poste;
+
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class UserType extends AbstractType
 {
@@ -38,11 +39,9 @@ class UserType extends AbstractType
                     
                 ],
             ])
-            ->add('pst_id', EntityType::class, [ 
-                'class' => Poste::class, 
-                'choice_label' => 'titre', 
-                'label' => 'Post ID',
-            ]);
+          ;
+            
+            
     }
             
     

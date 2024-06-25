@@ -1,32 +1,36 @@
-{# templates/base.html.twig #}
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
-            {# Example stylesheet inclusion #}
             <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <script defer src="https://kit.fontawesome.com/bee1a8a770.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <body>
         <nav>
             <ul>
                 {% if app.user %}
+                 <div class="navbar">
                     <li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ path('app_logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ path('security_login') }}">Login</a></li>
-                    <li><a href="{{ path('app_register') }}">Register</a></li>
+                    <a href="{{ path('ViewTask') }}">Tâche</a>
+                    <a href="{{ path('ViewProject') }}">Projet</a>
+                    </div>
+                  
                 {% endif %}
             </ul>
         </nav>
 
-        {% block body %}{% endblock %}
-
-        {% block javascripts %}
-            {# Example script inclusion #}
-            <script src="{{ asset('js/app.js') }}"></script>
+        {% block main %}
+        
         {% endblock %}
+
+        
     </body>
 </html>

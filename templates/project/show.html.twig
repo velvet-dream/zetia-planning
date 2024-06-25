@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project{% endblock %}
+
+{% block main %}
+    <h1>Project</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>PctId</th>
+                <td>{{ project.pctId }}</td>
+            </tr>
+            <tr>
+                <th>PctTitle</th>
+                <td>{{ project.pctTitle }}</td>
+            </tr>
+            <tr>
+                <th>PctDescription</th>
+                <td>{{ project.pctDescription }}</td>
+            </tr>
+            <tr>
+                <th>PctDateDebut</th>
+                <td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PctDateFinPrevisionnelle</th>
+                <td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PctDateFinReelle</th>
+                <td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ViewProject') }}">back to list</a>
+
+    <a href="{{ path('app_project_edit', {'pctId': project.pctId}) }}">edit</a>
+
+    {{ include('project/delete.html.twig') }}
+{% endblock %}

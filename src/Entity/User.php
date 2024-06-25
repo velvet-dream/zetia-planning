@@ -1,46 +1,76 @@
-<?php 
+<?php
+
 namespace App\Entity;
 
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\UserRepository')]
-#[ORM\Table(name: 'users')]
+#[ORM\Entity(repositoryClass: UserRepository::class )]
+#[ORM\Table(name: 'app_user_usr')]
+#[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue] 
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $usr_id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usr_name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usr_first_name;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usr_mail;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 127)]
     private string $usr_password;
 
-    #[ORM\Column(type: 'string', length: 50 , nullable: true)]
-    private ?string $usrRole; 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $usr_role;
 
-    #[ORM\Column(type: 'integer' ,nullable: true)]
-    private ?int $pstId;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $usr_avatar = null;
 
-    // Getters and Setters
-    public function getUserIdentifier(): string
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
+    private ?Job $job = null;
+
+    /**
+     * @var Collection<int, Task>
+     */
+    #[ORM\JoinTable(name: 'ass_usertask_uts')]
+    #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
+    #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
+    #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]
+    private Collection $tasks;
+
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'projectAdmin', orphanRemoval: true)]
+    private Collection $managedProjects;
+
+    public function __construct()
     {
-        return $this->usr_mail;
+        $this->tasks = new ArrayCollection();
+        $this->managedProjects = new ArrayCollection();
+    }
+
+    public function getUsrId(): ?int
+    {
+        return $this->usr_id;
     }
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->usr_id;
     }
 
     public function getUsrName(): ?string
@@ -70,23 +100,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->usr_mail;
     }
 
-    public function getUsername(): string
-    {
-        return $this->usr_mail;
-    }
+    public function setUsrMail(string $usr_mail): self
+{
+    $this->usr_mail = $usr_mail;
+    return $this;
+}
 
-    public function setUsrMail(string $usrMail): self
-    {
-        $this->usr_mail = $usrMail;
-        return $this;
-    }
+   
+    public function getPassword(): ?string
+{
+    return $this->usr_password;
+}
 
-    public function getPassword(): string
-    {
-        return $this->usr_password;
-    }
-
-    public function setUsrPassword(string $usrPassword): self
+    public function setPassword(string $usrPassword): self
     {
         $this->usr_password = $usrPassword;
         return $this;
@@ -94,34 +120,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsrRole(): ?string
     {
-        return $this->usrRole;
+        return $this->usr_role;
     }
-
     public function setUsrRole(string $usrRole): self
+{
+    $this->usr_role = $usrRole;
+    return $this;
+}
+
+    public function getPstId():?int
     {
-        $this->usrRole = $usrRole;
-        return $this;
+        return $this->job;
     }
 
-    public function getPstId(): ?int
+    public function setJob(?Job $job): static
     {
-        return $this->pstId;
+        $this->job = $job;
+
+        return $this;
+    }
+    public function getJob(): ?Job
+    {
+        return $this->job;
+    }
+    public function getPasswordHash(): string
+    {
+        return $this->usr_password;
     }
 
-    public function setPstId(int $pstId): self
+ 
+   
+
+    public function getSalt(): ?string
     {
-        $this->pstId = $pstId;
-        return $this;
+        // Not needed for modern hashing algorithms
+        return null;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->usr_mail;
     }
 
     public function getRoles(): array
     {
-        return [$this->usrRole ?? 'ROLE_USER'];
+        // Assuming roles are stored as a simple string
+        return [$this->usr_role];
     }
-
-    public function eraseCredentials()
+    public function getUserIdentifier(): string
     {
-        // Si vous stockez des données sensibles temporairement, nettoyez-les ici
+        return $this->usr_mail;
+    }
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 }

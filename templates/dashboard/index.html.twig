@@ -1,0 +1,8 @@
+{# templates/dashboard/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Dashboard</h1>
+    <p>Bonjour, {{ user.usrFirstName }} {{ user.usrName }}!</p>
+    <p>votre role est: {{ user.roles[0] }}</p>
+{% endblock %}
