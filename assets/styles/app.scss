@@ -6,14 +6,8 @@
 @use "abstracts" as *;
 // @use "vendors";
 // @use "base";
-// @use "utilities";
+@use "utilities";
 @use "components";
 // @use "pages";
 // @use "themes";
 @use "layout";
-
-@include media-screen-xs {
-    .mobile-hidden {
-        display: none;
-    }
-}
