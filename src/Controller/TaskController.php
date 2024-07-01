@@ -11,9 +11,10 @@ use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
+#[Route('tasks/')]
 class TaskController extends AbstractController
 {
-    #[Route('/task', name: 'app_task', methods: ['GET', 'POST'])]
+    #[Route('', name: 'app_task', methods: ['GET', 'POST'])]
     public function index(TaskRepository $taskRepo): Response
     {
         $task = $taskRepo->findAll();
@@ -22,7 +23,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/tasks/new', name: 'task_new', methods: ['GET', 'POST'])]
+    #[Route('new', name: 'task_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         $task = new Task();
@@ -41,7 +42,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/tasks/{id}', name: 'task_show', methods: ['GET'])]
+    #[Route('{id}', name: 'task_show', methods: ['GET'])]
     public function show(Task $task): Response
     {
         return $this->render('task/show.html.twig', [
@@ -49,7 +50,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/tasks/{id}/edit', name: 'task_edit', methods: ['GET', 'POST'])]
+    #[Route('{id}/edit', name: 'task_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(TaskType::class, $task);
@@ -66,7 +67,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/tasks/{id}', name: 'task_delete', methods: ['POST'])]
+    #[Route('{id}', name: 'task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete' . $task->getTskId(), $request->request->get('_token'))) {
