@@ -3,6 +3,10 @@ framework:
     # The paths to make available to the asset mapper.
     paths:
       - assets/
+    # Exclude scss files from the final, bundled app
+    excluded_patterns:
+      - "*/assets/styles/_*.scss"
+      - "*/assets/styles/**/_*.scss"
 
 sensiolabs_typescript:
   source_dir: ["%kernel.project_dir%/assets/scripts"]

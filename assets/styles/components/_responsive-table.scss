@@ -1,18 +1,16 @@
 /* Feuille de style dédiée à la classe responsive-table, censée modifier drastiquement l'apparence d'une table en mode mobile.
 note : renomer en "media-queries"*/
 
-@import "../abstracts/_media-queries";
+@import "../abstracts/media-queries";
 
 table.responsive-table {
     th {
         color: aqua;
-
-        @include media-screen-xs {
-            color: brown !important;
-        }
     }
 
-
+    @include media-screen-xs {
+        color: brown !important;
+    }
 
     background-color: blueviolet;
 }
