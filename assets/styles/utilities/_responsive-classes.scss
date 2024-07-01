@@ -1,0 +1,7 @@
+@import "../abstracts/media-queries";
+
+@include media-screen-xs {
+    .mobile-hidden {
+        display: none;
+    }
+}

@@ -46,7 +46,7 @@
     </div>
     {# Ici on met une table pour ordonner les données, mais à voir si c'est facile de le styler avec css et compatible
     avec du mobile-first #}
-    <table>
+    <table class="responsive-table">
         <tr>
             <th>Nom</th>
             <th>Date de début</th>
@@ -55,27 +55,27 @@
             <th>Actions</th>
         </tr>
         <tr>
-            <td>Nom de la tâche 1</td>
-            <td>15/03/2024</td>
-            <td>01/04/2024</td>
-            <td>
+            <td><h3>Nom de la tâche 1</h3></td>
+            <td class="table-entry-start-date">15/03/2024</td>
+            <td class="table-entry-expected-end-date">01/04/2024</td>
+            <td class="table-entry-assignments">
                 <div class="icon">👤</div>
                 <div class="icon">👤</div>
             </td>
-            <td>
+            <td  class="table-entry-actions">
                 <a>voir</a>&nbsp;
                 <a>valider</a>
             </td>
         </tr>
         <tr>
-            <td>Nom de la tâche 14</td>
-            <td>- - -</td>
-            <td>01/06/2024</td>
-            <td>
+            <td><h3>Nom de la tâche 14</h3></td>
+            <td class="table-entry-start-date">- - -</td>
+            <td class="table-entry-expected-end-date">01/06/2024</td>
+            <td class="table-entry-assignments">
                 <div class="icon">👤</div>
                 <div class="icon">👤</div>
             </td>
-            <td>
+            <td class="table-entry-actions">
                 <a>voir</a>&nbsp;
                 <a>valider</a>
             </td>

@@ -1,0 +1,6 @@
+/**
+ * abstracts folder contains much more scss-specific rules : variables, mixins and functions should be declared here.
+ */
+
+@forward "globals";
+@forward "media-queries";

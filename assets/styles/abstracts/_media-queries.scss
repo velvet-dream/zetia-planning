@@ -1,0 +1,23 @@
+// UTILISER CES MIXINS POUR FAIRE DU CSS RESPONSIF AVEC LES MEDIA QUERIES
+// Voir https://www.w3schools.com/sass/sass_mixin_include.asp
+
+// mobiles
+@mixin media-screen-xs {
+    @media screen and (max-width: 640px) {
+        @content;
+    }
+}
+
+// large mobiles / tablets
+@mixin media-screen-sm {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+// desktop
+@mixin media-screen-lg {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}

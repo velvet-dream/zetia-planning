@@ -1,0 +1,38 @@
+/* Feuille de style dédiée à la classe responsive-table, censée modifier drastiquement l'apparence d'une table en mode mobile.*/
+
+@import "../abstracts/media-queries";
+
+table.responsive-table {
+    @include media-screen-xs {
+        margin: auto;
+
+        tr {
+            display: flex;
+            flex-direction: column;
+        }
+
+        th {
+            display: none;
+        }
+
+        td.table-entry-start-date::before {
+            content: "Date de début : ";
+        }
+
+        td.table-entry-expected-end-date::before {
+            content: "Date de fin prévue : ";
+        }
+
+        td.table-entry-tasks-amount::before {
+            content: "Nombre de tâches restantes : ";
+        }
+
+        td.table-entry-status::before {
+            content: "Statut : ";
+        }
+
+        td.table-entry-actions {
+            align-self: end;
+        }
+    }
+}
