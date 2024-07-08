@@ -53,3 +53,7 @@ Par conséquent, pour lancer la transpilation des fichiers TS et SCSS il faut si
 ### SCSS
 
 [En lire plus](scss.md)
+
+### HTML et les templates
+
+[En lire plus](html.md)
