@@ -43,4 +43,4 @@ Par conséquent, pour lancer la transpilation des fichiers TS et SCSS il faut si
 
 ### SCSS
 
-(test)[./scss.md]
+[test](./scss.md)
