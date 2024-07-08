@@ -10,26 +10,34 @@ L'application est présentée par le cahier des charges : https://rdksolutions.s
 
 SQL :
 - https://sql.sh/ (n'y allez pas sans adblock svp)
+
 Symfony : 
 - https://symfony.com/doc/current/index.html
+
 PHP : 
 - https://www.php.net/docs.php (doc plus technique)
 - https://www.w3schools.com/php/php_ref_overview.asp (doc plus simple)
+
 TypeScript (TS) : 
 - https://www.typescriptlang.org/docs/
 - https://www.typescriptlang.org/cheatsheets/ (Les anti-sèches)
+
 JavaScript (JS) :
 - https://developer.mozilla.org/fr/docs/Learn/JavaScript (en français, doc très complète)
 - https://www.w3schools.com/jsref/default.asp (doc plus simpliste et concise)
+
 SCSS :
 - https://sass-lang.com/documentation/syntax/ (doc officielle)
 - https://www.w3schools.com/sass/ (doc plus simple et concise)
+
 CSS :
 - https://www.w3schools.com/cssref/index.php (ref concise)
 - https://developer.mozilla.org/fr/docs/Web/CSS (doc en FR, détaillée)
 - https://caniuse.com/ (pour connaître le compatibilité d'une règle CSS avec les navigateurs)
+
 HTML :
 - https://developer.mozilla.org/fr/docs/Web/HTML
+
 TWIG :
 - https://twig.symfony.com/doc/3.x/
 
@@ -41,6 +49,7 @@ Dans le fichier `.symfony.local.yaml`, il y a ce qu'on appelle des workers qui s
 
 Par conséquent, pour lancer la transpilation des fichiers TS et SCSS il faut simplement lancer la commande `symfony server:start`
 
+
 ### SCSS
 
-[test](./scss.md)
+[En lire plus](scss.md)
