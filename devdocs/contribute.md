@@ -87,4 +87,36 @@ Ce principe présente deux intérêts majeurs :
 
 #### 2) Les petites PR, c'est bien
 
-Évitez à tout prix les énormes PR qui modifient énormément de lignes. Cela rendrait la review impossible et pourrait faire perdre du temps à tout le monde. Subdivisez, autant que possible, vos développements en plusieurs morceaux. Vous pouvez créer autant de branches que vous voulez, après tout. Vous n'êtes pas limité⋅es à avoir une seule branche isolée du genre `mon-prenom-develop`.
+Évitez à tout prix les énormes PR qui modifient énormément de lignes. Cela rendrait la review impossible et pourrait faire perdre du temps à tout le monde. Subdivisez, autant que possible, vos développements en plusieurs morceaux. Vous pouvez créer autant de branches que vous voulez, après tout. Vous n'êtes pas limité⋅es à avoir une seule branche isolée du genre `mon-prenom-develop` (à vrai dire, j'aimerais ne plus voir ces branches).
+
+## Les Tickets
+
+Les tickets sont un outil essentiel pour faciliter le développement et communiquer avec les autres devs. N'hésitez pas à en faire l'usage ! Vous pouvez même écrire un ticket pour vous servir d'appui pour votre propre développement et ne pas vous disperser. Ils sont visibles à l'adresse suivante : https://github.com/velvet-dream/zetia-planning/issues
+
+Un ticket peut décrire un besoin d'évolution, de nouvelle feature, ou décrire un bug/un problème à fixer.
+
+Il existe pour cela deux templates préfaits. La plupart du temps, si votre ticket ne décrit pas un bug, alors ça sera une "Évolution".
+
+![nouveau ticket sur github](./medias/contribute-02-github-new-issue.png)
+
+Pour écrire un nouveau ticket, il suffit de cliquer sur "New Issue" depuis https://github.com/velvet-dream/zetia-planning/issues
+
+### Tableau Kanban
+
+Note importante : un ticket peut aussi être mis dans le tableau kanban du projet. Depuis la page d'un ticket, sur la colonne de droite, cliquer sur "Projects" pour ajouter ce ticket au projet github
+
+![Ajouter un ticket au projet GitHub](./medias/contribute-03-github-new-issue.png)
+
+Ensuite, on retrouve le ticket en question sur le projet :
+
+![Vue du ticket qui vient d'être ajouté au projet GitHub](./medias/contribute-04-github-new-issue.png)
+
+### Relier un ticket à une PR
+
+On peut également relier un ticket à sa PR pour qu'il soit automatiquement fermé lorsque la PR est mergée.
+
+Deux manières de le faire : 
+1. Commencer la description de la PR par le mot-clé "Closes: #numéroDuTicket" (oldschool)
+2. Cliquer sur "Development" dans la colonne de droite de votre Ticket ou PR pour y sélectionner la branche / le ticket correspondant.
+
+![l'onglet "development" de la page d'un ticket sur github.com](./medias/contribute-05-github-link-issue.png)
