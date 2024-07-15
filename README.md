@@ -10,3 +10,4 @@ https://rdksolutions.sharepoint.com/:w:/r/sites/2023-M07DWWM/_layouts/15/Doc.asp
 Pour lancer Sass et TypeScript en mode build, lancer simplement la commande
 `symfony server:start`
 
+Merci de se référer à [la documentation](./devdocs/index.md) du projet pour contribuer à son développement et avoir des indications sur les stacks techniques employées. 
