@@ -53,6 +53,8 @@ Assurez-vous bien de comparer votre PR à la bonne branche (en général, `devel
 
 Il existe bien sûr une ligne de commande pour ça. Voir : https://git-scm.com/docs/git-request-pull
 
+-----
+
 ### Reviews
 
 Lorsque vous faites une PR sur `develop`, elle ne pourra pas être mergée tout de suite : vous aurez besoin d'une *review* de la part de la lead dev, qui décidera si la PR peut être merged ou s'il y a des modifications à ajouter.
