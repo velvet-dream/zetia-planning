@@ -45,7 +45,7 @@ Cela vous mènera ensuite sur github.com.
 
 #### 2) github.com
 
-Depuis votre branche sur https://github.com/velvet-dream/zetia-planning/, cliquer sur le bouton "Compare & pull request"
+Depuis votre branche sur https://github.com/velvet-dream/zetia-planning/, cliquez sur le bouton "Compare & pull request"
 
 Assurez-vous bien de comparer votre PR à la bonne branche (en général, `develop`)
 
@@ -54,3 +54,35 @@ Assurez-vous bien de comparer votre PR à la bonne branche (en général, `devel
 Il existe bien sûr une ligne de commande pour ça. Voir : https://git-scm.com/docs/git-request-pull
 
 ### Reviews
+
+Lorsque vous faites une PR sur `develop`, elle ne pourra pas être mergée tout de suite : vous aurez besoin d'une *review* de la part de la lead dev, qui décidera si la PR peut être merged ou s'il y a des modifications à ajouter.
+
+> Concrètement : la lead dev va relire **TOUT VOTRE CODE**.
+
+Si tout est bon, elle s'occupera de merger la PR à develop et d'effacer la branche de développement sur le repo, puisqu'elle aura rempli son rôle.
+
+> Note: l'acronyme LGTM signifie "Looks Good To Me". L'acronyme "RSLGTM" signifique quant à lui "Rubber Stamp Looks Good To Me", il veut dire que la revieweuse n'a pas lu le code en détail mais prend la responsabilité de valider la PR malgré tout.
+
+### Principes importants
+
+Pour fluidifier les reviews et le développement de l'équipe, vos PRs **doivent** suivre deux principes fondamentaux :
+
+#### 1) Separation of concerns (séparation des préoccupations)
+
+Ce principe de développement est essentiel. Une PR ne doit pas dépasser son périmètre. Elle doit se concentrer uniquement sur ce qu'elle a à modifier. Par exemple, une PR qui doit modifier le routing de l'application ne doit pas modifier les styles.
+
+Chaque PR a un rôle et doit s'y tenir. Si votre PR est censée ajouter la fonctionnalité de pouvoir se connecter, elle doit se contenter de faire uniquement ça. Cependant : si, pendant le développement, on se rend compte qu'on a plus à faire que prévu, on peut tout à fait enchaîner plusieurs branches de la sorte :
+
+```
+develop <- evo-#22-add-login-form <- evo-#22-login-form-routing-for-users-and-admin <- evo-#22-add-utility-class-to-check-passwords 
+```
+
+La première branche est basée sur `develop`. Puisque cette première PR doit attendre d'être review pour être mergée mais qu'il reste du boulot à y faire, on base la branche suivante sur la deuxième, afin de poursuivre le développement et ainsi de suite. Si la PR `evo-#22-add-login-form` venait à être mergée entre temps, la suivante serait automatiquement rebasée sur `develop`.
+
+Ce principe présente deux intérêts majeurs :
+1. cela rend les reviews plus petites et plus faciles (plutôt que de modifier 1250 lignes de codes)
+2. Si une PR venait à introduire un bug ou une régression, on peut facilement la *revert* (inverser ses modifications) sans faire s'écrouler l'entièreté de l'app.
+
+#### 2) Les petites PR, c'est bien
+
+Évitez à tout prix les énormes PR qui modifient énormément de lignes. Cela rendrait la review impossible et pourrait faire perdre du temps à tout le monde. Subdivisez, autant que possible, vos développements en plusieurs morceaux. Vous pouvez créer autant de branches que vous voulez, après tout. Vous n'êtes pas limité⋅es à avoir une seule branche isolée du genre `mon-prenom-develop`.
