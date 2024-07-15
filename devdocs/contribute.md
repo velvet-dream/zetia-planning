@@ -33,4 +33,24 @@ Exemples :
 
 ## Les PR (Pull Request)
 
-Lorsque vous avez fini une implémentation et que vous voulez ajouter votre travail à `develop`, vous devez faire ce qu'on appelle une *Pull Request*. 
+Lorsque vous avez fini une implémentation et que vous voulez ajouter votre travail à `develop`, vous devez faire ce qu'on appelle une *Pull Request*. Pour créer une PR, vous devez partir de votre branche de développement. 3 possibilités s'offrent à vous :
+
+#### 1) GitHub Desktop
+
+Depuis GitHub Desktop, après avoir push tous vos commits, il suffit de cliquer sur ce bouton : 
+[le bouton "preview request" de github desktop](./medias/contribute-01-github-desktop.png)
+
+Assurez-vous bien, sur la fenêtre suivante, de baser votre PR sur une autre branche que `main`.
+Cela vous mènera ensuite sur github.com.
+
+#### 2) github.com
+
+Depuis votre branche sur https://github.com/velvet-dream/zetia-planning/, cliquer sur le bouton "Compare & pull request"
+
+Assurez-vous bien de comparer votre PR à la bonne branche (en général, `develop`)
+
+#### 3) commande git
+
+Il existe bien sûr une ligne de commande pour ça. Voir : https://git-scm.com/docs/git-request-pull
+
+### Reviews
