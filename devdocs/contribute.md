@@ -5,11 +5,11 @@ Nous avons un repository GitHub pour ce projet. Cela implique de se familiariser
 ## Les branches
 
 Le projet possède plusieurs branches :
-- main (protégée) : la branche principale. Elle sert de branche à peu près "sûre" sur laquelle la lead dev pushera personnellement les nouveaux commits depuis develop s'ils ne présentent pas de bug à première vue.
-- develop (protégée) : la branche de développement. C'est sur elle qu'on travaille ! On ne touche donc jamais à main directement.
-- les autres branches : celles que l'équipe de développement crée pour avancer sur chaque évolution, feature et correction de bug. Elles devront se baser sur develop, ou bien sur d'autres sous-branches de développement.
+- `main` (protégée) : la branche principale. Elle sert de branche à peu près "sûre" sur laquelle la lead dev pushera personnellement les nouveaux commits depuis `develop` s'ils ne présentent pas de bug à première vue.
+- `develop` (protégée) : la branche de développement. C'est sur elle qu'on travaille ! On ne touche donc jamais à `main` directement.
+- les autres branches : celles que l'équipe de développement crée pour avancer sur chaque évolution, feature et correction de bug. Elles devront se baser sur `develop`, ou bien sur d'autres sous-branches de développement.
 
-Les branches main et develop sont protégées : cela veut dire que vous aurez besoin d'une review approuvée de la part de la lead dev avant d'être merge. Cela permet d'avoir une relecture de son code et de limiter les erreurs et les régressions. Lire la section "Pull Request" pour plus d'info.
+Les branches `main` et `develop` sont protégées : cela veut dire que vous aurez besoin d'une review approuvée de la part de la lead dev avant d'être merge. Cela permet d'avoir une relecture de son code et de limiter les erreurs et les régressions. Lire la section "Pull Request" pour plus d'info.
 
 ### Convention de nommage des branches
 
