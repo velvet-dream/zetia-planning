@@ -59,7 +59,7 @@ Il existe bien sûr une ligne de commande pour ça. Voir : https://git-scm.com/d
 
 Lorsque vous faites une PR sur `develop`, elle ne pourra pas être mergée tout de suite : vous aurez besoin d'une *review* de la part de la lead dev, qui décidera si la PR peut être merged ou s'il y a des modifications à ajouter.
 
-> Concrètement : la lead dev va relire **TOUT VOTRE CODE**.
+Concrètement : la lead dev va relire **TOUT VOTRE CODE**.
 
 Si tout est bon, elle s'occupera de merger la PR à develop et d'effacer la branche de développement sur le repo, puisqu'elle aura rempli son rôle.
 
@@ -100,6 +100,8 @@ Il existe pour cela deux templates préfaits. La plupart du temps, si votre tick
 ![nouveau ticket sur github](./medias/contribute-02-github-new-issue.png)
 
 Pour écrire un nouveau ticket, il suffit de cliquer sur "New Issue" depuis https://github.com/velvet-dream/zetia-planning/issues
+
+**Un mauvais ticket est un ticket pas écrit ! Même s'il est incomplet, mieux vaut écrire un ticket plutôt que de ne jamais signaler un bug**
 
 ### Tableau Kanban
 
