@@ -48,3 +48,8 @@ Ensuite, il suffit de les appeler de cette manière :
 
 <twig:Alert message="Or use the fun HTML syntax!" />
 ```
+
+Pour voir le résultat d'un composant spécifique, lancer la commande :
+```bash
+$ php bin/console debug:twig-component
+```
