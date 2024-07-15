@@ -39,7 +39,7 @@ Pour créer un composant, il faut deux fichiers :
 1. une classe PHP qui ira dans src/Twig/Components/NomDuComposant.php
 2. son template Twig qui ira dans le sous-dossier "src/templates/components" 
 
-Dans les deux cas, le nom du fichier s'écrit en PascalCase, contrairement aux autres fichiers twig.
+Dans les deux cas, le nom du fichier s'écrit en PascalCase, contrairement aux autres fichiers twig, pour la simple raison que le template doit avoir exactement le même nom (extension exclue bien sûr) que sa classe PHP.
 
 Ensuite, il suffit de les appeler de cette manière :
 
