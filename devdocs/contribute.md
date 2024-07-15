@@ -38,7 +38,7 @@ Lorsque vous avez fini une implémentation et que vous voulez ajouter votre trav
 #### 1) GitHub Desktop
 
 Depuis GitHub Desktop, après avoir push tous vos commits, il suffit de cliquer sur ce bouton : 
-[le bouton "preview request" de github desktop](./medias/contribute-01-github-desktop.png)
+![le bouton "preview request" de github desktop](./medias/contribute-01-github-desktop.png)
 
 Assurez-vous bien, sur la fenêtre suivante, de baser votre PR sur une autre branche que `main`.
 Cela vous mènera ensuite sur github.com.
