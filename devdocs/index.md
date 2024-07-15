@@ -49,7 +49,6 @@ Dans le fichier `.symfony.local.yaml`, il y a ce qu'on appelle des workers qui s
 
 Par conséquent, pour lancer la transpilation des fichiers TS et SCSS il faut simplement lancer la commande `symfony server:start`
 
-
 ### SCSS
 
 [En lire plus](scss.md)
@@ -57,3 +56,7 @@ Par conséquent, pour lancer la transpilation des fichiers TS et SCSS il faut si
 ### HTML et les templates
 
 [En lire plus](html.md)
+
+### Contribuer au projet (IMPORTANT)
+
+[En lire plus](contribute.md)
