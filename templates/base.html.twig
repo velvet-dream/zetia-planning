@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="">
+
+<html lang="FR">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
@@ -35,42 +34,3 @@
         
     </body>
 </html>
-=======
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}
-        {% if title is defined %}
-        {{ title }} ‑ Zetia Planning
-        {% else %}
-        Zetia Planning
-        {% endif %}
-        {% endblock %}
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📝​</text></svg>">
-    <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-
-    {% block scripts %}
-    <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script>
-    {% endblock %}
-</head>
-
-<body>
-    <header id="top-page">
-        {% block header %}{{ block("header", "app/header.html.twig") }}{% endblock %}
-    </header>
-    <main>
-        {% block main %}{% endblock %}
-    </main>
-    <footer>
-        {% block footer %}{{ block("footer", "app/footer.html.twig") }}{% endblock %}
-    </footer>
-</body>
-
-</html>
->>>>>>> origin

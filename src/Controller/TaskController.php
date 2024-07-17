@@ -14,26 +14,17 @@ use App\Entity\Project;
 use App\Entity\StatusTask;
 use App\Repository\ProjectRepository;
 
-<<<<<<< HEAD
 #[Route('/task')]
 class TaskController extends AbstractController
 {
     #[Route('/', name: 'ViewTask', methods: ['GET'])]
     public function index(TaskRepository $taskRepository): Response
-=======
-#[Route('tasks/')]
-class TaskController extends AbstractController
-{
-    #[Route('', name: 'app_task', methods: ['GET', 'POST'])]
-    public function index(TaskRepository $taskRepo): Response
->>>>>>> origin
     {
         return $this->render('task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
         ]);
     }
 
-<<<<<<< HEAD
     
     
         #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
@@ -51,14 +42,6 @@ class TaskController extends AbstractController
                 // Associez la tâche au projet sélectionné dans le formulaire
                 $task->setProject($form->get('project')->getData());
                 $task->setTskStatus($form->get('tskStatus')->getData());
-=======
-    #[Route('new', name: 'task_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em): Response
-    {
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
-        $form->handleRequest($request);
->>>>>>> origin
 
                 // Persistez et flush la tâche
                 $entityManager->persist($task);
@@ -78,25 +61,15 @@ class TaskController extends AbstractController
 
        
 
-<<<<<<< HEAD
     #[Route('/{tskId}', name: 'app_task_show', methods: ['GET'])]
-=======
-    #[Route('{id}', name: 'task_show', methods: ['GET'])]
->>>>>>> origin
     public function show(Task $task): Response
     {
         return $this->render('task/show.html.twig', [
             'task' => $task,
         ]);
     }
-<<<<<<< HEAD
     #[Route('/{tskId}/edit', name: 'app_task_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $entityManager): Response
-=======
-
-    #[Route('{id}/edit', name: 'task_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
->>>>>>> origin
     {
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
@@ -126,13 +99,8 @@ class TaskController extends AbstractController
     }
     
 
-<<<<<<< HEAD
     #[Route('/{tskId}', name: 'app_task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
-=======
-    #[Route('{id}', name: 'task_delete', methods: ['POST'])]
-    public function delete(Request $request, Task $task, EntityManagerInterface $em): Response
->>>>>>> origin
     {
         if ($this->isCsrfTokenValid('delete'.$task->getTskId(), $request->request->get('_token'))) {
             $entityManager->remove($task);
