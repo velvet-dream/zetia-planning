@@ -1,0 +1,11 @@
+/** 
+ * Pour éviter d'avoir à importer chaque fichier individuellement, 
+ * on les importe par les clauses @forward (dans les _index.scss) et @use ici.
+ * Lire : https://dev.to/dostonnabotov/a-modern-sass-folder-structure-330f
+ */
+@use "abstracts" as *;
+// @use "base";
+@use "utilities";
+@use "components";
+// @use "pages";
+@use "layout";
