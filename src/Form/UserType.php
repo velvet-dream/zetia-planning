@@ -1,6 +1,5 @@
 <?php
-// src/Form/UserType.php
-// src/Form/UserType.php
+
 namespace App\Form;
 
 
@@ -36,17 +35,14 @@ class UserType extends AbstractType
                 'choices' => [
                     'Responsable' => 'ROLE_ADMIN',
                     'Salarier' => 'ROLE_USER',
-                    
-                ],
-            ])
-          ;
-            
-            
-    }
-            
-    
 
-    
+                ],
+            ]);
+    }
+
+
+
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Project;
 use App\Entity\StatusTask;
 use App\Entity\Task;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,7 +37,6 @@ class TaskType extends AbstractType
                 'choice_label' => 'pctTitle', // Remplacez par le champ de votre projet à afficher
                 'placeholder' => 'Sélectionner un projet',
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
