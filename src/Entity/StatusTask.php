@@ -6,7 +6,7 @@ use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ORM\Table(name: 'tsk_statustask_stk')]
+#[ORM\Table(name: 'statustask_stk')]
 class StatusTask
 {
     #[ORM\Id]

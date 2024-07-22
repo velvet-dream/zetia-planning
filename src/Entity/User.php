@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: 'app_user_usr')]
+#[ORM\Table(name: 'user_usr')]
 class User
 {
     #[ORM\Id]
@@ -41,7 +41,7 @@ class User
     /**
      * @var Collection<int, Task>
      */
-    #[ORM\JoinTable(name: 'ass_usertask_uts')]
+    #[ORM\JoinTable(name: 'usertask')]
     #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
     #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]

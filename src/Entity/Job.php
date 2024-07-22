@@ -6,7 +6,7 @@ use App\Repository\JobRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobRepository::class)]
-#[ORM\Table(name: 'usr_job_job')]
+#[ORM\Table(name: 'userjob_job')]
 class Job
 {
     #[ORM\Id]
