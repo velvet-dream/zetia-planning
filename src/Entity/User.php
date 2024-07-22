@@ -10,13 +10,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class )]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'app_user_usr')]
 #[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue] 
+    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private int $usr_id;
 
@@ -101,16 +101,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function setUsrMail(string $usr_mail): self
-{
-    $this->usr_mail = $usr_mail;
-    return $this;
-}
+    {
+        $this->usr_mail = $usr_mail;
+        return $this;
+    }
 
-   
+
     public function getPassword(): ?string
-{
-    return $this->usr_password;
-}
+    {
+        return $this->usr_password;
+    }
 
     public function setPassword(string $usrPassword): self
     {
@@ -123,12 +123,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->usr_role;
     }
     public function setUsrRole(string $usrRole): self
-{
-    $this->usr_role = $usrRole;
-    return $this;
-}
+    {
+        $this->usr_role = $usrRole;
+        return $this;
+    }
 
-    public function getPstId():?int
+    public function getPstId(): ?int
     {
         return $this->job;
     }
@@ -139,17 +139,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
     public function getJob(): ?Job
     {
         return $this->job;
     }
+
     public function getPasswordHash(): string
     {
         return $this->usr_password;
     }
-
- 
-   
 
     public function getSalt(): ?string
     {
