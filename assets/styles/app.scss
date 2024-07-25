@@ -26,7 +26,7 @@ $table-header-bg: #e7e5f7;
 $table-border: #ddd;
 $icon-bg: #ebe7f2;
 $bg-color: #f8f8f8;
-$sidebar-width: 80px;
+$sidebar-width: 5vw;
 
 // Mixins
 @mixin flex-center {
@@ -41,6 +41,7 @@ $sidebar-width: 80px;
 
 // Base Styles
 body {
+  font-size: 16px;
   font-family: "Arial", sans-serif;
   background-color: $bg-color;
   color: $font-color;
@@ -51,18 +52,18 @@ body {
 
 main {
   flex: 1;
-  padding: 20px;
+  padding: 2%;
 }
 
 h2,
 h3 {
   margin: 0;
-  padding: 10px 0;
+  padding: 1% 0;
 }
 
 header,
 section {
-  padding: 20px;
+  padding: 2%;
 }
 
 // Sidebar
@@ -76,9 +77,9 @@ section {
   padding-top: 20px;
 
   .logo {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 10%;
   }
 
   nav ul {
@@ -87,9 +88,9 @@ section {
     width: 100%;
 
     li {
-      margin: 20px 0;
+      margin: 5% 0;
       @include flex-center;
-      font-size: 24px;
+      font-size: 1.5rem;
       cursor: pointer;
 
       a {
@@ -98,55 +99,70 @@ section {
         width: 100%;
         display: flex;
         justify-content: center;
-        padding: 10px 0;
+        padding: 2% 0;
+        margin: 3vw 0;
 
-        &:hover {
+        &:hover,
+        &.active {
           background-color: $secondary-color;
+          color: $primary-color;
         }
-      }
-
-      &.active a {
-        color: $primary-color;
       }
     }
   }
 }
 
-// Main Content
 .main-content {
   margin-left: $sidebar-width;
-  padding: 20px;
+  padding: 2%;
+  background-color: $bg-color;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2%;
 
   .search-bar {
     display: flex;
     align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0.5% 1%;
+    width: 30%;
 
     input {
-      padding: 10px;
-      border: 1px solid $table-border;
-      border-radius: 4px 0 0 4px;
+      border: none;
+      background: transparent;
+      flex-grow: 1;
+      padding: 0.5%;
     }
 
     button {
-      padding: 10px;
-      border: 1px solid $table-border;
-      border-left: none;
-      border-radius: 0 4px 4px 0;
-      background-color: $primary-color;
-      color: white;
+      background: none;
+      border: none;
+      color: $primary-color;
       cursor: pointer;
     }
   }
 
-  .settings {
-    font-size: 24px;
-    cursor: pointer;
+  .user-settings {
+    display: flex;
+    align-items: center;
+
+    .user-avatar {
+      width: 2.5 rem;
+      height: 2.5 rem;
+      border-radius: 50%;
+      margin-right: 2%;
+    }
+
+    .settings {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: $primary-color;
+    }
   }
 }
 
@@ -154,27 +170,32 @@ header {
 .projects {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
 
   .project {
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
-    width: 30%;
+    padding: 2%;
+    width: calc(33.33% - 10px);
     @include box-shadow;
     @include flex-center;
     flex-direction: column;
+    margin: 0 2%;
 
     .icon {
       background-color: $icon-bg;
       border-radius: 50%;
-      padding: 20px;
-      font-size: 24px;
-      margin-bottom: 10px;
+      padding: 7.5%;
+      font-size: 1.5rem;
+
+      margin-bottom: 5%;
+      color: $primary-color;
     }
 
     h3 {
       text-align: center;
+      font-size: 1rem;
+      color: $font-color;
     }
   }
 }
@@ -183,53 +204,64 @@ header {
 .statistics {
   background-color: $primary-color;
   border-radius: 10px;
-  height: 300px;
+  height: 20vh;
   @include box-shadow;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
 }
 
 // Tasks
 .tasks {
   background-color: white;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 0.625rem;
+  padding: 2%;
   @include box-shadow;
+
+  h2 {
+    margin-bottom: 2%;
+    font-size: 1rem;
+  }
 
   .tabs {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 
     button {
-      background-color: $primary-color;
-      color: white;
+      background-color: transparent;
+      color: $font-color;
       border: none;
-      border-radius: 8px;
-      padding: 10px 20px;
+      border-radius: 1.25em;
+      padding: 1% 2%;
+      margin-right: 1%;
       cursor: pointer;
 
-      &:hover {
-        background-color: darken($primary-color, 10%);
+      &:hover,
+      &.active {
+        background-color: $primary-color;
+        color: white;
       }
     }
   }
 
   .task-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 10px;
 
     th,
     td {
-      border: 1px solid $table-border;
+      border: none;
       padding: 10px;
       text-align: left;
     }
 
     th {
       background-color: $table-header-bg;
+      color: $primary-color;
     }
 
     td {
+      background-color: white;
+
       .icon {
         display: inline-block;
         background-color: $icon-bg;
@@ -248,6 +280,10 @@ header {
         }
       }
     }
+
+    tr:not(:first-child) {
+      @include box-shadow;
+    }
   }
 }
 // Login page specific styles
@@ -259,17 +295,17 @@ header {
 
 .login-container {
   background-color: white;
-  border-radius: 10px;
-  padding: 40px;
-  width: 400px;
+  border-radius: 0.625em;
+  padding: 5%;
+  width: 40%;
   @include box-shadow;
 }
 
 .login-logo {
-  font-size: 36px;
+  font-size: 2.25em;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 5%;
 }
 
 .login-form {
@@ -282,20 +318,20 @@ header {
   }
 
   input {
-    margin-bottom: 20px;
-    padding: 10px;
     border: 1px solid $table-border;
-    border-radius: 4px;
-    font-size: 16px;
+    margin-bottom: 4%;
+    padding: 2%;
+    border-radius: 0.25em;
+    font-size: 1em;
   }
 
   button {
     background-color: $primary-color;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 12px;
-    font-size: 16px;
+    border-radius: 0.25em;
+    padding: 2%;
+    font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
@@ -320,24 +356,25 @@ header {
 
 .register-container {
   background-color: white;
-  border-radius: 10px;
-  padding: 40px;
+  border-radius: 0.625em;
+  padding: 5%;
+  max-width: 50%;
   width: 100%;
-  max-width: 500px;
+
   @include box-shadow;
 }
 
 .register-logo {
-  font-size: 36px;
+  font-size: 2.25em;
+  margin-bottom: 4%;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1rem;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 4%;
   color: $font-color;
 }
 
@@ -346,27 +383,27 @@ h1 {
   flex-direction: column;
 
   > div {
-    margin-bottom: 20px;
+    margin-bottom: 4%;
   }
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 1%;
     font-weight: bold;
   }
 
   input,
   select {
     width: 100%;
-    padding: 10px;
     border: 1px solid $table-border;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 2%;
+    border-radius: 0.25em;
+    font-size: 1em;
   }
 
   .role-select {
     appearance: none;
-    background-image: url("path-to-your-dropdown-icon.svg");
+    background-image: url("");
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px;
@@ -376,9 +413,9 @@ h1 {
     background-color: $primary-color;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 12px;
-    font-size: 16px;
+    border-radius: 0.25em;
+    padding: 2%;
+    font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
@@ -390,7 +427,7 @@ h1 {
 
 .login-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 4%;
 
   a {
     color: $primary-color;

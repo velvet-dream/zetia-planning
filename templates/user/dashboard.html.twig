@@ -10,12 +10,16 @@
                 <input type="text" placeholder="Rechercher">
                 <button><i class="fas fa-search"></i></button>
             </div>
+            <div class="user-settings">
+            <img src="{{ asset('path/to/avatar.jpg') }}" alt="User Avatar" class="user-avatar">
             <div class="settings"><i class="fas fa-cog"></i></div>
+            </div>
         </header>
 
           <section class="projects">
         {% for project in projects %}
             <div class="project">
+            
                 <div class="icon"><i class="fas fa-folder"></i></div>
                 <h3>{{ project.pctTitle }}</h3>
             </div>
@@ -28,12 +32,11 @@
 
         <section class="tasks">
             <h2>Tâches par projets</h2>
-            <div class="tabs">
-                <button>Nom projet 1</button>
-                <button>Nom projet 2</button>
-                <button>Nom projet 3</button>
-                <button>Nom projet 4</button>
-            </div>
+          <div class="tabs">
+  {% for project in projects %}
+    <button {% if loop.first %}class="active" {% endif %}><a href="{{ path('ViewProject') }}">{{ project.pctTitle }}</a></button>
+  {% endfor %}
+</div>
             <table class="task-table">
                 <thead>
                     <tr>
