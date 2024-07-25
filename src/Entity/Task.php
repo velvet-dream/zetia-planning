@@ -46,10 +46,13 @@ class Task
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tasks')]
     private Collection $users;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stk_id', name: 'stk_id')]
+    
+    #[ORM\ManyToOne(targetEntity: StatusTask::class)]
+    #[ORM\JoinColumn(name: "stk_id", referencedColumnName: "stk_id", nullable: false)]
     private ?StatusTask $tskStatus = null;
+    
+
+
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false, referencedColumnName: 'pct_id', name: 'pct_id')]
@@ -110,56 +113,48 @@ class Task
     public function setTskId(int $tskId): self
     {
         $this->tskId = $tskId;
-
         return $this;
     }
 
     public function setTskTitle(string $tskTitle): self
     {
         $this->tskTitle = $tskTitle;
-
         return $this;
     }
 
     public function setTskDateDebut(DateTimeInterface $tskDateDebut): self
     {
         $this->tskDateDebut = $tskDateDebut;
-
         return $this;
     }
 
     public function setTskDateFinPrevisionnelle(DateTimeInterface $tskDateFinPrevisionnelle): self
     {
         $this->tskDateFinPrevisionnelle = $tskDateFinPrevisionnelle;
-
         return $this;
     }
 
     public function setTskDescription(string $tskDescription): self
     {
         $this->tskDescription = $tskDescription;
-
         return $this;
     }
 
     public function setTskDateFinReelle(DateTimeInterface $tskDateFinReelle): self
     {
         $this->tskDateFinReelle = $tskDateFinReelle;
-
         return $this;
     }
 
     public function setTskDuree(float $tskDuree): self
     {
         $this->tskDuree = $tskDuree;
-
         return $this;
     }
 
     public function setPctId(int $pctId): self
     {
         $this->pctId = $pctId;
-
         return $this;
     }
 
@@ -169,6 +164,7 @@ class Task
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, User>
@@ -182,30 +178,28 @@ class Task
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->addTask($this);
         }
 
         return $this;
     }
+
+ 
 
     public function removeUser(User $user): static
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeTask($this);
-        }
-
+        $this->users->removeElement($user);
         return $this;
     }
 
-    public function getTskStatus(): ?StatusTask
-    {
-        return $this->tskStatus;
-    }
+   
+public function getTskStatus(): ?StatusTask
+{
+    return $this->tskStatus;
+}
 
-    public function setTskStatus(?StatusTask $tskStatus): static
+    public function setTskStatus(?StatusTask $tskStatus): self
     {
         $this->tskStatus = $tskStatus;
-
         return $this;
     }
 
@@ -220,4 +214,5 @@ class Task
 
         return $this;
     }
+    
 }

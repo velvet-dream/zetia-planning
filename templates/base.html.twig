@@ -1,38 +1,35 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="FR">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}
-        {% if title is defined %}
-        {{ title }} ‑ Zetia Planning
-        {% else %}
-        Zetia Planning
-        {% endif %}
-        {% endblock %}
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📝​</text></svg>">
-    <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-
-    {% block scripts %}
-    <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script>
+    <title>{% block title %}{% if title is defined %}{{ title }} ‑ Zetia Planning{% else %}Zetia Planning{% endif %}{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    {% endblock %}
+    {% block javascripts %}
+        <script defer src="https://kit.fontawesome.com/bee1a8a770.js" crossorigin="anonymous"></script>
     {% endblock %}
 </head>
-
 <body>
-    <header id="top-page">
-        {% block header %}{{ block("header", "app/header.html.twig") }}{% endblock %}
-    </header>
-    <main>
-        {% block main %}{% endblock %}
-    </main>
-    <footer>
-        {% block footer %}{{ block("footer", "app/footer.html.twig") }}{% endblock %}
-    </footer>
-</body>
+    {% if app.user %}
+        <aside class="sidebar">
+            <div class="logo">.Z</div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="{{ path('app_dashboard') }}"><i class="fas fa-clock"></i></a></li>
+                    <li><a href="{{ path('ViewProject') }}"><i class="fas fa-clipboard-list"></i></a></li>
+                    <li><a href="{{ path('ViewTask') }}"><i class="fas fa-lightbulb"></i></a></li>
+                    <li><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </nav>
+        </aside>
+    {% endif %}
 
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+</body>
 </html>

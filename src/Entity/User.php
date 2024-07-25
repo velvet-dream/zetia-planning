@@ -6,37 +6,39 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'app_user_usr')]
-class User
+#[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $usrId;
+    private int $usr_id;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrName;
+    private string $usr_name;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrFirstName;
+    private string $usr_first_name;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrMail;
+    private string $usr_mail;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrPassword;
+    private string $usr_password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $usrRole;
+    private string $usr_role;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $usrAvatar = null;
+    private ?string $usr_avatar = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
-    private ?Job $job = null;
+    
 
     /**
      * @var Collection<int, Task>
@@ -61,109 +63,99 @@ class User
 
     public function getUsrId(): ?int
     {
-        return $this->usrId;
+        return $this->usr_id;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->usr_id;
     }
 
     public function getUsrName(): ?string
     {
-        return $this->usrName;
+        return $this->usr_name;
+    }
+
+    public function setUsrName(string $usrName): self
+    {
+        $this->usr_name = $usrName;
+        return $this;
     }
 
     public function getUsrFirstName(): ?string
     {
-        return $this->usrFirstName;
+        return $this->usr_first_name;
+    }
+
+    public function setUsrFirstName(string $usrFirstName): self
+    {
+        $this->usr_first_name = $usrFirstName;
+        return $this;
     }
 
     public function getUsrMail(): ?string
     {
-        return $this->usrMail;
+        return $this->usr_mail;
     }
 
-    public function getUsrPassword(): ?string
+    public function setUsrMail(string $usr_mail): self
     {
-        return $this->usrPassword;
+        $this->usr_mail = $usr_mail;
+        return $this;
+    }
+
+
+    public function getPassword(): ?string
+    {
+        return $this->usr_password;
+    }
+
+    public function setPassword(string $usrPassword): self
+    {
+        $this->usr_password = $usrPassword;
+        return $this;
     }
 
     public function getUsrRole(): ?string
     {
-        return $this->usrRole;
+        return $this->usr_role;
     }
-
-    public function getUsrAvatar(): ?string
+    public function setUsrRole(string $usrRole): self
     {
-        return $this->usrAvatar;
-    }
-
-    public function setUsrAvatar(?string $usrAvatar): static
-    {
-        $this->usrAvatar = $usrAvatar;
-
+        $this->usr_role = $usrRole;
         return $this;
     }
 
-    public function getJob(): ?Job
+   
+    public function getPasswordHash(): string
     {
-        return $this->job;
+        return $this->usr_password;
     }
 
-    public function setJob(?Job $job): static
+    public function getSalt(): ?string
     {
-        $this->job = $job;
-
-        return $this;
+        // Not needed for modern hashing algorithms
+        return null;
     }
 
-    /**
-     * @return Collection<int, Task>
-     */
-    public function getTasks(): Collection
+    public function getUsername(): string
     {
-        return $this->tasks;
+        return $this->usr_mail;
     }
 
-    public function addTask(Task $task): static
+    public function getRoles(): array
     {
-        if (!$this->tasks->contains($task)) {
-            $this->tasks->add($task);
-        }
-
-        return $this;
+        // Assuming roles are stored as a simple string
+        return [$this->usr_role];
     }
-
-    public function removeTask(Task $task): static
+    public function getUserIdentifier(): string
     {
-        $this->tasks->removeElement($task);
-
-        return $this;
+        return $this->usr_mail;
     }
-
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getManagedProjects(): Collection
+    public function eraseCredentials(): void
     {
-        return $this->managedProjects;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function addManagedProject(Project $managedProject): static
-    {
-        if (!$this->managedProjects->contains($managedProject)) {
-            $this->managedProjects->add($managedProject);
-            $managedProject->setProjectAdmin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeManagedProject(Project $managedProject): static
-    {
-        if ($this->managedProjects->removeElement($managedProject)) {
-            // set the owning side to null (unless already changed)
-            if ($managedProject->getProjectAdmin() === $this) {
-                $managedProject->setProjectAdmin(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

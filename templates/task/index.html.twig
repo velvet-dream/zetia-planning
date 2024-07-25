@@ -3,67 +3,45 @@
 {% block title %}Vos tâches{% endblock %}
 
 {% block main %}
-    <h1>Tâches</h1>
-    <div>
-        <section>
-            <h2>À Faire</h2>
-            <div>
-                <h3>Tache 1</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 2</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 3</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-        </section>
-        <section>
-            <h2>En cours</h2>
-            <div>
-                <h3>Tache 1</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 2</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-        </section>
-        <section>
-            <h2>En pause</h2>
-            <div>
-                <h3>Tache 1</h3>
-            </div>
-        </section>
-        <section>
-            <h2>Réalisées</h2>
-            <div>
-                <h3>Tache 12</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin: 01/04/25</li>
-                    <li>Durée: 16h</li>
-                </ul>
-            </div>
-        </section>
-    </div>
+    <h1>Task index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>titre</th>
+                <th>Date de Debut</th>
+                <th>Date de Fin Previsionnelle</th>
+                <th>Date de Fin Reelle</th>
+                <th>Description</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.tskId }}</td>
+                <td>{{ task.tskTitle }}</td>
+                <td>{{ task.tskDateDebut ? task.tskDateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ task.tskDateFinPrevisionnelle ? task.tskDateFinPrevisionnelle|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ task.tskDateFinReelle ? task.tskDateFinReelle|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ task.tskDescription }}</td>
+                <td>{{ task.tskDuree }}</td>
+                <td>{{ task.pctId }}</td>
+                <td>{{ task.stkId }}</td>
+                <td>
+                    <a href="{{ path('showTask', {'tskId': task.tskId}) }}">show</a>
+                    <a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('NewTask') }}">Create new</a>
 {% endblock %}
