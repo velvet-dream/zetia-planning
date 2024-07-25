@@ -2,20 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
+use App\Repository\StatusTaskRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
+#[ORM\Entity(repositoryClass: StatusTaskRepository::class)]
 #[ORM\Table(name: 'tsk_statustask_stk')]
 class StatusTask
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $stkId;
+private int $stkId;
 
-    #[ORM\Column(type: 'string', length: 127)]
-    private string $stkTitle;
+#[ORM\Column( type: 'string', length: 127)]
+private string $stkTitle;
 
     public function getStkId(): ?int
     {
@@ -30,8 +31,10 @@ class StatusTask
     public function setStkTitle(string $stkTitle): self
     {
         $this->stkTitle = $stkTitle;
-
         return $this;
     }
-    
+    public function __toString(): string
+{
+    return $this->stkTitle;
+}
 }

@@ -38,9 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $usr_avatar = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
-    private ?Job $job = null;
+    
 
     /**
      * @var Collection<int, Task>
@@ -128,23 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPstId(): ?int
-    {
-        return $this->job;
-    }
-
-    public function setJob(?Job $job): static
-    {
-        $this->job = $job;
-
-        return $this;
-    }
-
-    public function getJob(): ?Job
-    {
-        return $this->job;
-    }
-
+   
     public function getPasswordHash(): string
     {
         return $this->usr_password;
@@ -175,4 +157,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+    
 }

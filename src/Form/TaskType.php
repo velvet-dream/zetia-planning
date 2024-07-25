@@ -22,19 +22,19 @@ class TaskType extends AbstractType
             ->add('tskDateFinPrevisionnelle', null, [
                 'widget' => 'single_text',
             ])
-            ->add('tskDateFinReelle', null, [
-                'widget' => 'single_text',
-            ])
             ->add('tskDescription')
             ->add('tskDuree')
+            
             ->add('tskStatus', EntityType::class, [
                 'class' => StatusTask::class,
                 'choice_label' => 'stkTitle',
-                'placeholder' => 'Status',
+                'placeholder' => 'Choisir un statut',
             ])
+
+            
             ->add('project', EntityType::class, [
                 'class' => Project::class,
-                'choice_label' => 'pctTitle', // Remplacez par le champ de votre projet à afficher
+                'choice_label' => 'pctTitle', 
                 'placeholder' => 'Sélectionner un projet',
             ]);
     }

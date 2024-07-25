@@ -46,10 +46,13 @@ class Task
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tasks')]
     private Collection $users;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'stk_id', name: 'stk_id')]
+    
+    #[ORM\ManyToOne(targetEntity: StatusTask::class)]
+    #[ORM\JoinColumn(name: "stk_id", referencedColumnName: "stk_id", nullable: false)]
     private ?StatusTask $tskStatus = null;
+    
+
+
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false, referencedColumnName: 'pct_id', name: 'pct_id')]
@@ -188,15 +191,15 @@ class Task
         return $this;
     }
 
-    public function getTskStatus(): ?StatusTask
-    {
-        return $this->tskStatus;
-    }
+   
+public function getTskStatus(): ?StatusTask
+{
+    return $this->tskStatus;
+}
 
-    public function setTskStatus(?StatusTask $tskStatus): static
+    public function setTskStatus(?StatusTask $tskStatus): self
     {
         $this->tskStatus = $tskStatus;
-
         return $this;
     }
 
@@ -211,4 +214,5 @@ class Task
 
         return $this;
     }
+    
 }

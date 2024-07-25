@@ -31,8 +31,8 @@
                 <td>{{ task.pctId }}</td>
                 <td>{{ task.stkId }}</td>
                 <td>
-                    <a href="{{ path('app_task_show', {'tskId': task.tskId}) }}">show</a>
-                    <a href="{{ path('app_task_edit', {'tskId': task.tskId}) }}">edit</a>
+                    <a href="{{ path('showTask', {'tskId': task.tskId}) }}">show</a>
+                    <a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_task_new') }}">Create new</a>
+    <a href="{{ path('NewTask') }}">Create new</a>
 {% endblock %}

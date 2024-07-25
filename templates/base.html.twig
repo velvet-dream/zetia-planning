@@ -2,7 +2,7 @@
 <html lang="FR">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{% if title is defined %}{{ title }} ‑ Zetia Planning{% else %}Zetia Planning{% endif %}{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/app.css') }}">
             <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">

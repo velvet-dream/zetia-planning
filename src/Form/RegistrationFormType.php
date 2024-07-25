@@ -65,17 +65,9 @@ class RegistrationFormType extends AbstractType
                     'Responsable' => 'ROLE_ADMIN',
                     'Employé' => 'ROLE_USER',
                 ],
-            ])
-            ->add('job', EntityType::class, [
-                'class' => Job::class,
-                'choice_label' => 'jobTitle',
-                'label' => 'Job',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please select a job',
-                    ]),
-                ],
             ]);
+            
+            
     }
 
 

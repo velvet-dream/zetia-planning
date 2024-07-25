@@ -8,35 +8,36 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>PctId</th>
+                <th>Id</th>
                 <td>{{ project.pctId }}</td>
             </tr>
             <tr>
-                <th>PctTitle</th>
+                <th>titre</th>
                 <td>{{ project.pctTitle }}</td>
             </tr>
             <tr>
-                <th>PctDescription</th>
+                <th>Description</th>
                 <td>{{ project.pctDescription }}</td>
             </tr>
+           
             <tr>
-                <th>PctDateDebut</th>
+                <th>Date de début</th>
                 <td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>PctDateFinPrevisionnelle</th>
+                <th>Date de fin prévisionnelle</th>
                 <td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>PctDateFinReelle</th>
+                <th>Date de fin réelle</th>
                 <td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ViewProject') }}">back to list</a>
+    <a href="{{ path('ViewProject') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_project_edit', {'pctId': project.pctId}) }}">edit</a>
+    <a href="{{ path('app_project_edit', {'pctId': project.pctId}) }}">editer</a>
 
     {{ include('project/delete.html.twig') }}
 {% endblock %}

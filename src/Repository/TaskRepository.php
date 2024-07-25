@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Task;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,6 +41,15 @@ class TaskRepository extends ServiceEntityRepository
     public function findTaskById(int $tskId): ?Task
     {
         return $this->findOneBy(['tskId' => $tskId]);
+    }
+    public function findByUser($user)
+    {
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.users', 'u')
+            ->andWhere('u.usr_id = :user')  
+            ->setParameter('user', $user->getUsrId())  
+            ->getQuery()
+            ->getResult();
     }
 
     public function searchTask(

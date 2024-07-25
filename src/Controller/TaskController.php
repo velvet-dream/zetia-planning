@@ -27,7 +27,7 @@ class TaskController extends AbstractController
 
     
     
-        #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
+        #[Route('/new', name: 'NewTask', methods: ['GET', 'POST'])]
         public function new(Request $request, EntityManagerInterface $entityManager, ProjectRepository $projectRepository): Response
         {
             $task = new Task();
@@ -35,19 +35,22 @@ class TaskController extends AbstractController
     
             // Récupérez la liste des projets disponibles
             $projects = $projectRepository->findAll();
-    
+            $statusRepository = $entityManager->getRepository(StatusTask::class);
+            $allStatuses = $statusRepository->findAll();
+            dump($allStatuses);
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) {
-                // Associez la tâche au projet sélectionné dans le formulaire
-                $task->setProject($form->get('project')->getData());
-                $task->setTskStatus($form->get('tskStatus')->getData());
-
-                // Persistez et flush la tâche
+                $statusTask = $form->get('tskStatus')->getData();
+                if ($statusTask instanceof StatusTask) {
+                    $task->setTskStatus($statusTask);
+                }
                 $entityManager->persist($task);
                 $entityManager->flush();
+                // ...
+            
     
-                return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('ViewTask', [], Response::HTTP_SEE_OTHER);
             }
     
             return $this->render('task/new.html.twig', [
@@ -61,14 +64,14 @@ class TaskController extends AbstractController
 
        
 
-    #[Route('/{tskId}', name: 'app_task_show', methods: ['GET'])]
+    #[Route('/{tskId}', name: 'showTask', methods: ['GET'])]
     public function show(Task $task): Response
     {
         return $this->render('task/show.html.twig', [
             'task' => $task,
         ]);
     }
-    #[Route('/{tskId}/edit', name: 'app_task_edit', methods: ['GET', 'POST'])]
+    #[Route('/{tskId}/edit', name: 'editTask', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TaskType::class, $task);
@@ -89,7 +92,7 @@ class TaskController extends AbstractController
     
             $entityManager->flush();
     
-            return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('ViewTask', [], Response::HTTP_SEE_OTHER);
         }
     
         return $this->render('task/edit.html.twig', [
@@ -99,7 +102,7 @@ class TaskController extends AbstractController
     }
     
 
-    #[Route('/{tskId}', name: 'app_task_delete', methods: ['POST'])]
+    #[Route('/{tskId}', name: 'deleteTask', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$task->getTskId(), $request->request->get('_token'))) {
@@ -107,6 +110,6 @@ class TaskController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('ViewTask', [], Response::HTTP_SEE_OTHER);
     }
 }
