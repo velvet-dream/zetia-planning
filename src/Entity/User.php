@@ -10,11 +10,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'app_user_usr')]
 #[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
-{
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -43,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Task>
      */
-    #[ORM\JoinTable(name: 'ass_usertask_uts')]
+    #[ORM\JoinTable(name: 'usertask')]
     #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
     #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]

@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StatusTaskRepository::class)]
 #[ORM\Table(name: 'tsk_statustask_stk')]
+
+
 class StatusTask
 {
     #[ORM\Id]
