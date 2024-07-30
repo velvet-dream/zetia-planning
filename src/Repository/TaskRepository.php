@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Task;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -22,7 +21,7 @@ class TaskRepository extends ServiceEntityRepository
         parent::__construct($registry, Task::class);
     }
 
-    public function save(Task $entity, bool $flush = false): void
+    public function create(Task $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
         if ($flush) {
@@ -30,7 +29,7 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Task $entity, bool $flush = false): void
+    public function delete(Task $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
         if ($flush) {
@@ -42,27 +41,26 @@ class TaskRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['tskId' => $tskId]);
     }
+
     public function findByUser($user)
     {
         return $this->createQueryBuilder('t')
             ->innerJoin('t.users', 'u')
-            ->andWhere('u.usr_id = :user')  
-            ->setParameter('user', $user->getUsrId())  
+            ->andWhere('u.usr_id = :user')
+            ->setParameter('user', $user->getUsrId())
             ->getQuery()
             ->getResult();
     }
 
-    public function searchTask(
+    public function findTasksByTitle(
         string $tskTitle,
         string $search,
-    ) : ?array
-    {
+    ): ?array {
         return $this->createQueryBuilder('t')
             ->andWhere('t.tskTitle LIKE :val')
-            ->setParameter('val', '%'.$tskTitle.'%')
+            ->setParameter('val', '%' . $tskTitle . '%')
             ->addOrderBy('t.tskTitle', $search)
             ->getQuery()
             ->getResult();
     }
-    
 }
