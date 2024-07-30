@@ -32,8 +32,8 @@ class Task
     #[ORM\Column(type: 'text')]
     private string $tskDescription;
 
-    #[ORM\Column(type: 'float')]
-    private float $tskDuree;
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $tskDuree = null;
 
     #[ORM\Column(type: 'integer')]
     private int $pctId;

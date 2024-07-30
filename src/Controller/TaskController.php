@@ -49,7 +49,6 @@ class TaskController extends AbstractController
             $entityManager->flush();
             // ...
 
-
             return $this->redirectToRoute('viewTasks', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -60,10 +59,6 @@ class TaskController extends AbstractController
         ]);
     }
 
-
-
-
-
     #[Route('/{tskId}', name: 'showTask', methods: ['GET'])]
     public function show(Task $task): Response
     {
@@ -71,6 +66,7 @@ class TaskController extends AbstractController
             'task' => $task,
         ]);
     }
+
     #[Route('/{tskId}/edit', name: 'editTask', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
