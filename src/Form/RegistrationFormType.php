@@ -21,7 +21,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('usr_name', TextType::class, [
-                'label' => 'Name',
+                'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter your name',
@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('usr_first_name', TextType::class, [
-                'label' => 'First Name',
+                'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter your first name',
@@ -37,7 +37,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('usr_mail', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'Adresse Email',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter your email',
@@ -45,7 +45,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('usr_password', PasswordType::class, [
-                'label' => 'Password',
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -60,18 +60,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('usr_role', ChoiceType::class, [
-                'label' => 'Role',
+                'label' => 'Rôle',
                 'choices' => [
                     'Responsable' => 'ROLE_ADMIN',
                     'Employé' => 'ROLE_USER',
                 ],
             ]);
-            
-            
     }
-
-
-
 
     public function configureOptions(OptionsResolver $resolver): void
     {
