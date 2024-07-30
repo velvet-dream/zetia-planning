@@ -22,6 +22,6 @@ Lancez ces requêtes dans phpMYAdmin pour compléter quelques valeurs nécessair
 
 ```SQL
 INSERT INTO `statusproject_stp` (`stp_id`, `stp_title`) VALUES (NULL, 'en attente'), (NULL, 'en cours'), (NULL, 'livré');
-INSERT INTO `statusproject_stp` (`stp_id`, `stp_title`) VALUES (NULL, 'à faire'), (NULL, 'en cours'), (NULL, 'en pause'), (NULL, 'fait');
+INSERT INTO `statustask_stk` (`stk_id`, `stk_title`) VALUES (NULL, 'à faire'), (NULL, 'en cours'), (NULL, 'en pause'), (NULL, 'fait');
 INSERT INTO `userjob_job` (`job_id`, `job_title`) VALUES (NULL, 'Développeuse fullstack');
 ```
