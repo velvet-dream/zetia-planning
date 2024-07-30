@@ -74,18 +74,7 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $project = $entityManager->getRepository(Project::class)->find($request->request->get('project_id'));
-            if (!$project) {
-                throw $this->createNotFoundException('Le projet n\'existe pas');
-            }
-            $task->setProject($project);
-
-            $statusTask = $entityManager->getRepository(StatusTask::class)->find($request->request->get('status_task_id'));
-            if (!$statusTask) {
-                throw $this->createNotFoundException('Le statut de la tâche n\'existe pas');
-            }
-            $task->setTskStatus($statusTask);
-
+            $entityManager->persist($task);
             $entityManager->flush();
 
             return $this->redirectToRoute('viewTasks', [], Response::HTTP_SEE_OTHER);

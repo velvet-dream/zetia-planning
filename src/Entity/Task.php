@@ -35,12 +35,6 @@ class Task
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $tskDuree = null;
 
-    #[ORM\Column(type: 'integer')]
-    private int $pctId;
-
-    #[ORM\Column(type: 'integer')]
-    private int $stkId;
-
     /**
      * @var Collection<int, User>
      */
@@ -97,16 +91,6 @@ class Task
         return $this->tskDuree;
     }
 
-    public function getPctId(): ?int
-    {
-        return $this->pctId;
-    }
-
-    public function getStkId(): ?int
-    {
-        return $this->stkId;
-    }
-
     // Setters
     public function setTskId(int $tskId): self
     {
@@ -149,19 +133,6 @@ class Task
         $this->tskDuree = $tskDuree;
         return $this;
     }
-
-    public function setPctId(int $pctId): self
-    {
-        $this->pctId = $pctId;
-        return $this;
-    }
-
-    public function setStkId(int $stkId): self
-    {
-        $this->stkId = $stkId;
-        return $this;
-    }
-
 
     /**
      * @return Collection<int, User>

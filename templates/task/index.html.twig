@@ -28,8 +28,6 @@
                 <td>{{ task.tskDateFinReelle ? task.tskDateFinReelle|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ task.tskDescription }}</td>
                 <td>{{ task.tskDuree }}</td>
-                <td>{{ task.pctId }}</td>
-                <td>{{ task.stkId }}</td>
                 <td>
                     <a href="{{ path('showTask', {'tskId': task.tskId}) }}">show</a>
                     <a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>

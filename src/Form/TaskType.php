@@ -28,8 +28,6 @@ class TaskType extends AbstractType
                 'choice_label' => 'stkTitle',
                 'placeholder' => 'Choisir un statut',
             ])
-
-
             ->add('project', EntityType::class, [
                 'class' => Project::class,
                 'choice_label' => 'pctTitle',
