@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $usr_avatar = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
+    #[ORM\JoinColumn(nullable: true, referencedColumnName: 'job_id', name: 'job_id')]
     private ?Job $job = null;
 
     /**
@@ -148,7 +148,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setJob(?Job $job): static
     {
         $this->job = $job;
-
         return $this;
     }
 
