@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Project;
 use App\Entity\StatusTask;
 use App\Repository\ProjectRepository;
 
@@ -85,7 +84,6 @@ class TaskController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 
     #[Route('/{tskId}', name: 'deleteTask', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
