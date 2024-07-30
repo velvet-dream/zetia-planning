@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'app_user_usr')]
 #[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
