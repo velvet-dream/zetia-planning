@@ -73,6 +73,7 @@ class ProjectController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/{pctId}', name: 'deleteProject', methods: ['POST'])]
     public function delete(Request $request, Project $project, EntityManagerInterface $entityManager): Response
     {
