@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Form;
 
 use App\Entity\Project;
@@ -21,16 +22,12 @@ class ProjectType extends AbstractType
             ->add('pctDateFinPrevisionnelle', null, [
                 'widget' => 'single_text',
             ])
-            ->add('pctDateFinReelle', null, [
-                'widget' => 'single_text',
-            ])
             ->add('pctStatus', EntityType::class, [
                 'class' => StatusProject::class,
                 'choice_label' => 'stpTitle',
                 'placeholder' => 'Choisir un statut',
                 'required' => true,
             ]);
-    
     }
 
     public function configureOptions(OptionsResolver $resolver): void

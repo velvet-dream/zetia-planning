@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/', name: 'ViewProject', methods: ['GET'])]
+    #[Route('/', name: 'viewProjects', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
     {
         return $this->render('project/index.html.twig', [
@@ -35,7 +35,7 @@ class ProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('ViewProject', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('project/new.html.twig', [
@@ -65,7 +65,7 @@ class ProjectController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('ViewProject', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('project/edit.html.twig', [
@@ -76,12 +76,11 @@ class ProjectController extends AbstractController
     #[Route('/{pctId}', name: 'deleteProject', methods: ['POST'])]
     public function delete(Request $request, Project $project, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getPctId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $project->getPctId(), $request->request->get('_token'))) {
             $entityManager->remove($project);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('ViewProject', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
     }
-
 }
