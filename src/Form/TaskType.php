@@ -23,18 +23,16 @@ class TaskType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('tskDescription')
-            ->add('tskDuree')
-            
             ->add('tskStatus', EntityType::class, [
                 'class' => StatusTask::class,
                 'choice_label' => 'stkTitle',
                 'placeholder' => 'Choisir un statut',
             ])
 
-            
+
             ->add('project', EntityType::class, [
                 'class' => Project::class,
-                'choice_label' => 'pctTitle', 
+                'choice_label' => 'pctTitle',
                 'placeholder' => 'Sélectionner un projet',
             ]);
     }
