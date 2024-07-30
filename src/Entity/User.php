@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: 'app_user_usr')]
 #[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this usr_mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
-
+{
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $usr_avatar = null;
 
-    
+
 
     /**
      * @var Collection<int, Task>
@@ -125,7 +125,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-   
+
     public function getPasswordHash(): string
     {
         return $this->usr_password;
@@ -156,5 +156,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-    
 }
