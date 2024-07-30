@@ -1,36 +1,44 @@
-
 <html lang="FR">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{% if title is defined %}{{ title }} ‑ Zetia Planning{% else %}Zetia Planning{% endif %}{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-            <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				{% if title is defined %}
+					{{ title }}
+					‑ Zetia Planning{% else %}Zetia Planning
+				{% endif %}
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+			<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+		{% endblock %}
 
-        {% block javascripts %}
-            <script defer src="https://kit.fontawesome.com/bee1a8a770.js" crossorigin="anonymous"></script>
-        {% endblock %}
-    </head>
-    <body>
-        <nav>
-            <ul>
-                {% if app.user %}
-                 <div class="navbar">
-                    <li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
-                    <a href="{{ path('ViewTask') }}">Tâche</a>
-                    <a href="{{ path('ViewProject') }}">Projet</a>
-                    </div>
-                  
-                {% endif %}
-            </ul>
-        </nav>
+		{% block javascripts %}
+			<script defer src="https://kit.fontawesome.com/bee1a8a770.js" crossorigin="anonymous"></script>
+		{% endblock %}
+	</head>
+	<body>
+		<nav>
+			<ul>
+				{% if app.user %}
+					<div class="navbar">
+						<li>
+							<a href="{{ path('app_dashboard') }}">Dashboard</a>
+						</li>
+						<li>
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</li>
+						<a href="{{ path('ViewTask') }}">Tâche</a>
+						<a href="{{ path('viewProjects') }}">Projet</a>
+					</div>
 
-        {% block main %}
-        
-        {% endblock %}
+				{% endif %}
+			</ul>
+		</nav>
 
-        
-    </body>
+		{% block main %}{% endblock %}
+
+
+	</body>
 </html>

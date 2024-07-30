@@ -1,43 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
+{% block title %}Project index
+{% endblock %}
 
 {% block main %}
-    <h1>Project index</h1>
+	<h1>Project index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>PctId</th>
-                <th>PctTitle</th>
-                <th>PctDescription</th>
-                <th>PctDateDebut</th>
-                <th>PctDateFinPrevisionnelle</th>
-                <th>PctDateFinReelle</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for project in projects %}
-            <tr>
-                <td>{{ project.pctId }}</td>
-                <td>{{ project.pctTitle }}</td>
-                <td>{{ project.pctDescription }}</td>
-                <td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
-                <td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('ViewProject', {'pctId': project.pctId}) }}">show</a>
-                    <a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>PctId</th>
+				<th>PctTitle</th>
+				<th>PctDescription</th>
+				<th>PctDateDebut</th>
+				<th>PctDateFinPrevisionnelle</th>
+				<th>PctDateFinReelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for project in projects %}
+				<tr>
+					<td>{{ project.pctId }}</td>
+					<td>{{ project.pctTitle }}</td>
+					<td>{{ project.pctDescription }}</td>
+					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
+					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
+					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
+					<td>
+						<a href="{{ path('viewProjects', {'pctId': project.pctId}) }}">show</a>
+						<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('addProject') }}">Create new</a>
+	<a href="{{ path('addProject') }}">Create new</a>
 {% endblock %}
