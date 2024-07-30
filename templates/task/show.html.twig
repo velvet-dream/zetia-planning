@@ -42,9 +42,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ViewTask') }}">back to list</a>
+    <a href="{{ path('viewTasks') }}">back to list</a>
 
-    <a href="{{ path('app_task_edit', {'tskId': task.tskId}) }}">edit</a>
+    <a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
 
     {{ include('task/_delete_form.html.twig') }}
 {% endblock %}
