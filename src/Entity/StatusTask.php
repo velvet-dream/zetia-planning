@@ -8,17 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StatusTaskRepository::class)]
 #[ORM\Table(name: 'tsk_statustask_stk')]
-
-
 class StatusTask
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-private int $stkId;
+    private int $stkId;
 
-#[ORM\Column( type: 'string', length: 127)]
-private string $stkTitle;
+    #[ORM\Column(type: 'string', length: 127)]
+    private string $stkTitle;
 
     public function getStkId(): ?int
     {
@@ -36,7 +34,7 @@ private string $stkTitle;
         return $this;
     }
     public function __toString(): string
-{
-    return $this->stkTitle;
-}
+    {
+        return $this->stkTitle;
+    }
 }
