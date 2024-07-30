@@ -7,6 +7,8 @@ use App\Entity\StatusProject;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProjectType extends AbstractType
@@ -28,6 +30,8 @@ class ProjectType extends AbstractType
                 'placeholder' => 'Choisir un statut',
                 'required' => true,
             ]);
+        // Future dev : we need to be able to add pctDateFinReelle when editing an existing project.
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
