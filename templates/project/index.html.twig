@@ -1,20 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProjectController!{% endblock %}
+{% block title %}Project index
+{% endblock %}
 
 {% block main %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<h1>Project index</h1>
 
-<div class="example-wrapper">
-    <h1>Cette page montre les projets</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>PctId</th>
+				<th>PctTitle</th>
+				<th>PctDescription</th>
+				<th>PctDateDebut</th>
+				<th>PctDateFinPrevisionnelle</th>
+				<th>PctDateFinReelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for project in projects %}
+				<tr>
+					<td>{{ project.pctId }}</td>
+					<td>{{ project.pctTitle }}</td>
+					<td>{{ project.pctDescription }}</td>
+					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
+					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
+					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
+					<td>
+						<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
+						<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/musielak/Bureau/PROJECT/zetia-planning/src/Controller/ProjectController.php'|file_link(0) }}">src/Controller/ProjectController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/musielak/Bureau/PROJECT/zetia-planning/templates/project/index.html.twig'|file_link(0) }}">templates/project/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<a href="{{ path('addProject') }}">Create new</a>
 {% endblock %}

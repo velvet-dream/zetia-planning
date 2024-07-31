@@ -1,86 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{# Il faut un traitement différentiel selon qu'on ait un employé ou un responsable #}
-
-{# Pour l'instant on fait comme si c'était un employé #}
 {% block main %}
-<section class="mobile-hidden">
-    <div>
-        <div class="icon">📂​</div>
-        <h2>Projet 1</h2>
-    </div>
-</section>
+	<section class="mobile-hidden">
+		<div>
+			<div class="icon">📂​</div>
+			<h2>Projet 1</h2>
+		</div>
+	</section>
 
-<section class="daily-tasks-view">
-    <h2>Tâches de la journée</h2>
-    <div>
-        {# injecter chaque tâche fetchée par le back ici #}
-        <div class="task-preview">
-            <h3>Projet 1</h3>
-            <p class="task-name">Nom de la Tache 1</p>
-            {# Avec CSS, ajouter un sélcteur .task-end-date::before pour indiquer "Date de fin prévisionnelle :" en
-            format téléphone #}
-            <p class="task-end-date">01/04/2024</p>
-        </div>
-        <div class="task-preview">
-            <h3>Projet 3</h3>
-            <p class="task-name">Nom de la Tache 22</p>
-            <p class="task-end-date">02/05/2024</p>
-        </div>
-    </div>
-</section>
+	<section class="daily-tasks-view">
+		<h2>Tâches de la journée</h2>
+		<div>
+			{% for task in tasks %}
+				<div class="task-preview">
+					<h3>{{ task.project.pctTitle }}</h3>
+					<p class="task-name">{{ task.tskTitle }}</p>
+					{# Avec CSS, ajouter un sélecteur .task-end-date::before pour indiquer "Date de fin prévisionnelle :" en format téléphone #}
+					<p class="task-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 
-<section class="mobile-hidden stat-view">
-    {# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
-    <p>Statistiques du projet choisi si possible</p>
-</section>
+	<section class="mobile-hidden stat-view">
+    	{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
+		<p>Statistiques du projet choisi si possible</p>
+	</section>
 
-<section>
-    <h2>Tâches assignées</h2>
-    <div>
-        {# fetcher les projets disponibles pour cet employé
-        Ces boutons doivent pouvoir overflow sur la gauche #}
-        <button>Nom de projet 1</button>
-        <button>Nom de projet 2</button>
-        <button>Nom de projet 3</button>
-    </div>
-    {# Ici on met une table pour ordonner les données, mais à voir si c'est facile de le styler avec css et compatible
-    avec du mobile-first #}
-    <table class="responsive-table">
-        <tr>
-            <th>Nom</th>
-            <th>Date de début</th>
-            <th>Date de fin prévue</th>
-            <th>Assignations</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            <td><h3>Nom de la tâche 1</h3></td>
-            <td class="table-entry-start-date">15/03/2024</td>
-            <td class="table-entry-expected-end-date">01/04/2024</td>
-            <td class="table-entry-assignments">
-                <div class="icon">👤</div>
-                <div class="icon">👤</div>
-            </td>
-            <td  class="table-entry-actions">
-                <a>voir</a>&nbsp;
-                <a>valider</a>
-            </td>
-        </tr>
-        <tr>
-            <td><h3>Nom de la tâche 14</h3></td>
-            <td class="table-entry-start-date">- - -</td>
-            <td class="table-entry-expected-end-date">01/06/2024</td>
-            <td class="table-entry-assignments">
-                <div class="icon">👤</div>
-                <div class="icon">👤</div>
-            </td>
-            <td class="table-entry-actions">
-                <a>voir</a>&nbsp;
-                <a>valider</a>
-            </td>
-        </tr>
-    </table>
-
-</section>
+	<section>
+		<h2>Tâches assignées</h2>
+		<div>
+			{% for project in projects %}
+				<button>{{ project.pctTitle }}</button>
+			{% endfor %}
+		</div>
+		<table class="responsive-table">
+			<tr>
+				<th>Nom</th>
+				<th>Date de début</th>
+				<th>Date de fin prévue</th>
+				<th>Assignations</th>
+				<th>Actions</th>
+			</tr>
+			{% for task in tasks %}
+				<tr>
+					<td>
+						<h3>{{ task.tskTitle }}</h3>
+					</td>
+					<td class="table-entry-start-date">{{ task.tskDateDebut|date('d/m/Y') }}</td>
+					<td class="table-entry-expected-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</td>
+					<td class="table-entry-assignments">
+						{% for user in task.users %}
+							<div class="icon">👤
+								{{ user.usr_name }}</div>
+						{% endfor %}
+					</td>
+					<td class="table-entry-actions">
+						<a href="{{ path('task_view', {'id': task.tskId}) }}">voir</a>&nbsp;
+						<a href="{{ path('task_validate', {'id': task.tskId}) }}">valider</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</section>
 {% endblock %}
