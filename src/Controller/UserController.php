@@ -6,6 +6,7 @@ use App\Entity\Project;
 use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,11 +21,16 @@ class UserController extends AbstractController
     }
 
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function dashboard(EntityManagerInterface $entityManager): Response
-    
+    public function dashboard(Security $security, EntityManagerInterface $entityManager): Response
     {
+        $user = $security->getUser();
 
-        $user = $this->getUser();
+        // Check if the user is authenticated before rendering the dashboard
+        if (!$user) {
+            // Redirect to login if user is not authenticated
+            return $this->redirectToRoute('app_login');
+        }
+
         $tasks = $entityManager->getRepository(Task::class)->findByUser($user);
         $projects = $entityManager->getRepository(Project::class)->findByUser($user);
 
@@ -32,6 +38,5 @@ class UserController extends AbstractController
             'tasks' => $tasks,
             'projects' => $projects,
         ]);
-      
     }
 }
