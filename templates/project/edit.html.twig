@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Project
+{% block title %}
+	Éditer un projet
 {% endblock %}
 
 {% block main %}
-	<h1>Edit Project</h1>
+	<h1>Éditer un projet</h1>
 
 	{{ include('project/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('viewProjects') }}">back to list</a>
+	<a href="{{ path('viewProjects') }}" aria-label="Retour à la liste des projets">Retour</a>
 
 	{{ include('project/delete.html.twig') }}
 {% endblock %}
