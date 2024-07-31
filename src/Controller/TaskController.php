@@ -12,15 +12,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\StatusTask;
 use App\Repository\ProjectRepository;
+use App\Repository\StatusTaskRepository;
 
 #[Route('/task')]
 class TaskController extends AbstractController
 {
     #[Route('/', name: 'viewTasks', methods: ['GET'])]
-    public function index(TaskRepository $taskRepository): Response
+    public function index(TaskRepository $taskRepository, StatusTaskRepository $stkRepository): Response
     {
+        // Note : ici il ne faut pas faire un findAll() mais une requête qui cherche les tâches assignées à la personne connectée.
         return $this->render('task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
+            'statusTask' => $stkRepository->findAll(),
         ]);
     }
 
