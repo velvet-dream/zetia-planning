@@ -36,9 +36,9 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('viewProjects') }}">Retour à la liste</a>
+	<a href="{{ path('viewProjects') }}" aria-label="Retour à la liste des projets">Retour à la liste</a>
 
-	<a href="{{ path('app_project_edit', {'pctId': project.pctId}) }}">editer</a>
+	<a href="{{ path('editProject', {'pctId': project.pctId}) }}">Éditer</a>
 
 	{{ include('project/delete.html.twig') }}
 {% endblock %}

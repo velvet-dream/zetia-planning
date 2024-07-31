@@ -28,7 +28,7 @@
 					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
 					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
 					<td>
-						<a href="{{ path('viewProjects', {'pctId': project.pctId}) }}">show</a>
+						<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
 						<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
 					</td>
 				</tr>

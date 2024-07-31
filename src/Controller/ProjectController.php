@@ -52,7 +52,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/{pctId}/edit', name: 'editProject', methods: ['GET', 'POST'])]
+    #[Route('edit/{pctId}', name: 'editProject', methods: ['GET', 'POST'])]
     public function edit(Request $request, Project $project, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -74,7 +74,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/{pctId}', name: 'deleteProject', methods: ['POST'])]
+    #[Route('delete/{pctId}', name: 'deleteProject', methods: ['POST'])]
     public function delete(Request $request, Project $project, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $project->getPctId(), $request->request->get('_token'))) {
