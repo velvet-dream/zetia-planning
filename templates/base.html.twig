@@ -9,36 +9,25 @@
 				{% endif %}
 			{% endblock %}
 		</title>
-		{% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-			<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-		{% endblock %}
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📝​</text></svg>">
+    	<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
 
-		{% block javascripts %}
+		{% block scripts %}
 			<script defer src="https://kit.fontawesome.com/bee1a8a770.js" crossorigin="anonymous"></script>
+			{# Example #}
+			{# <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script> #}
 		{% endblock %}
 	</head>
 	<body>
-		<nav>
-			<ul>
-				{% if app.user %}
-					<div class="navbar">
-						<li>
-							<a href="{{ path('app_dashboard') }}">Dashboard</a>
-						</li>
-						<li>
-							<a href="{{ path('app_logout') }}">Logout</a>
-						</li>
-						<a href="{{ path('viewTasks') }}">Tâche</a>
-						<a href="{{ path('viewProjects') }}">Projet</a>
-					</div>
-
-				{% endif %}
-			</ul>
-		</nav>
-
-		{% block main %}{% endblock %}
-
+		<header id="top-page">
+			{% block header %}{{ block("header", "app/header.html.twig") }}{% endblock %}
+		</header>
+		<main>
+			{% block main %}{% endblock %}
+		</main>
+		<footer>
+			{% block footer %}{{ block("footer", "app/footer.html.twig") }}{% endblock %}
+		</footer>
 
 	</body>
 </html>
