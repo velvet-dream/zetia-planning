@@ -15,13 +15,17 @@
 				<div class="task-preview">
 					<h3>{{ task.project.pctTitle }}</h3>
 					<p class="task-name">{{ task.tskTitle }}</p>
+					{# Avec CSS, ajouter un sélecteur .task-end-date::before pour indiquer "Date de fin prévisionnelle :" en format téléphone #}
 					<p class="task-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</p>
 				</div>
 			{% endfor %}
 		</div>
 	</section>
 
-	<section class="mobile-hidden stat-view"></section>
+	<section class="mobile-hidden stat-view">
+    	{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
+		<p>Statistiques du projet choisi si possible</p>
+	</section>
 
 	<section>
 		<h2>Tâches assignées</h2>
