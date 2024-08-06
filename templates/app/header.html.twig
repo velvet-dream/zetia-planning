@@ -1,32 +1,43 @@
 {% block header %}
-<nav>
-    <div class="logo-container">
-        {# Note : mettre l'icone du logo à la place de "Z" #}
-        <a class="logo" href="{{ path('app_index') }}">
-            <div class="icon">Z</div>
-        </a>
-        <div class="burger-icon" id="burger-icon">&#9776;</div>
-    </div>
-    {% block searchBar %}
-    {# à remplacer par un vrai formulaire de recherche, peut-être écrit en TS #}
-    <input>
-    {% endblock %}
-    <menu class="icons-container">
+    <nav class="top-nav">
 
-        {% if app.user %}
-        <a href="{{ path('app_index') }}" role="menuitem">
-            <div class="icon user-icon">👤​</div>
+        <div class="search-wrapper">
+            <input class="search-input" type="text" placeholder="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
+                <defs></defs>
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+        </div>
+        <div class="icons-container">
+            <a href="{{ path('app_index') }}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="{{ path('app_index') }}">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+        </div>
+    </nav>
+    <nav class="vertical-nav">
+        <div class="logo-vertical">
+            <a class="logo" href="#">
+                <div class="icon">Z</div>
+            </a>
+        </div>
+        <a href="#" class="nav-icon">
+            <i class="fa-solid fa-house" style="color: #000000;"></i>
         </a>
-        <a href="{{ path('app_index') }}" role="menuitem">
-            <div class="icon param-icon">⚙️​</div>
+        <a href="#" class="nav-icon">
+            <i class="fa-regular fa-file" style="color: #000000;"></i>
         </a>
-        <a href="{{ path('app_dashboard') }}" role="menuitem">Tableau de bord</a>
-        <a href="{{ path('app_logout') }}" role="menuitem">Se déconnecter</a>
-        <a href="{{ path('viewTasks') }}" role="menuitem">Vos tâches</a>
-        <a href="{{ path('viewProjects') }}" role="menuitem">Vos projets</a>
-        {% endif %}
-
-    </menu>
-
-</nav>
+        <a href="#" class="nav-icon">
+            <i class="fa-solid fa-list" style="color: #000000;"></i>
+        </a>
+        <a href="#" class="nav-icon">
+            <i class="fa-solid fa-users" style="color: #000000;"></i>
+        </a>
+        <a href="#" class="nav-icon logout">
+            <i class="fa-solid fa-arrow-left" style="color: #FFFFFF;"></i>
+        </a>
+    </nav>
 {% endblock %}
