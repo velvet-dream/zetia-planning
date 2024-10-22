@@ -2,7 +2,7 @@
  * Ici, on déclare des variables "globales", comme les couleurs, à utiliser partout ailleurs
  */
 
-@import "../abstracts/media-queries";
+@use "../abstracts/media-queries" as mq;
 
 $white: #fefefe;
 $palegray: #f8f8f8;
@@ -10,10 +10,10 @@ $ghostlypurple: #eee6f0;
 $graymole: #a4a4a4;
 $lightpurple: #debce4;
 $heavyvelvet: #9f54aa;
-$black: #000;
+$black: #0e0e0e;
 $fontsize: 14px;
 
-@include media-screen-xs {
+@include mq.media-screen-xs {
     $fontsize: 10px;
 }
 
