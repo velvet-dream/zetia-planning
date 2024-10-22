@@ -1,0 +1,11 @@
+<div class="alert alert-{{ variant }}">
+	<twig:Button
+	text="×" variant="danger" size="small"/>
+	<!-- à remplacer par une icone -->
+	{% if title is defined %}
+		<strong>{{ title }}</strong>
+	{% endif %}
+	<p>
+		{{ message }}
+	</p>
+</div>

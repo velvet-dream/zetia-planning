@@ -6,6 +6,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 interface ButtonSize
 {
+    const SMALL = 'small';
     const DEFAULT = 'default';
     const WIDE = 'wide';
 }
