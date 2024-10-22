@@ -3,7 +3,6 @@ function initializeAlerts() {
     for (const alert of alerts) {
         // timeout in s before alert must be removed
         const timeoutValue = parseFloat(alert.dataset['timeout'] ?? '0')
-        console.log(timeoutValue)
 
         if (timeoutValue <= 0) continue
 
