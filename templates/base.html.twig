@@ -10,7 +10,8 @@
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📝​</text></svg>">
-    	<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+		<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		{% block scripts %}{# Example #}
 			{# <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script> #}
@@ -18,13 +19,17 @@
 	</head>
 	<body>
 		<header id="top-page">
-			{% block header %}{{ block("header", "app/header.html.twig") }}{% endblock %}
+			{% block header %}
+				{{ block("header", "app/header.html.twig") }}
+			{% endblock %}
 		</header>
 		<main>
 			{% block main %}{% endblock %}
 		</main>
 		<footer>
-			{% block footer %}{{ block("footer", "app/footer.html.twig") }}{% endblock %}
+			{% block footer %}
+				{{ block("footer", "app/footer.html.twig") }}
+			{% endblock %}
 		</footer>
 
 	</body>

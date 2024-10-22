@@ -4,12 +4,12 @@
 	<section class="mobile-hidden">
 		<div>
 			<div class="icon">📂​</div>
-			<h2>Projet 1</h2>
+			<h2 class="zetia-title">Projet 1</h2>
 		</div>
 	</section>
 
 	<section class="daily-tasks-view">
-		<h2>Tâches de la journée</h2>
+		<h2 class="zetia-title">Tâches de la journée</h2>
 		<div>
 			{% for task in tasks %}
 				<div class="task-preview">
@@ -22,13 +22,14 @@
 		</div>
 	</section>
 
-	<section class="mobile-hidden stat-view">
-    	{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
+	<section
+		class="mobile-hidden stat-view">
+		{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
 		<p>Statistiques du projet choisi si possible</p>
 	</section>
 
 	<section>
-		<h2>Tâches assignées</h2>
+		<h2 class="zetia-title">Tâches assignées</h2>
 		<div>
 			{% for project in projects %}
 				<button>{{ project.pctTitle }}</button>

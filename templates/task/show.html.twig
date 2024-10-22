@@ -1,50 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task{% endblock %}
+{% block title %}Task
+{% endblock %}
 
 {% block main %}
-    <h1>Task</h1>
+	<h1 class="zetia-title">Task</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                
-                <td>{{ task.tskId }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ task.tskTitle }}</td>
-            </tr>
-            <tr>
-                <th>Date de Debut</th>
-                <td>{{ task.tskDateDebut ? task.tskDateDebut|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de Fin Previsionnelle</th>
-                <td>{{ task.tskDateFinPrevisionnelle ? task.tskDateFinPrevisionnelle|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de Fin Reelle</th>
-                <td>{{ task.tskDateFinReelle ? task.tskDateFinReelle|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ task.tskDescription }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ task.tskStatus.stkTitle }}</td>
-            </tr>
-            <tr>
-                <th>Duree</th>
-                <td>{{ task.tskDuree }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
 
-    <a href="{{ path('viewTasks') }}">back to list</a>
+				<td>{{ task.tskId }}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td>{{ task.tskTitle }}</td>
+			</tr>
+			<tr>
+				<th>Date de Debut</th>
+				<td>{{ task.tskDateDebut ? task.tskDateDebut|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de Fin Previsionnelle</th>
+				<td>{{ task.tskDateFinPrevisionnelle ? task.tskDateFinPrevisionnelle|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de Fin Reelle</th>
+				<td>{{ task.tskDateFinReelle ? task.tskDateFinReelle|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ task.tskDescription }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ task.tskStatus.stkTitle }}</td>
+			</tr>
+			<tr>
+				<th>Duree</th>
+				<td>{{ task.tskDuree }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
+	<a href="{{ path('viewTasks') }}">back to list</a>
 
-    {{ include('task/_delete_form.html.twig') }}
+	<a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
+
+	{{ include('task/_delete_form.html.twig') }}
 {% endblock %}

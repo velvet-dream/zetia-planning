@@ -1,38 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vos tâches{% endblock %}
+{% block title %}Vos tâches
+{% endblock %}
 
 {% block main %}
-    <h1>Tâches</h1>
-    <div>
-        {% for status in statusTask %}
-            <section>
-                <h2>{{ status.stkTitle }}</h2>
-                {% for task in tasks %}
-                {% if task.tskStatus == status %}
-                    <div>
-                        <h3>{{ task.tskTitle }}</h3>
-                        <ul>
-                            {% if task.tskDateDebut %}
-                                <li>Commencé le : {{ task.tskDateDebut|date('d/m/Y') }}</li>
-                            {% endif %}
-                            {% if task.tskDateFinPrevisionnelle %}
-                                <li>Fin prévue le : {{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</li>
-                            {% endif %}
-                            {% if task.tskDateFinReelle %}
-                                <li>Fini le : {{ task.tskDateFinReelle|date('d/m/Y') }}</li>
-                            {% endif %}
-                            {% if task.tskDuree %}
-                                <li>Durée : {{ task.tskDuree }}</li>
-                            {% endif %}
-                        </ul>
-                        <a href="{{ path('showTask', {'tskId': task.tskId}) }}" aria-label="En savoir plus sur la tâche « {{ task.tskTitle }} »">En savoir plus</a>
-                        <a href="{{ path('editTask', {'tskId': task.tskId}) }}" aria-label="Éditer la tâche « {{ task.tskTitle }} »">Éditer</a>
-                    </div>
-                {% endif %}
-                {% endfor %}
-            </section>
-        {% endfor %}
+	<h1 class="zetia-title">Tâches</h1>
+	<div>
+		{% for status in statusTask %}
+			<section>
+				<h2 class="zetia-title">{{ status.stkTitle }}</h2>
+				{% for task in tasks %}
+					{% if task.tskStatus == status %}
+						<div>
+							<h3>{{ task.tskTitle }}</h3>
+							<ul>
+								{% if task.tskDateDebut %}
+									<li>Commencé le :
+										{{ task.tskDateDebut|date('d/m/Y') }}</li>
+								{% endif %}
+								{% if task.tskDateFinPrevisionnelle %}
+									<li>Fin prévue le :
+										{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</li>
+								{% endif %}
+								{% if task.tskDateFinReelle %}
+									<li>Fini le :
+										{{ task.tskDateFinReelle|date('d/m/Y') }}</li>
+								{% endif %}
+								{% if task.tskDuree %}
+									<li>Durée :
+										{{ task.tskDuree }}</li>
+								{% endif %}
+							</ul>
+							<a href="{{ path('showTask', {'tskId': task.tskId}) }}" aria-label="En savoir plus sur la tâche « {{ task.tskTitle }} »">En savoir plus</a>
+							<a href="{{ path('editTask', {'tskId': task.tskId}) }}" aria-label="Éditer la tâche « {{ task.tskTitle }} »">Éditer</a>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</section>
+		{% endfor %}
 
-    <a href="{{ path('newTask') }}">Ajouter une tâche</a>
-{% endblock %}
+		<a href="{{ path('newTask') }}">Ajouter une tâche</a>
+	{% endblock %}
