@@ -1,10 +1,11 @@
-<div class="alert alert-{{ variant }}">
-	<twig:Button
-	text="×" variant="danger" size="small"/>
-	<!-- à remplacer par une icone -->
-	{% if title is defined %}
-		<strong>{{ title }}</strong>
-	{% endif %}
+<div class="zetia-alert zetia-alert-{{ variant }}">
+	<div class="flex">
+		{% if title is defined %}
+			<strong>{{ title }}</strong>
+		{% endif %}
+		<!-- à remplacer par une icone -->
+		<twig:Button text="×" variant="danger" size="small"/>
+	</div>
 	<p>
 		{{ message }}
 	</p>
