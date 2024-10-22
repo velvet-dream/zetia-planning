@@ -2,13 +2,15 @@
  * Ici, on déclare des variables "globales", comme les couleurs, à utiliser partout ailleurs
  */
 
-/* EXAMPLE */
-/* Define standard variables and values for website */
-//  $bgcolor: lightblue;
-//  $textcolor: darkblue;
-//  $fontsize: 18px;
+$white: #fefefe;
+$palegray: #f8f8f8;
+$ghostlypurple: #eee6f0;
+$graymole: #a4a4a4;
+$lightpurple: #debce4;
+$heavyvelvet: #9f54aa;
+$black: #0e0e0e;
 
-/* Use the variables */
+/* How to use the variables: */
 //  body {
 //    background-color: $bgcolor;
 //    color: $textcolor;
