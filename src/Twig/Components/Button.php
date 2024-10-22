@@ -15,6 +15,7 @@ interface ButtonVariant
     const DEFAULT = 'light';
     const DANGER = 'danger';
     const CONFIRM = 'confirm';
+    const PURPLE = 'purple';
 }
 
 #[AsTwigComponent]

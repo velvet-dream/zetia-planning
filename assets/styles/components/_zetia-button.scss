@@ -31,6 +31,12 @@
     border-color: colors.$green;
 }
 
+.zetia-button-purple {
+    background-color: colors.$heavyvelvet;
+    border-color: colors.$heavyvelvet;
+    color: colors.$white;
+}
+
 .zetia-button:not(.wide) {
     min-width: 10em;
 }
