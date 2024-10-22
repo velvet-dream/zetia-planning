@@ -5,65 +5,34 @@
 {% block main %}
     <h1>Tâches</h1>
     <div>
-        <section>
-            <h2>À Faire</h2>
-            <div>
-                <h3>Tache 1</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 2</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 3</h3>
-                <ul>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-        </section>
-        <section>
-            <h2>En cours</h2>
-            <div>
-                <h3>Tache 1</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-            <div>
-                <h3>Tache 2</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin prévisionnelle: 01/04/25</li>
-                </ul>
-                <a>En savoir plus</a>
-            </div>
-        </section>
-        <section>
-            <h2>En pause</h2>
-            <div>
-                <h3>Tache 1</h3>
-            </div>
-        </section>
-        <section>
-            <h2>Réalisées</h2>
-            <div>
-                <h3>Tache 12</h3>
-                <ul>
-                    <li>Date de de début: 03/04/25</li>
-                    <li>Date de fin: 01/04/25</li>
-                    <li>Durée: 16h</li>
-                </ul>
-            </div>
-        </section>
-    </div>
+        {% for status in statusTask %}
+            <section>
+                <h2>{{ status.stkTitle }}</h2>
+                {% for task in tasks %}
+                {% if task.tskStatus == status %}
+                    <div>
+                        <h3>{{ task.tskTitle }}</h3>
+                        <ul>
+                            {% if task.tskDateDebut %}
+                                <li>Commencé le : {{ task.tskDateDebut|date('d/m/Y') }}</li>
+                            {% endif %}
+                            {% if task.tskDateFinPrevisionnelle %}
+                                <li>Fin prévue le : {{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</li>
+                            {% endif %}
+                            {% if task.tskDateFinReelle %}
+                                <li>Fini le : {{ task.tskDateFinReelle|date('d/m/Y') }}</li>
+                            {% endif %}
+                            {% if task.tskDuree %}
+                                <li>Durée : {{ task.tskDuree }}</li>
+                            {% endif %}
+                        </ul>
+                        <a href="{{ path('showTask', {'tskId': task.tskId}) }}" aria-label="En savoir plus sur la tâche « {{ task.tskTitle }} »">En savoir plus</a>
+                        <a href="{{ path('editTask', {'tskId': task.tskId}) }}" aria-label="Éditer la tâche « {{ task.tskTitle }} »">Éditer</a>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </section>
+        {% endfor %}
+
+    <a href="{{ path('newTask') }}">Ajouter une tâche</a>
 {% endblock %}

@@ -6,36 +6,40 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'user_usr')]
-class User
+#[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this email adress')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $usrId;
+    private int $usr_id;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrName;
+    private string $usr_name;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrFirstName;
+    private string $usr_first_name;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrMail;
+    private string $usr_mail;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usrPassword;
+    private string $usr_password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $usrRole;
+    private string $usr_role;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $usrAvatar = null;
+    private ?string $usr_avatar = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'job_id', name: 'job_id')]
+    #[ORM\JoinColumn(nullable: true, referencedColumnName: 'job_id', name: 'job_id')]
     private ?Job $job = null;
 
     /**
@@ -61,43 +65,78 @@ class User
 
     public function getUsrId(): ?int
     {
-        return $this->usrId;
+        return $this->usr_id;
+    }
+
+    public function setUsrId(int $usr_id): self
+    {
+        $this->usr_id = $usr_id;
+        return $this;
     }
 
     public function getUsrName(): ?string
     {
-        return $this->usrName;
+        return $this->usr_name;
+    }
+
+    public function setUsrName(string $usr_name): self
+    {
+        $this->usr_name = $usr_name;
+        return $this;
     }
 
     public function getUsrFirstName(): ?string
     {
-        return $this->usrFirstName;
+        return $this->usr_first_name;
+    }
+
+    public function setUsrFirstName(string $usr_first_name): self
+    {
+        $this->usr_first_name = $usr_first_name;
+        return $this;
     }
 
     public function getUsrMail(): ?string
     {
-        return $this->usrMail;
+        return $this->usr_mail;
     }
 
-    public function getUsrPassword(): ?string
+    public function setUsrMail(string $usr_mail): self
     {
-        return $this->usrPassword;
+        $this->usr_mail = $usr_mail;
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->usr_password;
+    }
+
+    public function setPassword(string $usr_password): self
+    {
+        $this->usr_password = $usr_password;
+        return $this;
     }
 
     public function getUsrRole(): ?string
     {
-        return $this->usrRole;
+        return $this->usr_role;
+    }
+
+    public function setUsrRole(string $usr_role): self
+    {
+        $this->usr_role = $usr_role;
+        return $this;
     }
 
     public function getUsrAvatar(): ?string
     {
-        return $this->usrAvatar;
+        return $this->usr_avatar;
     }
 
-    public function setUsrAvatar(?string $usrAvatar): static
+    public function setUsrAvatar(?string $usr_avatar): static
     {
-        $this->usrAvatar = $usrAvatar;
-
+        $this->usr_avatar = $usr_avatar;
         return $this;
     }
 
@@ -109,7 +148,6 @@ class User
     public function setJob(?Job $job): static
     {
         $this->job = $job;
-
         return $this;
     }
 
@@ -165,5 +203,38 @@ class User
         }
 
         return $this;
+    }
+
+    public function getPasswordHash(): string
+    {
+        return $this->usr_password;
+    }
+
+    public function getSalt(): ?string
+    {
+        // Not needed for modern hashing algorithms
+        return null;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->usr_mail;
+    }
+
+    public function getRoles(): array
+    {
+        // Assuming roles are stored as a simple string
+        return [$this->usr_role];
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->usr_mail;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

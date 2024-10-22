@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Nouveau projet
+{% endblock %}
+
+{% block main %}
+	<h1>Créer un nouveau projet</h1>
+
+	{{ include('project/_form.html.twig') }}
+
+	<a href="{{ path('viewProjects') }}" aria-label="Retour à la liste des projets">Retour</a>
+{% endblock %}
