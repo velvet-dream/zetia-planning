@@ -1,0 +1,10 @@
+/** very global, low-priority style rules meant to be applied for the entire app */
+
+@use "../abstracts/fonts" as fonts;
+@use "../abstracts/globals" as colors;
+
+html {
+    font-family: fonts.$mainfont;
+    font-weight: 400;
+    background-color: colors.$white;
+}
