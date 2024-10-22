@@ -5,7 +5,8 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 20em;
+    min-width: 40ch;
+    max-width: 60ch;
     background-color: colors.$white;
     margin: 1em;
     padding: 1em;
