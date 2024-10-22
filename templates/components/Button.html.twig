@@ -1,11 +1,11 @@
 {% set zetia_button %}
-<button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ type ~ ' zetia-button-' ~ variant} ) }}>
+<button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size} ) }}>
 	{{ text }}
 </button>
 {% endset %}
 
 {% if href is defined %}
-	<a href="{{ href }}">{{ zetia_button }}</a>
+	<a href="{{ href }}" class="{{ size }}">{{ zetia_button }}</a>
 {% else %}
 	{{ zetia_button }}
 {% endif %}

@@ -12,6 +12,8 @@
 			{# à remplacer par un vrai formulaire de recherche, peut-être écrit en TS #}
 			<input>
 			<twig:Button href="{{ path('app_index') }}" text="Hello"/>
+			<twig:Button href="{{ path('app_index') }}" text="Red hello" variant="danger"/>
+			<twig:Button href="{{ path('app_index') }}" text="Hello" variant="confirm" size="wide"/>
 		{% endblock %}
 		<menu class="icons-container">
 
