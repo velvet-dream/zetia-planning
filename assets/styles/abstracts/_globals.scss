@@ -2,6 +2,7 @@
  * Ici, on déclare des variables "globales", comme les couleurs, à utiliser partout ailleurs
  */
 
+@import "../abstracts/media-queries";
 
 $white: #fefefe;
 $palegray: #f8f8f8;
@@ -10,6 +11,13 @@ $graymole: #a4a4a4;
 $lightpurple: #debce4;
 $heavyvelvet: #9f54aa;
 $black: #000;
+$fontsize: 14px;
+
+@include media-screen-xs {
+    $fontsize: 10px;
+}
+
+/* How to use the variables: */
 //  body {
 //    background-color: $bgcolor;
 //    color: $textcolor;
