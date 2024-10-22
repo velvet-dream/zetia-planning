@@ -13,8 +13,8 @@
 		<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		{% block scripts %}{# Example #}
-			{# <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script> #}
+		{% block scripts %}
+			<script src="{{ asset('scripts/components/initializeAlerts.ts') }}" defer></script>
 		{% endblock %}
 	</head>
 	<body>
@@ -23,7 +23,7 @@
 				{{ block("header", "app/header.html.twig") }}
 			{% endblock %}
 		</header>
-		<twig:Alert title="bonjour" message="gneuuhh"/>
+		<twig:Alert title="bonjour" message="gneuuhh" timeout="5"/>
 		<main>
 			{% block main %}{% endblock %}
 		</main>
