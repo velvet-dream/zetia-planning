@@ -4,7 +4,7 @@
  * Lire : https://dev.to/dostonnabotov/a-modern-sass-folder-structure-330f
  */
 @use "abstracts" as *;
-// @use "base";
+@use "base";
 @use "utilities";
 @use "components";
 // @use "pages";

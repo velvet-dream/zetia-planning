@@ -1,3 +1,5 @@
+@use "../abstracts/globals" as colors;
+
 header {
     nav {
         display: flex;
@@ -20,7 +22,7 @@ header {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: whitesmoke;
+        background-color: colors.$palegray;
         text-align: center;
         border-radius: 100%;
     }

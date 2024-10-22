@@ -1,0 +1,20 @@
+{# Examples :
+ # <twig:Button href="{{ path('app_index') }}" text="Hello"/>
+ # <twig:Button text="Red hello" variant="danger"/>
+ # <twig:Button text="Green Hello" variant="confirm" size="wide"/>
+ # <twig:Button> <p>Some HTML…</p> </twig:Button>
+ #}
+
+{% set zetia_button %}
+<button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size} ) }}>
+	{% block content %}
+		{{ text }}
+	{% endblock %}
+</button>
+{% endset %}
+
+{% if href is defined %}
+	<a href="{{ href }}" class="{{ size }}">{{ zetia_button }}</a>
+{% else %}
+	{{ zetia_button }}
+{% endif %}
