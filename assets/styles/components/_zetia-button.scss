@@ -1,4 +1,36 @@
 /* Feuille de style dédiée à la classe responsive-table, censée modifier drastiquement l'apparence d'une table en mode mobile.*/
 
+@use "../abstracts/globals" as colors;
+
 .zetia-button {
+    border-width: 1.5px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-radius: 0.75em;
+    padding: 0.5em;
+}
+
+.zetia-button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.zetia-button-light {
+    background-color: colors.$white;
+    border-color: colors.$gray;
+}
+
+.zetia-button-danger {
+    background-color: colors.$red;
+    border-color: colors.$red;
+    color: colors.$white;
+}
+
+.zetia-button-confirm {
+    background-color: colors.$green;
+    border-color: colors.$green;
+}
+
+.zetia-button:not(.wide) {
+    min-width: 10em;
 }
