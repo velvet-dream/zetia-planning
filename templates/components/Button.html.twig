@@ -1,6 +1,8 @@
 {% set zetia_button %}
 <button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size} ) }}>
-	{{ text }}
+	{% block content %}
+		{{ text }}
+	{% endblock %}
 </button>
 {% endset %}
 

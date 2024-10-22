@@ -22,7 +22,7 @@ class Button
 {
     public string $size = ButtonSize::DEFAULT;
     public string $variant = ButtonVariant::DEFAULT;
-    public string $text = "";
+    public string $text;
     // to pass an href as prop, use {{ path('app_index') }} in a template
     public string $href;
 }
