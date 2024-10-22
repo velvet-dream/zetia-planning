@@ -1,0 +1,13 @@
+@use "../abstracts/globals" as colors;
+@use "../utilities/index" as utils;
+
+.zetia-alert {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20em;
+    background-color: colors.$white;
+    margin: 1em;
+    padding: 1em;
+    @include utils.bordered;
+}

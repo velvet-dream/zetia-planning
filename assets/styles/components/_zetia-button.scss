@@ -1,12 +1,10 @@
 /* Feuille de style dédiée à la classe responsive-table, censée modifier drastiquement l'apparence d'une table en mode mobile.*/
 
 @use "../abstracts/globals" as colors;
+@use "../utilities/index" as utils;
 
 .zetia-button {
-    border-width: 1.5px;
-    box-sizing: border-box;
-    border-style: solid;
-    border-radius: 0.75em;
+    @include utils.bordered;
     padding: 0.5em;
 }
 
