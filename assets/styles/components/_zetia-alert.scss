@@ -9,5 +9,26 @@
     background-color: colors.$white;
     margin: 1em;
     padding: 1em;
+    animation: hellothere 0.5s;
     @include utils.bordered;
+
+    .zetia-alert-header {
+        justify-content: space-between;
+
+        * {
+            align-self: center;
+        }
+    }
+}
+
+@keyframes hellothere {
+    0% {
+        -webkit-transform: translateY(calc(100% + 1em));
+        transform: translateY(calc(100% + 1em));
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
 }
