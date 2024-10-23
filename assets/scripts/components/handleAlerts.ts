@@ -1,5 +1,9 @@
-function initializeAlerts() {
+/**
+ * Add event handler to alerts, and automatically close them after data-timeout seconds
+ */
+(() => {
     const alerts: NodeListOf<HTMLElement> = document.querySelectorAll(".zetia-alert")
+
     for (const alert of alerts) {
         const closeButton = alert.querySelector(".zetia-alert-header .zetia-button")
 
@@ -15,11 +19,7 @@ function initializeAlerts() {
         setTimeout(() => {
             // adding this class makes the alert go byebye
             alert.classList.add("zetia-alert-closing")
-            setTimeout(() => {
-                alert.remove()
-            }, 1000)
+            setTimeout(() => { alert.remove() }, 1000)
         }, timeoutValue * 1000)
     }
-}
-
-initializeAlerts()
+})()
