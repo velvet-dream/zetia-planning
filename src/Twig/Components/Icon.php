@@ -31,6 +31,7 @@ interface IconVariant
 #[AsTwigComponent]
 class Icon
 {
+    public int $size = 30;
     public string $icon;
     // to pass an href as prop, use {{ path('app_index') }} in a template
     public ?string $href;

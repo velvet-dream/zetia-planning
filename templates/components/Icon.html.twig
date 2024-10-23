@@ -1,5 +1,5 @@
 {% set img %}
-<img src="{{ asset('icons/' ~ icon ~ '.png') }}" alt="{{ altText }}">
+<img src="{{ asset('icons/' ~ icon ~ '.png') }}" alt="{{ altText }}" {% if size %} width={{ size }} height={{ size }} {% endif %}>
 {% endset %}
 
 {% if href is defined %}
