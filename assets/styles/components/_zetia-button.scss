@@ -3,10 +3,6 @@
 @use "../abstracts/globals" as colors;
 
 .zetia-button {
-    border-width: 1.5px;
-    box-sizing: border-box;
-    border-style: solid;
-    border-radius: 0.75em;
     padding: 0.5em;
 }
 
@@ -37,6 +33,11 @@
     color: colors.$white;
 }
 
-.zetia-button:not(.wide) {
+.zetia-button.zetia-button-gray {
+    background-color: colors.$palegray;
+    border-color: colors.$palegray;
+}
+
+.zetia-button.default {
     min-width: 10em;
 }

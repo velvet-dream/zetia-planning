@@ -1,0 +1,67 @@
+@use "../abstracts/globals" as colors;
+@use "../utilities/index" as utils;
+
+.zetia-alert {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    min-width: 40ch;
+    max-width: 60ch;
+    background-color: colors.$white;
+    margin: 1em;
+    padding: 1em;
+    animation: hellothere 0.5s forwards;
+    @include utils.bordered;
+
+    .zetia-alert-header {
+        justify-content: space-between;
+
+        * {
+            align-self: center;
+        }
+    }
+}
+
+.zetia-alert.zetia-alert-closing {
+    animation: byebye 0.5s forwards;
+}
+
+@keyframes hellothere {
+    0% {
+        -webkit-transform: translateY(calc(100% + 1em));
+        transform: translateY(calc(100% + 1em));
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes byebye {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    100% {
+        -webkit-transform: translateY(calc(100% + 1em));
+        transform: translateY(calc(100% + 1em));
+    }
+}
+
+.zetia-alert-success {
+    background-color: colors.$green;
+    border-color: colors.$green;
+}
+
+.zetia-alert-error {
+    background-color: colors.$red;
+    border-color: colors.$red;
+    color: colors.$white;
+}
+
+.zetia-alert-info {
+    background-color: colors.$lightpurple;
+    border-color: colors.$lightpurple;
+}

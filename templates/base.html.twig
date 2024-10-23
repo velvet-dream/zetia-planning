@@ -13,8 +13,8 @@
 		<link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		{% block scripts %}{# Example #}
-			{# <script type="text/javascript" src="{{ asset('scripts/app.ts') }}"></script> #}
+		{% block scripts %}
+			<script src="{{ asset('scripts/components/handleAlerts.ts') }}" defer></script>
 		{% endblock %}
 	</head>
 	<body>
@@ -23,9 +23,17 @@
 				{{ block("header", "app/header.html.twig") }}
 			{% endblock %}
 		</header>
+
 		<main>
 			{% block main %}{% endblock %}
 		</main>
+
+		{# Lit et affiche tous les messages flash #}
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				<twig:Alert message="{{ message }}" variant="{{ label }}"/>
+			{% endfor %}
+		{% endfor %}
 		<footer>
 			{% block footer %}
 				{{ block("footer", "app/footer.html.twig") }}

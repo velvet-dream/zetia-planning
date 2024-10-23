@@ -5,8 +5,9 @@
  # <twig:Button> <p>Some HTML…</p> </twig:Button>
  #}
 
-{% set zetia_button %}
-<button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size} ) }}>
+{% set zetiaButton %}
+{% set defaultClasses = 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size ~ (isBordered ? ' bordered' : '')%}
+<button {{ attributes.defaults({class: defaultClasses} ) }}>
 	{% block content %}
 		{{ text }}
 	{% endblock %}
@@ -14,7 +15,7 @@
 {% endset %}
 
 {% if href is defined %}
-	<a href="{{ href }}" class="{{ size }}">{{ zetia_button }}</a>
+	<a href="{{ href }}" class="{{ size }}" role="button">{{ zetiaButton }}</a>
 {% else %}
-	{{ zetia_button }}
+	{{ zetiaButton }}
 {% endif %}
