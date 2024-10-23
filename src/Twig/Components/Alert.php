@@ -19,7 +19,6 @@ class Alert
     public string $message;
     // time in seconds before alert is gone. If undefined, the alert stays until user switches page / closes the alert
     public float $timeout;
-
     public string $title = "";
 
     /**
@@ -39,6 +38,10 @@ class Alert
                 default:
                     $this->title = 'Information';
             }
+        }
+
+        if (is_null($this->timeout) && $this->variant !== AlertVariant::ERROR) {
+            $this->timeout = 5;
         }
     }
 }
