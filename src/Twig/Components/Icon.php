@@ -31,7 +31,7 @@ class Icon
 {
     public string $icon;
     // to pass an href as prop, use {{ path('app_index') }} in a template
-    public string $href;
+    public ?string $href;
     public string $variant = IconVariant::DEFAULT;
     public string $altText = "";
 
