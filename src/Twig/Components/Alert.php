@@ -18,7 +18,7 @@ class Alert
     public string $variant = AlertVariant::INFO;
     public string $message;
     // time in seconds before alert is gone. If undefined, the alert stays until user switches page / closes the alert
-    public float $timeout;
+    public ?float $timeout = null;
     public string $title = "";
 
     /**
