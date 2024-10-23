@@ -3,6 +3,7 @@
 namespace App\Twig\Components;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
+use Symfony\UX\TwigComponent\Attribute\PostMount;
 
 interface AlertVariant
 {
@@ -15,8 +16,29 @@ interface AlertVariant
 class Alert
 {
     public string $variant = AlertVariant::INFO;
-    public string $title;
     public string $message;
     // time in seconds before alert is gone. If undefined, the alert stays until user switches page / closes the alert
     public float $timeout;
+
+    public string $title = "";
+
+    /**
+     * function called once after the component is mounted (we need its props to be defined)
+     */
+    #[PostMount]
+    public function postMount(): void
+    {
+        if ($this->title === "") {
+            switch ($this->variant) {
+                case AlertVariant::SUCCESS:
+                    $this->title = 'Opération réussie';
+                    break;
+                case AlertVariant::ERROR:
+                    $this->title = 'Erreur';
+                    break;
+                default:
+                    $this->title = 'Information';
+            }
+        }
+    }
 }
