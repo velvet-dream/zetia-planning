@@ -18,6 +18,8 @@ interface IconImage
     const LOGOUT = 'logout';
     const SEARCH = 'search';
     const TEAM = 'team';
+    const USER = 'user';
+    const FOLDER = 'folder';
 }
 
 interface IconVariant
@@ -39,6 +41,7 @@ class Icon
     #[PostMount]
     public function postMount(): void
     {
+        // Add default alt texts to icons
         if (!is_null($this->icon) && $this->altText === "") {
             switch ($this->icon) {
                 case IconImage::SETTINGS:
@@ -73,6 +76,12 @@ class Icon
                     break;
                 case IconImage::TEAM:
                     $this->altText = "L'équipe";
+                    break;
+                case IconImage::USER:
+                    $this->altText = "Profil";
+                    break;
+                case IconImage::FOLDER:
+                    $this->altText = "Projet ouvert";
                     break;
             }
         }
