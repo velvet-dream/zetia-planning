@@ -1,0 +1,42 @@
+@use "../utilities/index" as utils;
+
+.zetia-form-container {
+    max-width: 50ch;
+    padding: 0 1em;
+    form {
+        // validation button
+        .zetia-button {
+            margin: auto;
+            display: block;
+        }
+
+        // Select the parent div of labels and inputs
+        .zetia-form-inputs-container > div {
+            width: 100%;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            box-sizing: border-box;
+            @include utils.bordered;
+
+            display: flex;
+            justify-content: space-between;
+
+            input {
+                border: none;
+                background-color: transparent;
+                // width: 100%;
+                margin: 0 0.5em;
+                text-align: end;
+            }
+
+            label {
+                text-wrap: nowrap;
+            }
+
+            label,
+            input {
+                align-self: center;
+            }
+        }
+    }
+}

@@ -1,4 +1,6 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="zetia-form-container">
+	{{ form_start(form) }}
+	{{ form_widget(form, {'attr': {'class': 'zetia-form-inputs-container'}}) }}
+	<twig:Button variant="purple" text="{{ button_label|default('Enregistrer') }}"/>
+	{{ form_end(form) }}
+</div>
