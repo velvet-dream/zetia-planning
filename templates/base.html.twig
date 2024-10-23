@@ -31,7 +31,7 @@
 		{# Lit et affiche tous les messages flash #}
 		{% for label, messages in app.flashes %}
 			{% for message in messages %}
-				<twig:Alert message="{{ message }}" variant="{{ label }}" title="coucou"/>
+				<twig:Alert message="{{ message }}" variant="{{ label }}"/>
 			{% endfor %}
 		{% endfor %}
 		<footer>

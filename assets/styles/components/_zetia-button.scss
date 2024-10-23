@@ -1,10 +1,8 @@
 /* Feuille de style dédiée à la classe responsive-table, censée modifier drastiquement l'apparence d'une table en mode mobile.*/
 
 @use "../abstracts/globals" as colors;
-@use "../utilities/index" as utils;
 
 .zetia-button {
-    @include utils.bordered;
     padding: 0.5em;
 }
 
@@ -33,6 +31,11 @@
     background-color: colors.$heavyvelvet;
     border-color: colors.$heavyvelvet;
     color: colors.$white;
+}
+
+.zetia-button.zetia-button-gray {
+    background-color: colors.$palegray;
+    border-color: colors.$palegray;
 }
 
 .zetia-button.default {

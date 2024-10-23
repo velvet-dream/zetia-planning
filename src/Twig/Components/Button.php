@@ -17,14 +17,16 @@ interface ButtonVariant
     const DANGER = 'danger';
     const CONFIRM = 'confirm';
     const PURPLE = 'purple';
+    const GRAY = 'gray';
 }
 
 #[AsTwigComponent]
 class Button
 {
+    public bool $isBordered = true;
     public string $size = ButtonSize::DEFAULT;
     public string $variant = ButtonVariant::DEFAULT;
     public string $text;
     // to pass an href as prop, use {{ path('app_index') }} in a template
-    public string $href;
+    public ?string $href;
 }
