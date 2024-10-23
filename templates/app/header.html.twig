@@ -18,9 +18,7 @@
 				<a href="{{ path('app_index') }}" role="menuitem">
 					<div class="icon user-icon">👤​</div>
 				</a>
-				<a href="{{ path('app_index') }}" role="menuitem">
-					<div class="icon param-icon">⚙️​</div>
-				</a>
+				<twig:Icon icon="settings" href="{{ path('app_index') }}"/>
 				<a href="{{ path('app_dashboard') }}" role="menuitem">Tableau de bord</a>
 				<a href="{{ path('app_logout') }}" role="menuitem">Se déconnecter</a>
 				<a href="{{ path('viewTasks') }}" role="menuitem">Vos tâches</a>
