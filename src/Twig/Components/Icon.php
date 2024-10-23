@@ -34,6 +34,7 @@ class Icon
     public ?string $href;
     public string $variant = IconVariant::DEFAULT;
     public string $altText = "";
+    public string $color = ButtonVariant::DEFAULT;
 
     #[PostMount]
     public function postMount(): void
