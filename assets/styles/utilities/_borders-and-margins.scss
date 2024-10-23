@@ -7,3 +7,7 @@
     border-radius: 0.75em;
     border-color: colors.$gray;
 }
+
+.bordered {
+    @include bordered;
+}

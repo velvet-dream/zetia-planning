@@ -6,7 +6,8 @@
  #}
 
 {% set zetiaButton %}
-<button {{ attributes.defaults({class: 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size} ) }}>
+{% set defaultClasses = 'zetia-button zetia-button-' ~ variant ~ ' ' ~ size ~ (isBordered ? ' bordered' : '')%}
+<button {{ attributes.defaults({class: defaultClasses} ) }}>
 	{% block content %}
 		{{ text }}
 	{% endblock %}

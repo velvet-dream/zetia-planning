@@ -22,6 +22,7 @@ interface ButtonVariant
 #[AsTwigComponent]
 class Button
 {
+    public bool $isBordered = true;
     public string $size = ButtonSize::DEFAULT;
     public string $variant = ButtonVariant::DEFAULT;
     public string $text;
