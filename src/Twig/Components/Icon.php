@@ -8,7 +8,7 @@ use Symfony\UX\TwigComponent\Attribute\PostMount;
 interface IconImage
 {
     const SETTINGS = 'settings';
-    const ZETIA = 'zetia-logo';
+    const ZETIA = 'zetia';
     const CROSS = 'close';
     const DASHBOARD = 'dashboard';
     const TRASH = 'delete';
