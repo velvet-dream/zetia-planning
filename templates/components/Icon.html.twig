@@ -1,3 +1,13 @@
-<twig:Button size="small" class="zetia-icon zetia-icon-{{ variant }}" href="{{href}}">
-	<img src="{{ asset('icons/' ~ icon ~ '.png') }}" alt="{{ altText }}">
-</twig:Button>
+{% set img %}
+<img src="{{ asset('icons/' ~ icon ~ '.png') }}" alt="{{ altText }}">
+{% endset %}
+
+{% if href is defined %}
+	<twig:Button href="{{ href }}" size="small" class="zetia-icon zetia-icon-{{ variant }}" variant="{{ color }}">
+		{{ img }}
+	</twig:Button>
+{% else %}
+	<twig:Button size="small" class="zetia-icon zetia-icon-{{ variant }}" variant="{{ color }}">
+		{{ img }}
+	</twig:Button>
+{% endif %}
