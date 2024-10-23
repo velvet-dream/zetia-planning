@@ -49,3 +49,19 @@
         transform: translateY(calc(100% + 1em));
     }
 }
+
+.zetia-alert-success {
+    background-color: colors.$green;
+    border-color: colors.$green;
+}
+
+.zetia-alert-error {
+    background-color: colors.$red;
+    border-color: colors.$red;
+    color: colors.$white;
+}
+
+.zetia-alert-info {
+    background-color: colors.$lightpurple;
+    border-color: colors.$lightpurple;
+}

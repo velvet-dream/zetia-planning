@@ -14,7 +14,7 @@ interface AlertVariant
 #[AsTwigComponent]
 class Alert
 {
-    public string $variant = AlertVariant::SUCCESS;
+    public string $variant = AlertVariant::INFO;
     public string $title;
     public string $message;
     // time in seconds before alert is gone. If undefined, the alert stays until user switches page / closes the alert
