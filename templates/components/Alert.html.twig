@@ -1,4 +1,4 @@
-<div class="zetia-alert zetia-alert-{{ variant }}" {% if timeout is defined %} data-timeout={{ timeout }} {% endif %}>
+<div class="zetia-alert zetia-alert-{{ variant }}" {% if timeout %} data-timeout={{ timeout }} {% endif %}>
 	<div class="flex zetia-alert-header">
 		{% if title is defined %}
 			<strong>{{ title }}</strong>
