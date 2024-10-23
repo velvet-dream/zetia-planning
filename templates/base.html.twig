@@ -27,6 +27,13 @@
 		<main>
 			{% block main %}{% endblock %}
 		</main>
+
+		{# Lit et affiche tous les messages flash #}
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				<twig:Alert message="{{ message }}" variant="{{ label }}" title="coucou"/>
+			{% endfor %}
+		{% endfor %}
 		<footer>
 			{% block footer %}
 				{{ block("footer", "app/footer.html.twig") }}
