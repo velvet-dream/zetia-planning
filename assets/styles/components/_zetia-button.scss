@@ -33,6 +33,11 @@
     color: colors.$white;
 }
 
+.zetia-button.zetia-button-gray {
+    background-color: colors.$palegray;
+    border-color: colors.$palegray;
+}
+
 .zetia-button.default {
     min-width: 10em;
 }
