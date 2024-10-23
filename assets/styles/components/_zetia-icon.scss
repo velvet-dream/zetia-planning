@@ -11,3 +11,10 @@
 .zetia-icon.zetia-icon-round {
     border-radius: 100%;
 }
+
+.zetia-icon.zetia-button-danger,
+.zetia-icon.zetia-icon.zetia-button-purple {
+    img {
+        filter: invert(100%);
+    }
+}
