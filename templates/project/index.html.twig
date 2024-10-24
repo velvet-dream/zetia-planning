@@ -1,27 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index
+{% block title %}Vos projets
 {% endblock %}
 
+{# Merge with projects.html.twig #}
 {% block main %}
-	<h1 class="zetia-title">Project index</h1>
+	<h1 class="zetia-title">Vos projets</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>PctId</th>
-				<th>PctTitle</th>
-				<th>PctDescription</th>
-				<th>PctDateDebut</th>
-				<th>PctDateFinPrevisionnelle</th>
-				<th>PctDateFinReelle</th>
-				<th>actions</th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Date de début</th>
+				<th>Date de fin prévue</th>
+				<th>Date de fin effective</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for project in projects %}
 				<tr>
-					<td>{{ project.pctId }}</td>
 					<td>{{ project.pctTitle }}</td>
 					<td>{{ project.pctDescription }}</td>
 					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
@@ -34,11 +33,11 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="7">no records found</td>
+					<td colspan="7">Aucune donnée trouvée</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('addProject') }}">Create new</a>
+	<a href="{{ path('addProject') }}">Créer un nouveau projet</a>
 {% endblock %}

@@ -1,5 +1,7 @@
 {# templates/project/_delete_form.html.twig #}
 <form method="post" action="{{ path('deleteProject', {'pctId': project.pctId}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.pctId) }}">
-    <button class="btn btn-danger">Supprimer</button>
+	<input
+	type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.pctId) }}">
+	{# Asking for confirmation would be neat #}
+	<twig:Button variant="danger" text="Supprimer"/>
 </form>

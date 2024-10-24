@@ -14,15 +14,22 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pctTitle')
-            ->add('pctDescription')
+            ->add('pctTitle', null, [
+                'label' => 'Intitulé',
+            ])
+            ->add('pctDescription', null, [
+                'label' => 'Description',
+            ])
             ->add('pctDateDebut', null, [
+                'label' => 'Date de début',
                 'widget' => 'single_text',
             ])
             ->add('pctDateFinPrevisionnelle', null, [
+                'label' => 'Date de fin prévue',
                 'widget' => 'single_text',
             ])
             ->add('pctStatus', EntityType::class, [
+                'label' => 'Statut',
                 'class' => StatusProject::class,
                 'choice_label' => 'stpTitle',
                 'placeholder' => 'Choisir un statut',

@@ -1,0 +1,88 @@
+@use "../utilities/index" as utils;
+@use "../abstracts/globals" as colors;
+
+.zetia-form-container {
+    max-width: 50ch;
+    padding: 0 1em;
+    form {
+        // validation button
+        .zetia-button {
+            margin: auto;
+            display: block;
+        }
+
+        // Select the parent div of labels and inputs
+        .zetia-form-inputs-container > div {
+            width: 100%;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            box-sizing: border-box;
+            @include utils.bordered;
+
+            display: flex;
+            justify-content: space-between;
+
+            input,
+            textarea,
+            select {
+                border: none;
+                background-color: transparent;
+                margin: 0 0.5em;
+                outline: none;
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+            }
+
+            input {
+                text-align: right;
+                width: 100%;
+            }
+
+            input:not([type="text"]) {
+                cursor: pointer;
+            }
+
+            textarea {
+                min-height: 4lh;
+                height: fit-content;
+                min-width: 34ch;
+                resize: none;
+                border-left: 1.5px solid colors.$gray;
+                padding-left: 2ch;
+            }
+
+            label {
+                text-wrap: nowrap;
+            }
+
+            label,
+            input,
+            textarea {
+                align-self: center;
+            }
+
+            select {
+                // A reset of styles, including removing the default dropdown arrow
+                // appearance: none;
+                cursor: pointer;
+                min-width: 17ch;
+                max-width: 34ch;
+                text-align: right;
+                border-left: 1.5px solid colors.$gray;
+                padding-left: 2ch;
+                display: grid;
+                position: relative;
+            }
+
+            select:hover {
+                background-color: colors.$palegray;
+            }
+        }
+
+        .zetia-form-inputs-container > div:focus-within {
+            border-color: colors.$heavyvelvet;
+            box-shadow: 0 0 4px 0 colors.$heavyvelvet;
+        }
+    }
+}

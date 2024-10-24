@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task
+{% block title %}Tâche
 {% endblock %}
 
 {% block main %}
-	<h1 class="zetia-title">Task</h1>
+	<h1 class="zetia-title">Détails de tâche</h1>
 
 	<table class="table">
 		<tbody>
 			<tr>
-
 				<td>{{ task.tskId }}</td>
 			</tr>
 			<tr>
-				<th>Title</th>
+				<th>Titre</th>
 				<td>{{ task.tskTitle }}</td>
 			</tr>
 			<tr>
@@ -25,7 +24,7 @@
 				<td>{{ task.tskDateFinPrevisionnelle ? task.tskDateFinPrevisionnelle|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Date de Fin Reelle</th>
+				<th>Date de Fin Réelle</th>
 				<td>{{ task.tskDateFinReelle ? task.tskDateFinReelle|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
@@ -33,19 +32,19 @@
 				<td>{{ task.tskDescription }}</td>
 			</tr>
 			<tr>
-				<th>Description</th>
+				<th>Statut</th>
 				<td>{{ task.tskStatus.stkTitle }}</td>
 			</tr>
 			<tr>
-				<th>Duree</th>
+				<th>Durée</th>
 				<td>{{ task.tskDuree }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('viewTasks') }}">back to list</a>
+	<a href="{{ path('viewTasks') }}">Retour à la liste</a>
 
-	<a href="{{ path('editTask', {'tskId': task.tskId}) }}">edit</a>
+	<a href="{{ path('editTask', {'tskId': task.tskId}) }}">Éditer</a>
 
 	{{ include('task/_delete_form.html.twig') }}
 {% endblock %}
