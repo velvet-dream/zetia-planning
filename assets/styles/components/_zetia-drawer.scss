@@ -1,11 +1,17 @@
 @use "../utilities/index" as utils;
+@use "../abstracts/media-queries" as mq;
 
 .zetia-drawer {
     position: fixed;
-    bottom: 0;
     height: 80vh;
     min-width: 40vw;
-    margin-bottom: 0;
+    border: none;
+    border-radius: 2em 0 0 2em;
+    box-sizing: border-box;
+    padding: 2em;
+    // transform: none;
+    // backdrop-filter: none;
+
     animation: hello-drawer 0.5s forwards;
 
     @keyframes hello-drawer {
@@ -15,5 +21,27 @@
         to {
             margin-right: 0;
         }
+    }
+
+    .zetia-drawer-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .zetia-button {
+            align-self: center;
+        }
+    }
+
+    @include mq.media-screen-sm {
+        min-width: 50vw;
+    }
+
+    @include mq.media-screen-xs {
+        width: 100vw;
+        margin: 0;
+        border-radius: 0;
+        animation: none;
+        top: 20vh;
     }
 }
