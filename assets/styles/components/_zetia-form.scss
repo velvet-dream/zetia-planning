@@ -1,4 +1,5 @@
 @use "../utilities/index" as utils;
+@use "../abstracts/globals" as colors;
 
 .zetia-form-container {
     max-width: 50ch;
@@ -21,12 +22,26 @@
             display: flex;
             justify-content: space-between;
 
-            input {
+            input,
+            textarea {
                 border: none;
                 background-color: transparent;
-                // width: 100%;
                 margin: 0 0.5em;
+                outline: none;
+            }
+
+            input {
                 text-align: end;
+                width: 100%;
+            }
+
+            textarea {
+                min-height: 4lh;
+                height: fit-content;
+                min-width: 34ch;
+                resize: none;
+                border-left: 1.5px solid colors.$gray;
+                padding-left: 2ch;
             }
 
             label {
@@ -34,9 +49,15 @@
             }
 
             label,
-            input {
+            input,
+            textarea {
                 align-self: center;
             }
+        }
+
+        .zetia-form-inputs-container > div:focus-within {
+            border-color: colors.$heavyvelvet;
+            box-shadow: 0 0 4px 0 colors.$heavyvelvet;
         }
     }
 }
