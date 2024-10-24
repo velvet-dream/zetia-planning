@@ -36,53 +36,53 @@ class Icon
     // to pass an href as prop, use {{ path('app_index') }} in a template
     public ?string $href;
     public string $variant = IconVariant::DEFAULT;
-    public string $altText = "";
+    public string $alt = "";
     public string $color = 'light';
 
     #[PostMount]
     public function postMount(): void
     {
         // Add default alt texts to icons
-        if (!is_null($this->icon) && $this->altText === "") {
+        if (!is_null($this->icon) && $this->alt === "") {
             switch ($this->icon) {
                 case IconImage::SETTINGS:
-                    $this->altText = 'Réglages';
+                    $this->alt = 'Réglages';
                     break;
                 case IconImage::ZETIA:
-                    $this->altText = 'Le logo de Zetia Planning';
+                    $this->alt = 'Le logo de Zetia Planning';
                     break;
                 case IconImage::CROSS:
-                    $this->altText = 'Fermer';
+                    $this->alt = 'Fermer';
                     break;
                 case IconImage::DASHBOARD:
-                    $this->altText = 'Tableau de bord';
+                    $this->alt = 'Tableau de bord';
                     break;
                 case IconImage::TRASH:
-                    $this->altText = 'Supprimer';
+                    $this->alt = 'Supprimer';
                     break;
                 case IconImage::VALID:
-                    $this->altText = 'Valider';
+                    $this->alt = 'Valider';
                     break;
                 case IconImage::PENCIL:
-                    $this->altText = 'Éditer';
+                    $this->alt = 'Éditer';
                     break;
                 case IconImage::EYE:
-                    $this->altText = 'Consulter';
+                    $this->alt = 'Consulter';
                     break;
                 case IconImage::LOGOUT:
-                    $this->altText = 'Se déconnecter';
+                    $this->alt = 'Se déconnecter';
                     break;
                 case IconImage::SEARCH:
-                    $this->altText = 'Rechercher';
+                    $this->alt = 'Rechercher';
                     break;
                 case IconImage::TEAM:
-                    $this->altText = "L'équipe";
+                    $this->alt = "L'équipe";
                     break;
                 case IconImage::USER:
-                    $this->altText = "Profil";
+                    $this->alt = "Profil";
                     break;
                 case IconImage::FOLDER:
-                    $this->altText = "Projet ouvert";
+                    $this->alt = "Projet ouvert";
                     break;
             }
         }
