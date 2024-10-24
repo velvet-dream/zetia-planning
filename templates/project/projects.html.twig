@@ -3,72 +3,78 @@
 {# Il faut un traitement différentiel selon qu'on ait un employé ou un responsable #}
 
 {# Pour l'instant on fait comme si c'était un employé #}
-{% block main %}
-<section>
-    <h2>Projets</h2>
-    {# Ici on met une table pour ordonner les données, mais à voir si c'est facile de le styler avec css et compatible
-    avec du mobile-first #}
-    <table class="responsive-table">
-        <tr>
-            <th>Nom</th>
-            <th>Date de début</th>
-            <th>Date de fin prévue</th>
-            <th>Nb de tâches</th>
-            <th>Assignations</th>
-            <th>Statut</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            {# Nom #}
-            <td><h3>Projet 1</h3></td>
-            {# Date de début #}
-            <td class="table-entry-start-date">11/03/2024</td>
-            {# Date de fin prévue #}
-            <td class="table-entry-expected-end-date">23/04/2024</td>
-            {# Nombre de tâches #}
-            <td class="table-entry-tasks-amount">20</td>
-            {# Assignations #}
-            <td class="table-entry-assignments">
-                <div class="icon">👤</div>
-                <div class="icon">👤</div>
-            </td>
-            {# Statut #}
-            <td class="table-entry-status">En cours</td>
-            {# Actions #}
-            <td class="table-entry-actions">
-                <a>voir</a>&nbsp;
-                <a>valider</a>
-            </td>
-        </tr>
-        <tr>
-            <td><h3>Projet 3</h3></td>
-            <td class="table-entry-start-date">18/03/2024</td>
-            <td class="table-entry-expected-end-date">23/06/2024</td>
-            <td class="table-entry-tasks-amount">12</td>
-            <td class="table-entry-assignments">
-                <div class="icon">👤</div>
-                <div class="icon">👤</div>
-            </td>
-            <td  class="table-entry-status">En cours</td>
-            <td class="table-entry-actions">
-                <a>voir</a>&nbsp;
-                <a>valider</a>
-            </td>
-        </tr>
-        <tr>
-            <td><h3>Projet 22</h3></td>
-            <td class="table-entry-start-date">18/01/2024</td>
-            <td class="table-entry-expected-end-date">22/02/2024</td>
-            <td class="table-entry-tasks-amount">1</td>
-            <td class="table-entry-assignments">
-                <div class="icon">👤</div>
-                <div class="icon">👤</div>
-            </td>
-            <td  class="table-entry-status">Fini</td>
-            <td class="table-entry-actions">
-                <a>voir</a>
-            </td>
-        </tr>
-    </table>
-</section>
+	{% block main %}
+		<section><h2 class="zetia-title"> Projets</h2>
+		<pre>Placholder: écrire les projets reçus par le controller à la place de ces placeholders</pre>
+		{# Ici on met une table pour ordonner les données, mais à voir si c'est facile de le styler avec css et compatible
+				                avec du mobile-first #}
+		<table class="responsive-table">
+			<tr>
+				<th>Nom</th>
+				<th>Date de début</th>
+				<th>Date de fin prévue</th>
+				<th>Nb de tâches</th>
+				<th>Assignations</th>
+				<th>Statut</th>
+				<th>Actions</th>
+			</tr>
+			<tr>
+				{# Nom #}
+				<td>
+					<h3>Projet 1</h3>
+				</td>
+				{# Date de début #}
+				<td class="table-entry-start-date">11/03/2024</td>
+				{# Date de fin prévue #}
+				<td class="table-entry-expected-end-date">23/04/2024</td>
+				{# Nombre de tâches #}
+				<td class="table-entry-tasks-amount">20</td>
+				{# Assignations #}
+				<td class="table-entry-assignments">
+					<div class="icon">👤</div>
+					<div class="icon">👤</div>
+				</td>
+				{# Statut #}
+				<td class="table-entry-status">En cours</td>
+				{# Actions #}
+				<td class="table-entry-actions">
+					<a>voir</a>&nbsp;
+					<a>valider</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Projet 3</h3>
+				</td>
+				<td class="table-entry-start-date">18/03/2024</td>
+				<td class="table-entry-expected-end-date">23/06/2024</td>
+				<td class="table-entry-tasks-amount">12</td>
+				<td class="table-entry-assignments">
+					<div class="icon">👤</div>
+					<div class="icon">👤</div>
+				</td>
+				<td class="table-entry-status">En cours</td>
+				<td class="table-entry-actions">
+					<a>voir</a>&nbsp;
+					<a>valider</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Projet 22</h3>
+				</td>
+				<td class="table-entry-start-date">18/01/2024</td>
+				<td class="table-entry-expected-end-date">22/02/2024</td>
+				<td class="table-entry-tasks-amount">1</td>
+				<td class="table-entry-assignments">
+					<div class="icon">👤</div>
+					<div class="icon">👤</div>
+				</td>
+				<td class="table-entry-status">Fini</td>
+				<td class="table-entry-actions">
+					<a>voir</a>
+				</td>
+			</tr>
+		</table>
+	</section>
 {% endblock %}

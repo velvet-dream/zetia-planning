@@ -1,0 +1,35 @@
+/** very global, low-priority style rules meant to be applied for the entire app */
+
+@use "../abstracts/fonts" as fonts;
+@use "../abstracts/globals" as colors;
+@use "../abstracts/media-queries" as mq;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: fonts.$titlefont;
+    font-weight: 400;
+}
+
+.zetia-title {
+    font-size: 2em;
+    margin: 0.4em 0 0.6em 0;
+    position: relative;
+
+    @include mq.media-screen-xs {
+        font-weight: bold;
+    }
+}
+
+.zetia-title::after {
+    @include mq.media-screen-sm {
+        content: " ";
+        border-bottom: 2px solid black;
+        width: 20ch;
+        position: relative;
+        display: block;
+        left: 0;
+    }
+}

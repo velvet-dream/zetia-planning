@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 #[ORM\Entity(repositoryClass: StatusProjectRepository::class)]
-#[ORM\Table(name: 'tsk_statusproject_stp')]
+#[ORM\Table(name: 'statusproject_stp')]
 class StatusProject
 {
     #[ORM\Id]

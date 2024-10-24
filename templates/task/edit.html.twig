@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Édition de tâche
+{% endblock %}
+
+{% block main %}
+	<h1 class="zetia-title">Éditer une tâche</h1>
+
+	{{ include('app/form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+	<a href="{{ path('viewTasks') }}" aria-label="Retour à la liste des tâches">Retour</a>
+
+	{{ include('task/_delete_form.html.twig') }}
+{% endblock %}
