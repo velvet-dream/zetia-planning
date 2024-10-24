@@ -1,0 +1,8 @@
+{% set close_alt = "Fermer la boîte de dialogue" %}
+<dialog role="dialog" {{ attributes.defaults({class: "zetia-drawer"} ) }} {{attributes}}>
+	{% if title %}
+		{% set close_alt = "Fermer la boîte '" ~ title ~ "'" %}
+		<h2 class="zetia-title">{{title}}</h2>
+	{% endif %}
+	<twig:Icon icon="close" class="zetia-drawer-close" alttext="Fermer la boîte de dialogue"/>
+</dialog>
