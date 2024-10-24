@@ -7,7 +7,7 @@
 {% block main %}
 	<h1 class="zetia-title">Créer un nouveau projet</h1>
 
-	{{ include('project/_form.html.twig') }}
+	{{ include('app/form.html.twig', {'button_label': 'Enregistrer le projet'}) }}
 
 	<a href="{{ path('viewProjects') }}" aria-label="Retour à la liste des projets">Retour</a>
 {% endblock %}

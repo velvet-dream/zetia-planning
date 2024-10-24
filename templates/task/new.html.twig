@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Task
+{% block title %}Création d'une tâche
 {% endblock %}
 
 {% block main %}
 	<h1 class="zetia-title">Créer une nouvelle tâche</h1>
 
-	{{ include('task/_form.html.twig') }}
+	{{ include('app/form.html.twig') }}
 
-	<a href="{{ path('viewTasks') }}">back to list</a>
+	<a href="{{ path('viewTasks') }}">Retour à la liste</a>
 {% endblock %}
