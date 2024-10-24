@@ -1,8 +1,17 @@
+{# Usage example
+    <twig:Icon icon="eye" data-target="new-task" class="zetia-drawer-open"/>
+    <twig:Drawer title="Le super drawer" id="new-task"/> 
+#}
+
 {% set close_alt = "Fermer la boîte de dialogue" %}
 <dialog role="dialog" {{ attributes.defaults({class: "zetia-drawer"} ) }} {{attributes}}>
-	{% if title %}
-		{% set close_alt = "Fermer la boîte '" ~ title ~ "'" %}
-		<h2 class="zetia-title">{{title}}</h2>
-	{% endif %}
-	<twig:Icon icon="close" class="zetia-drawer-close" alt="Fermer la boîte de dialogue" size="16"/>
-</dialog>
+	<div class="zetia-drawer-header">
+		{% if title %}
+			{% set close_alt = "Fermer la boîte '" ~ title ~ "'" %}
+			<h2 class="zetia-title">{{title}}</h2>
+		{% endif %}
+		<twig:Icon icon="close" class="zetia-drawer-close" alt="Fermer la boîte de dialogue" size="16"/>
+	</div>
+	<section class="zetia-drawer-body"> {% block content %}{% endblock %}
+		</section>
+	</dialog>
