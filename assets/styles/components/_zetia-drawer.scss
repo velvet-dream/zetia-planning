@@ -1,0 +1,19 @@
+@use "../utilities/index" as utils;
+
+.zetia-drawer {
+    position: fixed;
+    bottom: 0;
+    height: 80vh;
+    min-width: 40vw;
+    margin-bottom: 0;
+    animation: hello-drawer 0.5s forwards;
+
+    @keyframes hello-drawer {
+        from {
+            margin-right: -100%;
+        }
+        to {
+            margin-right: 0;
+        }
+    }
+}
