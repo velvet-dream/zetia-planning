@@ -1,14 +1,14 @@
 {% set img %}
 <img src="{{ asset('icons/' ~ icon ~ '.png') }}" alt="{{ alt }}" {% if size %} width={{ size }} height={{ size }} {% endif %}>
 {% endset %}
-{% set class_names = "zetia-icon zetia-icon-" ~ variant %}
+{% set class_names = "zetia-icon zetia-icon-" ~ variant ~ " " ~ (class ?? '') %}
 
 {% if href is defined %}
-	<twig:Button href="{{ href }}" size="small" class="zetia-icon zetia-icon-{{ variant }}" variant="{{ color }}" {{...attributes.without('alt')}}>
+	<twig:Button href="{{ href }}" size="small" class="{{ class_names }}" variant="{{ color }}" {{...attributes.without('alt', 'class')}}>
 		{{ img }}
 	</twig:Button>
 {% else %}
-	<twig:Button size="small" class="zetia-icon zetia-icon-{{ variant }}" variant="{{ color }}" {{...attributes.without('alt')}}>
+	<twig:Button size="small" class="{{ class_names }}" variant="{{ color }}" {{...attributes.without('alt', 'class')}}>
 		{{ img }}
 	</twig:Button>
 {% endif %}
