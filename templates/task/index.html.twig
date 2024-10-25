@@ -4,8 +4,9 @@
 {% endblock %}
 
 {% block main %}
-	<h1 class="zetia-title">Tâches</h1>
-	<div>
+	<twig:HomeContainer title="Vos tâches">
+		<twig:block name="extra"></twig:block>
+
 		{% for status in statusTask %}
 			<section>
 				<h2 class="zetia-title">{{ status.stkTitle }}</h2>
@@ -40,4 +41,5 @@
 		{% endfor %}
 
 		<a href="{{ path('newTask') }}">Ajouter une tâche</a>
-	{% endblock %}
+	</twig:HomeContainer>
+{% endblock %}
