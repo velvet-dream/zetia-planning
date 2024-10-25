@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/', name: 'viewProjects', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
+    #[Route('/', name: 'pct_index', methods: ['GET', 'POST'])]
     {
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
@@ -35,7 +35,7 @@ class ProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('project/new.html.twig', [
@@ -65,7 +65,7 @@ class ProjectController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('project/edit.html.twig', [
@@ -82,6 +82,6 @@ class ProjectController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
     }
 }
