@@ -4,7 +4,7 @@
 .zetia-drawer {
     position: fixed;
     height: 80vh;
-    min-width: 40vw;
+    width: 40vw;
     border: none;
     border-radius: 2em 0 0 2em;
     box-sizing: border-box;
@@ -34,7 +34,7 @@
     }
 
     @include mq.media-screen-sm {
-        min-width: 50vw;
+        width: 50vw;
     }
 
     @include mq.media-screen-xs {
