@@ -6,7 +6,7 @@
 {# Merge with projects.html.twig #}
 {% block main %}
 	<h1 class="zetia-title">Vos projets</h1>
-	<twig:Icon icon="plus" color="purple" class="zetia-drawer-open" data-target="new-project"/>
+	<twig:Icon icon="plus" color="purple" class="zetia-drawer-open" data-target="new-project" alt="Créer un nouveau projet"/>
 	<twig:Drawer title="Créer un nouveau projet" id="new-project">
 		{{ include('app/form.html.twig', {'button_label': 'Enregistrer le projet'}) }}
 	</twig:Drawer>
@@ -41,6 +41,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('addProject') }}">Créer un nouveau projet</a>
 {% endblock %}
