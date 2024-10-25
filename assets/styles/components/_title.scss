@@ -27,7 +27,7 @@ h5 {
     @mixin nice-title-line {
         content: " ";
         border-bottom: 2px solid black;
-        width: 20ch;
+        max-width: 20ch;
         position: relative;
         display: block;
         left: 0;

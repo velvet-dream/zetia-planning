@@ -14,11 +14,30 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    public function index(ProjectRepository $projectRepository): Response
     #[Route('/', name: 'pct_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, ProjectRepository $projectRepository, EntityManagerInterface $entityManager): Response
     {
+        $project = new Project();
+        $form = $this->createForm(ProjectType::class, $project);
+        // From this route, it is possible to create a new project.
+        if ($request->getMethod() === 'POST') {
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $project->setProjectAdmin($this->getUser());
+
+                $entityManager->persist($project);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+        // if la requête est de type post, je fais X choses
+        // J'utilise la méthode request
+        // on ajoute le formulaire et la validation
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
+            'form' => $form
         ]);
     }
 
