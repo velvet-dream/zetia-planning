@@ -1,35 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project
+{% block title %}Détail de projet
 {% endblock %}
 
 {% block main %}
-	<h1 class="zetia-title">{{ project.pctTitle }}</h1>
+	<twig:HomeContainer title="{{ project.pctTitle }}">
+		<twig:block name="extra">
+			<a href="{{ path('editProject', {'pctId': project.pctId}) }}">Éditer ce projet</a>
+			<a href="{{ path('pct_index') }}" aria-label="Retour à la liste des projets">Retour à la liste</a>
+		</twig:block>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Description</th>
-				<td>{{ project.pctDescription }}</td>
-			</tr>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Description</th>
+					<td>{{ project.pctDescription }}</td>
+				</tr>
 
-			<tr>
-				<th>Date de début</th>
-				<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de fin prévisionnelle</th>
-				<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de fin réelle</th>
-				<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
-			</tr>
-			{# Ajouter dans un futur dev les assignations #}
-		</tbody>
-	</table>
-
-	<a href="{{ path('pct_index') }}" aria-label="Retour à la liste des projets">Retour à la liste</a>
-
-	<a href="{{ path('editProject', {'pctId': project.pctId}) }}">Éditer ce projet</a>
+				<tr>
+					<th>Date de début</th>
+					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Date de fin prévisionnelle</th>
+					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Date de fin réelle</th>
+					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
+				</tr>
+				{# Ajouter dans un futur dev les assignations #}
+			</tbody>
+		</table>
+	</twig:HomeContainer>
 {% endblock %}

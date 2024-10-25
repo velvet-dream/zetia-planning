@@ -1,67 +1,69 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-	<section class="mobile-hidden">
-		<div>
-			<twig:Icon icon="folder"/>
-			<h2 class="zetia-title">Projet 1</h2>
-		</div>
-	</section>
+	<twig:HomeContainer>
+		<section class="mobile-hidden">
+			<div>
+				<twig:Icon icon="folder"/>
+				<h2 class="zetia-title">Projet 1</h2>
+			</div>
+		</section>
 
-	<section class="daily-tasks-view">
-		<h2 class="zetia-title">Tâches de la journée</h2>
-		<div>
-			{% for task in tasks %}
-				<div class="task-preview">
-					<h3>{{ task.project.pctTitle }}</h3>
-					<p class="task-name">{{ task.tskTitle }}</p>
-					{# Avec CSS, ajouter un sélecteur .task-end-date::before pour indiquer "Date de fin prévisionnelle :" en format téléphone #}
-					<p class="task-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</p>
-				</div>
-			{% endfor %}
-		</div>
-	</section>
+		<section class="daily-tasks-view">
+			<h2 class="zetia-title">Tâches de la journée</h2>
+			<div>
+				{% for task in tasks %}
+					<div class="task-preview">
+						<h3>{{ task.project.pctTitle }}</h3>
+						<p class="task-name">{{ task.tskTitle }}</p>
+						{# Avec CSS, ajouter un sélecteur .task-end-date::before pour indiquer "Date de fin prévisionnelle :" en format téléphone #}
+						<p class="task-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
 
-	<section
-		class="mobile-hidden stat-view">
-		{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
-		<p>Statistiques du projet choisi si possible</p>
-	</section>
+		<section
+			class="mobile-hidden stat-view">
+			{# avec une requête SQL, on aura fetché toutes les données nécessaires à la prévisualisation des statistiques #}
+			<p>Statistiques du projet choisi si possible</p>
+		</section>
 
-	<section>
-		<h2 class="zetia-title">Tâches assignées</h2>
-		<div>
-			{% for project in projects %}
-				<button>{{ project.pctTitle }}</button>
-			{% endfor %}
-		</div>
-		<table class="responsive-table">
-			<tr>
-				<th>Nom</th>
-				<th>Date de début</th>
-				<th>Date de fin prévue</th>
-				<th>Assignations</th>
-				<th>Actions</th>
-			</tr>
-			{% for task in tasks %}
+		<section>
+			<h2 class="zetia-title">Tâches assignées</h2>
+			<div>
+				{% for project in projects %}
+					<button>{{ project.pctTitle }}</button>
+				{% endfor %}
+			</div>
+			<table class="responsive-table">
 				<tr>
-					<td>
-						<h3>{{ task.tskTitle }}</h3>
-					</td>
-					<td class="table-entry-start-date">{{ task.tskDateDebut|date('d/m/Y') }}</td>
-					<td class="table-entry-expected-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</td>
-					<td class="table-entry-assignments">
-						{% for user in task.users %}
-							<div class="icon">👤
-								{{ user.usr_name }}</div>
-						{% endfor %}
-					</td>
-					<td class="table-entry-actions">
-						<a href="{{ path('task_view', {'id': task.tskId}) }}">voir</a>&nbsp;
-						<a href="{{ path('task_validate', {'id': task.tskId}) }}">valider</a>
-					</td>
+					<th>Nom</th>
+					<th>Date de début</th>
+					<th>Date de fin prévue</th>
+					<th>Assignations</th>
+					<th>Actions</th>
 				</tr>
-			{% endfor %}
-		</table>
-	</section>
+				{% for task in tasks %}
+					<tr>
+						<td>
+							<h3>{{ task.tskTitle }}</h3>
+						</td>
+						<td class="table-entry-start-date">{{ task.tskDateDebut|date('d/m/Y') }}</td>
+						<td class="table-entry-expected-end-date">{{ task.tskDateFinPrevisionnelle|date('d/m/Y') }}</td>
+						<td class="table-entry-assignments">
+							{% for user in task.users %}
+								<div class="icon">👤
+									{{ user.usr_name }}</div>
+							{% endfor %}
+						</td>
+						<td class="table-entry-actions">
+							<a href="{{ path('task_view', {'id': task.tskId}) }}">voir</a>&nbsp;
+							<a href="{{ path('task_validate', {'id': task.tskId}) }}">valider</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</section>
+	</twig:HomeContainer>
 {% endblock %}

@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+	<twig:HomeContainer title="Se connecter">
+		<twig:block name="extra"></twig:block>
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password" required>
+		<form action="{{ path('app_login') }}" method="post">
+			<label for="username">Email:</label>
+			<input type="text" id="username" name="_username" value="{{ last_username }}" required>
 
-		<button type="submit">Login</button>
-	</form>
+			<label for="password">Mot de passe:</label>
+			<input type="password" id="password" name="_password" required>
+
+			<button type="submit">Se connecter</button>
+		</form>
+	</twig:HomeContainer>
 {% endblock %}

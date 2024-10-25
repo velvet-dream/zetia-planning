@@ -5,40 +5,44 @@
 
 {# Merge with projects.html.twig #}
 {% block main %}
-	<h1 class="zetia-title">Vos projets</h1>
-	<twig:Icon icon="plus" color="purple" class="zetia-drawer-open" data-target="new-project" alt="Créer un nouveau projet"/>
-	<twig:Drawer title="Créer un nouveau projet" id="new-project">
-		{{ include('app/form.html.twig', {'button_label': 'Enregistrer le projet'}) }}
-	</twig:Drawer>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Date de début</th>
-				<th>Date de fin prévue</th>
-				<th>Date de fin effective</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for project in projects %}
+	<twig:HomeContainer title="Vos projets">
+		<twig:block name="extra">
+			<twig:Icon icon="plus" color="purple" class="zetia-drawer-open" data-target="new-project" alt="Créer un nouveau projet"/>
+			<twig:Drawer title="Créer un nouveau projet" id="new-project">
+				{{ include('app/form.html.twig', {'button_label': 'Enregistrer le projet'}) }}
+			</twig:Drawer>
+		</twig:block>
+
+		<table>
+			<thead>
 				<tr>
-					<td>{{ project.pctTitle }}</td>
-					<td>{{ project.pctDescription }}</td>
-					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
-					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
-					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
-					<td>
-						<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
-						<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
-					</td>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Date de début</th>
+					<th>Date de fin prévue</th>
+					<th>Date de fin effective</th>
+					<th>Actions</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">Aucune donnée trouvée</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for project in projects %}
+					<tr>
+						<td>{{ project.pctTitle }}</td>
+						<td>{{ project.pctDescription }}</td>
+						<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
+						<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
+						<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
+						<td>
+							<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
+							<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</twig:HomeContainer>
 {% endblock %}

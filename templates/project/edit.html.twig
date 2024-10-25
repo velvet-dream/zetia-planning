@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block main %}
-	<h1 class="zetia-title">Éditer un projet</h1>
+	{# potentiellement à mettre plutôt dans un drawer #}
+	<twig:HomeContainer title="Éditer un projet">
+		<twig:block name="extra">
+			{{ include('project/delete.html.twig') }}
+			<a href="{{ path('pct_index') }}" aria-label="Retour à la liste des projets">Retour</a>
+		</twig:block>
 
-	{{ include('app/form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
-
-	<a href="{{ path('pct_index') }}" aria-label="Retour à la liste des projets">Retour</a>
-
-	{{ include('project/delete.html.twig') }}
+		{{ include('app/form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+	</twig:HomeContainer>
 {% endblock %}
