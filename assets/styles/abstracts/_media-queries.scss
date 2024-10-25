@@ -10,7 +10,7 @@
 
 // large mobiles / tablets / smaller desktops
 @mixin media-screen-sm {
-    @media screen and (min-width: 640px) {
+    @media screen and (min-width: 640px) and (max-width: 1200px) {
         @content;
     }
 }

@@ -4,6 +4,7 @@
 .zetia-form-container {
     max-width: 50ch;
     padding: 0 1em;
+
     form {
         // validation button
         .zetia-button {
@@ -85,4 +86,9 @@
             box-shadow: 0 0 4px 0 colors.$heavyvelvet;
         }
     }
+}
+
+// Take all the width if inside of a drawer
+.zetia-drawer-body > .zetia-form-container {
+    max-width: 100%;
 }
