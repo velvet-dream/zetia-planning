@@ -20,6 +20,7 @@ interface IconImage
     const TEAM = 'team';
     const USER = 'user';
     const FOLDER = 'folder';
+    const ADD = 'plus';
 }
 
 interface IconVariant
@@ -83,6 +84,9 @@ class Icon
                     break;
                 case IconImage::FOLDER:
                     $this->alt = "Projet ouvert";
+                    break;
+                case IconImage::ADD:
+                    $this->alt = "Ajouter";
                     break;
             }
         }
