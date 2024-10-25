@@ -1,0 +1,22 @@
+{# A simple container with two blocks : the main content and extra for icons etc.
+	example:
+	<twig:HomeContainer title="Mes projets">
+		<table> more HTML... </table>
+		<twig:block name="extra">
+			<twig:Icon icon="plus" />
+		</twig:block>
+	</twig:HomeContainer>
+#}
+
+<div class="zetia-home-container">
+	<div class="zetia-home-header">
+		{% if title is defined %}
+			<h2 class="zetia-title">{{ title }}</h2>
+		{% endif %}
+
+		<aside class="zetia-home-extra"> {% block extra %}{% endblock %}
+			</aside>
+		</div>
+		<section class="zetia-home-body"> {% block content %}{% endblock %}
+			</section>
+		</div>
