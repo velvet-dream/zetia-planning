@@ -1,0 +1,26 @@
+@use "../abstracts/media-queries" as mq;
+@use "../abstracts/globals" as colors;
+
+.zetia-table {
+    @include mq.media-screen-xs {
+        tbody > tr {
+            position: relative;
+            background-color: colors.$palergray;
+            border-radius: 1em;
+            padding: 1em;
+            margin-bottom: 1em;
+            box-shadow: 0 1em 1em -0.5em colors.$palegray;
+
+            td.zetia-table-controls {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+            td.zetia-table-title {
+                font-size: large;
+                font-weight: bold;
+            }
+        }
+    }
+}
