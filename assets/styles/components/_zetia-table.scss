@@ -2,8 +2,76 @@
 @use "../abstracts/globals" as colors;
 
 .zetia-table {
-    .zetia-table-controls .zetia-separator {
-        display: none;
+    $table-border: 1px solid colors.$gray;
+
+    background-color: colors.$white;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+
+    @include mq.media-screen-sm-lg {
+        /* Table vertical inner borders */
+        th:not(:last-child),
+        td:not(:last-child) {
+            border-right: $table-border;
+        }
+
+        /* Horizontal inner borders */
+        tr:not(:last-child) {
+            > td,
+            > th {
+                border-bottom: $table-border;
+            }
+        }
+
+        thead th {
+            border-bottom: $table-border;
+        }
+
+        td,
+        th {
+            padding: 1em;
+        }
+
+        .zetia-table-controls {
+            white-space: nowrap;
+            text-align: center;
+        }
+    }
+
+    thead > tr {
+        background-color: colors.$ghostlypurple;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+
+        th {
+            font-weight: normal;
+            text-align: start;
+        }
+    }
+
+    tbody {
+        .zetia-table-controls .zetia-separator {
+            display: none;
+        }
+        > tr .zetia-table-controls {
+            // Control icons
+            .zetia-button {
+                border: none;
+                background-color: transparent;
+            }
+
+            .zetia-button:hover {
+                img {
+                    filter: drop-shadow(0 0 3px colors.$lightpurple);
+                }
+            }
+        }
+
+        td.zetia-table-title {
+            font-weight: bold;
+        }
     }
 
     @include mq.media-screen-xs {
@@ -18,7 +86,6 @@
 
             td.zetia-table-title {
                 font-size: large;
-                font-weight: bold;
                 margin-bottom: 1ex;
             }
 
@@ -45,9 +112,9 @@
                     border-right: none;
                 }
 
-                .zetia-button {
-                    border: none;
-                    background-color: transparent;
+                .zetia-button img {
+                    width: 20px;
+                    height: 20px;
                 }
 
                 .zetia-button:hover {
