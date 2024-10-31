@@ -10,36 +10,6 @@
     border-radius: 1em;
     overflow: hidden;
 
-    @include mq.media-screen-sm-lg {
-        /* Table vertical inner borders */
-        th:not(:last-child),
-        td:not(:last-child) {
-            border-right: $table-border;
-        }
-
-        /* Horizontal inner borders */
-        tr:not(:last-child) {
-            > td,
-            > th {
-                border-bottom: $table-border;
-            }
-        }
-
-        thead th {
-            border-bottom: $table-border;
-        }
-
-        td,
-        th {
-            padding: 1em;
-        }
-
-        .zetia-table-controls {
-            white-space: nowrap;
-            text-align: center;
-        }
-    }
-
     thead > tr {
         background-color: colors.$ghostlypurple;
         border-top-left-radius: 1em;
@@ -125,6 +95,36 @@
                     }
                 }
             }
+        }
+    }
+
+    @include mq.media-screen-sm-lg {
+        /* Table vertical inner borders */
+        th:not(:last-child),
+        td:not(:last-child) {
+            border-right: $table-border;
+        }
+
+        /* Horizontal inner borders */
+        tr:not(:last-child) {
+            > td,
+            > th {
+                border-bottom: $table-border;
+            }
+        }
+
+        thead th {
+            border-bottom: $table-border;
+        }
+
+        td,
+        th {
+            padding: 1em;
+        }
+
+        .zetia-table-controls {
+            white-space: nowrap;
+            text-align: center;
         }
     }
 }
