@@ -21,3 +21,14 @@
         @content;
     }
 }
+
+// both desktops and large mobiles / tablets
+@mixin media-screen-sm-lg {
+    @include media-screen-sm {
+        @content;
+    }
+
+    @include media-screen-lg {
+        @content;
+    }
+}

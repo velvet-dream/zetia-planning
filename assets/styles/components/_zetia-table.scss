@@ -1,0 +1,130 @@
+@use "../abstracts/media-queries" as mq;
+@use "../abstracts/globals" as colors;
+
+.zetia-table {
+    $table-border: 1px solid colors.$gray;
+
+    background-color: colors.$white;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+
+    thead > tr {
+        background-color: colors.$ghostlypurple;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+
+        th {
+            font-weight: normal;
+            text-align: start;
+        }
+    }
+
+    tbody {
+        .zetia-table-controls .zetia-separator {
+            display: none;
+        }
+        > tr .zetia-table-controls {
+            // Control icons
+            .zetia-button {
+                border: none;
+                background-color: transparent;
+            }
+
+            .zetia-button:hover {
+                img {
+                    filter: drop-shadow(0 0 3px colors.$lightpurple);
+                }
+            }
+        }
+
+        td.zetia-table-title {
+            font-weight: bold;
+        }
+    }
+
+    @include mq.media-screen-xs {
+        tbody > tr {
+            line-height: 1.4em;
+            position: relative;
+            background-color: colors.$palergray;
+            border-radius: 1em;
+            padding: 1em;
+            margin-bottom: 1em;
+            box-shadow: 0 1em 1em -0.5em colors.$palegray;
+
+            td.zetia-table-title {
+                font-size: large;
+                margin-bottom: 1ex;
+            }
+
+            // Selects all table divisions with data-zetia-header attribute defined and no zetia class
+            td[data-zetia-header]:not([class^="zetia"])::before {
+                content: attr(data-zetia-header) " : ";
+            }
+
+            td.zetia-table-controls {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                min-width: 5em;
+                justify-content: space-between;
+                background-color: colors.$lightpurple;
+                padding: 0 1em;
+                border-top-left-radius: inherit;
+                border-bottom-right-radius: inherit;
+
+                .zetia-separator {
+                    display: initial;
+                    border-color: colors.$darkgray;
+                    border-right: none;
+                }
+
+                .zetia-button img {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .zetia-button:hover {
+                    filter: invert(100%);
+
+                    img {
+                        filter: drop-shadow(0 0 3px white);
+                    }
+                }
+            }
+        }
+    }
+
+    @include mq.media-screen-sm-lg {
+        /* Table vertical inner borders */
+        th:not(:last-child),
+        td:not(:last-child) {
+            border-right: $table-border;
+        }
+
+        /* Horizontal inner borders */
+        tr:not(:last-child) {
+            > td,
+            > th {
+                border-bottom: $table-border;
+            }
+        }
+
+        thead th {
+            border-bottom: $table-border;
+        }
+
+        td,
+        th {
+            padding: 1em;
+        }
+
+        .zetia-table-controls {
+            white-space: nowrap;
+            text-align: center;
+        }
+    }
+}

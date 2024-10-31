@@ -13,7 +13,7 @@
 			</twig:Drawer>
 		</twig:block>
 
-		<table>
+		<twig:Table>
 			<thead>
 				<tr>
 					<th>Titre</th>
@@ -21,20 +21,25 @@
 					<th>Date de début</th>
 					<th>Date de fin prévue</th>
 					<th>Date de fin effective</th>
+					<th>Assignations</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for project in projects %}
 					<tr>
-						<td>{{ project.pctTitle }}</td>
-						<td>{{ project.pctDescription }}</td>
-						<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
-						<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
-						<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
-						<td>
-							<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
-							<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
+						<td class="zetia-table-title">{{ project.pctTitle }}</td>
+						<td data-zetia-header="Description">{{ project.pctDescription }}</td>
+						<td data-zetia-header="Date de début">{{ project.pctDateDebut ? project.pctDateDebut|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin prévue">{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin effective">{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('d-m-Y') : '---' }}</td>
+						<td class="zetia-table-assignments">
+							<twig:Icon icon="user" variant="round"/>
+						</td>
+						<td class="zetia-table-controls no-whitespace">
+							<twig:Icon icon="eye" href="{{ path('showProject', {'pctId': project.pctId}) }}" alt="Voir {{ project.pctTitle }}" size="32" variant="round"/>
+							<div class="zetia-separator" role="separator"></div>
+							<twig:Icon icon="edit" href="{{ path('editProject', {'pctId': project.pctId}) }}" alt="Éditer {{ project.pctTitle }}" size="32" variant="round"/>
 						</td>
 					</tr>
 				{% else %}
@@ -43,6 +48,7 @@
 					</tr>
 				{% endfor %}
 			</tbody>
-		</table>
+		</twig:Table>
+
 	</twig:HomeContainer>
 {% endblock %}
