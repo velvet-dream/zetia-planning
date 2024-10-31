@@ -29,10 +29,10 @@
 				{% for project in projects %}
 					<tr>
 						<td class="zetia-table-title">{{ project.pctTitle }}</td>
-						<td>{{ project.pctDescription }}</td>
-						<td>{{ project.pctDateDebut ? project.pctDateDebut|date('d-m-Y') : '---' }}</td>
-						<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('d-m-Y') : '---' }}</td>
-						<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Description">{{ project.pctDescription }}</td>
+						<td data-zetia-header="Date de début">{{ project.pctDateDebut ? project.pctDateDebut|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin prévue">{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin effective">{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('d-m-Y') : '---' }}</td>
 						<td class="zetia-table-assignments">
 							<twig:Icon icon="user" variant="round"/>
 						</td>
