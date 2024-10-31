@@ -1,0 +1,10 @@
+// Vertical seperator (don't forget the "separator" role attribute)
+
+@use "../utilities/index" as utils;
+@use "../abstracts/globals" as colors;
+
+.zetia-separator {
+    @include utils.bordered;
+    border-color: colors.$graymole;
+    border-width: 1px;
+}
