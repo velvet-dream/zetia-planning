@@ -6,6 +6,7 @@ use App\Entity\Project;
 use App\Entity\Task;
 use App\Repository\ProjectRepository;
 use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -39,6 +40,22 @@ class UserController extends AbstractController
         return $this->render('user/dashboard.html.twig', [
             'tasks' => $tasks,
             'projects' => $projects,
+        ]);
+    }
+
+    #[Route('/profile', name: 'app_profile')]
+    public function profile(Security $security): Response
+    {
+        $user = $security->getUser();
+
+        // Check if the user is authenticated before rendering the dashboard
+        if (!$user) {
+            // Redirect to login if user is not authenticated
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
         ]);
     }
 }

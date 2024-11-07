@@ -10,7 +10,7 @@
 		{% endblock %}
 		<menu class="icons-container">
 			{% if app.user %}
-				<twig:Icon icon="user" href="{{ path('app_index') }}" alt="Consulter votre profil" variant="round" color="purple"/>
+				<twig:Icon icon="user" href="{{ path('app_profile') }}" alt="Consulter votre profil" variant="round" color="purple"/>
 				<twig:Icon icon="settings" href="{{ path('app_index') }}" variant="round" color="gray"/>
 				<a href="{{ path('app_dashboard') }}" role="menuitem">Tableau de bord</a>
 				<a href="{{ path('app_logout') }}" role="menuitem">Se déconnecter</a>

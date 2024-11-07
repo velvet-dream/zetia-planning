@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+	<twig:HomeContainer title="Votre profil">
+		<twig:block name="extra"></twig:block>
+		<img src="/" alt="Votre image de profil">
+		<ul>
+			<li>Nom</li>
+			<li>Prénom</li>
+			<li>Adresse mail</li>
+			<li>Adresse postale</li>
+		</ul>
+
+	</twig:HomeContainer>
+{% endblock %}
