@@ -1,5 +1,6 @@
 {# Default form #}
 <div class="zetia-form-container">
+	{{ form_errors(form) }}
 	{{ form_start(form) }}
 	{{ form_widget(form, {'attr': {'class': 'zetia-form-inputs-container'}}) }}
 	<twig:Button variant="purple" text="{{ button_label|default('Enregistrer') }}"/>

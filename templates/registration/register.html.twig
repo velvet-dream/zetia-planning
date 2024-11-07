@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block main %}
-	<twig:HomeContainer title="Créer un compte">
-		<twig:block name="extra"></twig:block>
-		{# utiliser plutôt {{ include('app/form.html.twig', {'button_label': 'S'inscrire'}) }} #}
-		{{ form_errors(registrationForm) }}
+<twig:HomeContainer title="Créer un compte">
+	<twig:block name="extra"></twig:block>
+	{{ include('app/form.html.twig', {'button_label': 'S\'inscrire', 'form': registrationForm}) }}
+		{# {{ form_errors(registrationForm) }}
 
 		{{ form_start(registrationForm) }}
 		{{ form_row(registrationForm.usr_name) }}
@@ -19,6 +19,6 @@
 		{{ form_row(registrationForm.usr_role) }}
 
 		<button type="submit" class="btn">Register</button>
-		{{ form_end(registrationForm) }}
+		{{ form_end(registrationForm) }} #}
 	</twig:HomeContainer>
 {% endblock %}
