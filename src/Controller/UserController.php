@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\Task;
+use App\Form\RegistrationFormType;
+use App\Form\UserType;
 use App\Repository\ProjectRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
@@ -54,8 +56,16 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
+        // We will have 2 different forms. One for the name/first name/ profile pic and one for the password / email
+
+        $basicUserInfosForm = $this->createForm(UserType::class, $user, ['only_fields' => ['usrName', 'usrFirstName', 'usrAvatar']]);
+
+        $sensitiveUserInfosForm = $this->createForm(RegistrationFormType::class, $user, ['only_fields' => ['usrPassword', 'usrMail']]);
+
         return $this->render('user/profile.html.twig', [
             'user' => $user,
+            'basicUserInfosForm' => $basicUserInfosForm,
+            'sensitiveUserInfosForm' => $sensitiveUserInfosForm
         ]);
     }
 }

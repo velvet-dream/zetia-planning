@@ -9,14 +9,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class RegistrationFormType extends ZetiaType
 {
+
+    protected ?array $fields = ['usrName', 'usrFirstName', 'usrMail', 'usrPassword', 'usrRole'];
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -44,10 +48,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('usrPassword', PasswordType::class, [
-                'label' => 'Mot de passe',
+            ->add('usrPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'options' => ['attr' => ['autocomplete' => 'new-password']],
+                'required' => true,
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+                'invalid_message' => 'Les deux mots de passe ne sont pas identiques',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez saisir un mot de passe',
@@ -59,6 +67,21 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            // ->add('usrPassword', PasswordType::class, [
+            //     'label' => 'Mot de passe',
+            //     'mapped' => false,
+            //     'attr' => ['autocomplete' => 'new-password'],
+            //     'constraints' => [
+            //         new NotBlank([
+            //             'message' => 'Veuillez saisir un mot de passe',
+            //         ]),
+            //         new Length([
+            //             'min' => 6,
+            //             'minMessage' => 'Votre mot de passe devrait être d\'au moins {{ limit }} caractères',
+            //             'max' => 255,
+            //         ]),
+            //     ],
+            // ])
             ->add('usrRole', ChoiceType::class, [
                 'label' => 'Rôle',
                 'choices' => [
@@ -66,6 +89,7 @@ class RegistrationFormType extends AbstractType
                     'Employé' => 'ROLE_USER',
                 ],
             ]);
+        parent::buildForm($builder, $options);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -73,5 +97,7 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+
+        parent::configureOptions($resolver);
     }
 }
