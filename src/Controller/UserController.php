@@ -69,25 +69,39 @@ class UserController extends AbstractController
         $basicUserInfosForm->handleRequest($request);
 
         if ($basicUserInfosForm->isSubmitted() && $basicUserInfosForm->isValid()) {
-            $imageFile = $basicUserInfosForm->get('usrAvatar')->getData(); // Récupérer le fichier image soumis
-            // Vérifier si une image a été soumise
+            $imageFile = $basicUserInfosForm->get('usrAvatar')->getData();
+
+            // Check if an image file was submited. If so, it'll be the user's new profile pic
             if ($imageFile) {
                 $extension = $imageFile->guessExtension();
+
+                // Protection against non-image files
                 if (!in_array($extension, ['png', 'jpg', 'jpeg'])) {
                     $this->addFlash('error', 'Seuls les formats png, jpg et jpeg sont acceptés.');
                     return $this->redirectToRoute('app_profile');
                 }
-                // Générer un nom de fichier unique
-                $uid = uniqid(strtolower(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)));
-                $newFilename = $uid . '.' . $imageFile->guessExtension();
 
-                // Déplacer le fichier vers le répertoire où le stocker
+                // Create a unique file name
+                $userNameAndFirstName = $user->getUsrName() . '-' . $user->getUsrFirstName();
+                $fileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $normalizedFileName = strtolower($userNameAndFirstName . '-' . $fileName);
+                $uniqueFileName = uniqid($normalizedFileName);
+                $newFilename = $uniqueFileName . '.' . $imageFile->guessExtension();
+
+                // Move this temporary file to assets (as a way to 'save it')
                 $destination = $this->getParameter('kernel.project_dir') . '/assets/images/profiles/';
                 $imageFile->move(
                     $destination,
                     $newFilename
                 );
 
+                // Remove previous avatar image file
+                if (!is_null($previousAvatar = $user->getUsrAvatar())) {
+                    $previousImgPath = realpath(($this->getParameter('kernel.project_dir') . '/assets/images/profiles/' .  $previousAvatar));
+                    if (is_writable($previousImgPath)) unlink($previousImgPath);
+                }
+
+                // Set new avatar
                 $user->setUsrAvatar($newFilename);
             }
             $em->persist($user);
