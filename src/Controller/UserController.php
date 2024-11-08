@@ -95,6 +95,9 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Votre profil a été mis à jour !');
         }
+        // else if ($sensitiveUserInfosForm->isSubmitted() && $sensitiveUserInfosForm->isValid()) {
+        //     $this->addFlash('info', 'Prout !!!');
+        // }
         return $this->render('user/profile.html.twig', [
             'user' => $securityUser,
             'basicUserInfosForm' => $basicUserInfosForm,
