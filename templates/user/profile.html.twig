@@ -3,7 +3,8 @@
 {% block main %}
 	<twig:HomeContainer title="Votre profil">
 		<twig:block name="extra"></twig:block>
-		<img src="/" alt="Votre image de profil : {{user.usrAvatar}}">
+		{% set profilePath = 'images/profiles/' ~ user.usrAvatar %}
+		<img src="{{ asset(profilePath) }}" alt="Votre image de profil" class="round" width="512">
 		<ul>
 			<li>Nom:
 				{{user.usrName}}</li>

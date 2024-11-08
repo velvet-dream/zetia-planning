@@ -78,7 +78,8 @@ class UserController extends AbstractController
                     return $this->redirectToRoute('app_profile');
                 }
                 // Générer un nom de fichier unique
-                $newFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $imageFile->guessExtension();
+                $uid = uniqid(strtolower(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)));
+                $newFilename = $uid . '.' . $imageFile->guessExtension();
 
                 // Déplacer le fichier vers le répertoire où le stocker
                 $destination = $this->getParameter('kernel.project_dir') . '/assets/images/profiles/';
@@ -92,7 +93,7 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Wow !!!');
+            $this->addFlash('success', 'Votre profil a été mis à jour !');
         }
         return $this->render('user/profile.html.twig', [
             'user' => $securityUser,
