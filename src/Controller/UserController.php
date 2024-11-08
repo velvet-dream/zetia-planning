@@ -81,7 +81,7 @@ class UserController extends AbstractController
                     return $this->redirectToRoute('app_profile');
                 }
 
-                // Create a unique file name
+                // Create an unique file name
                 $userNameAndFirstName = $user->getUsrName() . '-' . $user->getUsrFirstName();
                 $fileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $normalizedFileName = strtolower($userNameAndFirstName . '-' . $fileName);
