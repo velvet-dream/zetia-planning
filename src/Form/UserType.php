@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,8 +21,10 @@ class UserType extends ZetiaType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('usrAvatar', null, [
-                'label' => 'Image de profil'
+            ->add('usrAvatar', FileType::class, [
+                'label' => 'Image de profil',
+                'mapped' => false, // Indique que ce champ n'est pas lié directement à une propriété de l'entité Product
+                'required' => false,
             ])
             ->add('usrName', TextType::class, [
                 'label' => 'Nom',
