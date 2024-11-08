@@ -20,7 +20,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('usr_name', TextType::class, [
+            ->add('usrName', TextType::class, [
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('usr_first_name', TextType::class, [
+            ->add('usrFirstName', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('usr_mail', EmailType::class, [
+            ->add('usrMail', EmailType::class, [
                 'label' => 'Adresse Email',
                 'constraints' => [
                     new NotBlank([
@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('usr_password', PasswordType::class, [
+            ->add('usrPassword', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
@@ -59,7 +59,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('usr_role', ChoiceType::class, [
+            ->add('usrRole', ChoiceType::class, [
                 'label' => 'Rôle',
                 'choices' => [
                     'Responsable' => 'ROLE_ADMIN',

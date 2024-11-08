@@ -3,12 +3,14 @@
 {% block main %}
 	<twig:HomeContainer title="Votre profil">
 		<twig:block name="extra"></twig:block>
-		<img src="/" alt="Votre image de profil">
+		<img src="/" alt="Votre image de profil : {{user.usrAvatar}}">
 		<ul>
-			<li>Nom</li>
-			<li>Prénom</li>
-			<li>Adresse mail</li>
-			<li>Adresse postale</li>
+			<li>Nom:
+				{{user.usrName}}</li>
+			<li>Prénom:
+				{{user.usrFirstName}}</li>
+			<li>Adresse mail:
+				{{user.usrName}}</li>
 		</ul>
 		<twig:Button variant="danger" text="Changer votre mot de passe"/>
 	</twig:HomeContainer>
