@@ -41,6 +41,25 @@ HTML :
 TWIG :
 - https://twig.symfony.com/doc/3.x/
 
+### Les commandes utiles
+
+#### Installer les dépendances et packages
+
+```bash
+composer install
+```
+#### Lancer l'application
+
+```bash
+symfony server:start
+```
+
+#### Arrêter le serveur
+
+```bash
+symfony server:stop
+```
+
 ### Un point sur la transpilation
 
 TS et SCSS sont des langages transpilés : ils sont destinés à être "traduits" respectivement en JavaScript et en CSS. Pour ce faire, il faut que la transpilation soit en cours (en mode "watch").
