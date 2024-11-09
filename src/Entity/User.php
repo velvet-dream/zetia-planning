@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Task>
      */
-    #[ORM\JoinTable(name: 'usertask')]
+    #[ORM\JoinTable(name: 'usertask_uts')]
     #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
     #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]
@@ -57,10 +57,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'projectAdmin', orphanRemoval: true)]
     private Collection $managedProjects;
 
+    /**
+     * @var Collection<int, Organization>
+     */
+    #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'orgMembers')]
+    private Collection $usrOrganizations;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
         $this->managedProjects = new ArrayCollection();
+        $this->usrOrganizations = new ArrayCollection();
     }
 
     public function getUsrId(): ?int
@@ -247,5 +254,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Organization>
+     */
+    public function getUsrOrganizations(): Collection
+    {
+        return $this->usrOrganizations;
+    }
+
+    public function addUsrOrganization(Organization $usrOrganization): static
+    {
+        if (!$this->usrOrganizations->contains($usrOrganization)) {
+            $this->usrOrganizations->add($usrOrganization);
+            $usrOrganization->addOrgMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsrOrganization(Organization $usrOrganization): static
+    {
+        if ($this->usrOrganizations->removeElement($usrOrganization)) {
+            $usrOrganization->removeOrgMember($this);
+        }
+
+        return $this;
     }
 }
