@@ -175,6 +175,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getAssignedProjects(): Collection
+    {
+        $tasks = $this->getTasks();
+        $projects = new ArrayCollection();
+        foreach ($tasks as $task) {
+            $project = $task->getProject();
+            $projects->add($project);
+        }
+        return $projects;
+    }
+
     /**
      * @return Collection<int, Project>
      */
