@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ResponsableController!{% endblock %}
+
+{% block main %}
+
+<twig:HomeContainer title="Votre équipe"> 
+<twig:Table>
+			<thead>
+				<tr>
+					<th>Identité</th>
+					<th>Avatar</th>
+					<th>Email</th>
+					<th>Job</th>
+					<th>Projets</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for employee in employees %}
+					<tr>
+						<td class="zetia-table-title">{{employee.usrName}} {{employee.usrFirstName}}</td>
+						<td data-zetia-header="Avatar"><twig:Icon icon="user" variant="round"/></td>
+						<td data-zetia-header="Email">{{ employee.usrMail}}</td>
+						<td data-zetia-header="Job">{{ employee.job.jobTitle ?? 'Inconnu' }}</td>
+						<td data-zetia-header="Projets">{{employee.getAssignedProjects()}}</td>
+
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</twig:Table>
+
+</twig:HomeContainer>
+{% endblock %}
