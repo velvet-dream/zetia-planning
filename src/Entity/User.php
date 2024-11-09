@@ -12,31 +12,31 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'user_usr')]
-#[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this email adress')]
+#[UniqueEntity(fields: ['usrMail'], message: 'There is already an account with this email adress')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $usr_id;
+    private int $usrId;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usr_name;
+    private string $usrName;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usr_first_name;
+    private string $usrFirstName;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usr_mail;
+    private string $usrMail;
 
     #[ORM\Column(type: 'string', length: 127)]
-    private string $usr_password;
+    private string $usrPassword;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $usr_role;
+    private string $usrRole;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $usr_avatar = null;
+    private ?string $usrAvatar = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true, referencedColumnName: 'job_id', name: 'job_id')]
@@ -65,78 +65,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsrId(): ?int
     {
-        return $this->usr_id;
+        return $this->usrId;
     }
 
-    public function setUsrId(int $usr_id): self
+    public function setUsrId(int $usrId): self
     {
-        $this->usr_id = $usr_id;
+        $this->usrId = $usrId;
         return $this;
     }
 
     public function getUsrName(): ?string
     {
-        return $this->usr_name;
+        return $this->usrName;
     }
 
-    public function setUsrName(string $usr_name): self
+    public function setUsrName(string $usrName): self
     {
-        $this->usr_name = $usr_name;
+        $this->usrName = $usrName;
         return $this;
     }
 
     public function getUsrFirstName(): ?string
     {
-        return $this->usr_first_name;
+        return $this->usrFirstName;
     }
 
-    public function setUsrFirstName(string $usr_first_name): self
+    public function setUsrFirstName(string $usrFirstName): self
     {
-        $this->usr_first_name = $usr_first_name;
+        $this->usrFirstName = $usrFirstName;
         return $this;
     }
 
     public function getUsrMail(): ?string
     {
-        return $this->usr_mail;
+        return $this->usrMail;
     }
 
-    public function setUsrMail(string $usr_mail): self
+    public function setUsrMail(string $usrMail): self
     {
-        $this->usr_mail = $usr_mail;
+        $this->usrMail = $usrMail;
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->usr_password;
+        return $this->usrPassword;
     }
 
-    public function setPassword(string $usr_password): self
+    public function setPassword(string $usrPassword): self
     {
-        $this->usr_password = $usr_password;
+        $this->usrPassword = $usrPassword;
         return $this;
     }
 
     public function getUsrRole(): ?string
     {
-        return $this->usr_role;
+        return $this->usrRole;
     }
 
-    public function setUsrRole(string $usr_role): self
+    public function setUsrRole(string $usrRole): self
     {
-        $this->usr_role = $usr_role;
+        $this->usrRole = $usrRole;
         return $this;
     }
 
     public function getUsrAvatar(): ?string
     {
-        return $this->usr_avatar;
+        return $this->usrAvatar;
     }
 
-    public function setUsrAvatar(?string $usr_avatar): static
+    public function setUsrAvatar(?string $usrAvatar): static
     {
-        $this->usr_avatar = $usr_avatar;
+        $this->usrAvatar = $usrAvatar;
         return $this;
     }
 
@@ -207,7 +207,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getPasswordHash(): string
     {
-        return $this->usr_password;
+        return $this->usrPassword;
     }
 
     public function getSalt(): ?string
@@ -218,18 +218,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsername(): string
     {
-        return $this->usr_mail;
+        return $this->usrMail;
     }
 
     public function getRoles(): array
     {
         // Assuming roles are stored as a simple string
-        return [$this->usr_role];
+        return [$this->usrRole];
     }
 
     public function getUserIdentifier(): string
     {
-        return $this->usr_mail;
+        return $this->usrMail;
     }
 
     public function eraseCredentials(): void

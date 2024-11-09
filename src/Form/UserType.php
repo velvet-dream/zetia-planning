@@ -3,38 +3,47 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
-
-class UserType extends AbstractType
+class UserType extends ZetiaType
 {
+    protected ?array $fields = ['usrAvatar', 'usrName', 'usrFirstName'];
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('usr_name', TextType::class, [
+            ->add('usrAvatar', FileType::class, [
+                'label' => 'Image de profil',
+                'mapped' => false, // Indique que ce champ n'est pas lié directement à une propriété de l'entité Product
+                'required' => false,
+            ])
+            ->add('usrName', TextType::class, [
                 'label' => 'Nom',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre nom',
+                    ]),
+                ],
             ])
-            ->add('usr_first_name', TextType::class, [
+            ->add('usrFirstName', TextType::class, [
                 'label' => 'Prénom',
-            ])
-            ->add('usr_mail', EmailType::class, [
-                'label' => 'Email',
-            ])
-            ->add('usr_password', PasswordType::class, [
-                'label' => 'Mot de passe',
-            ])
-            ->add('usr_role', ChoiceType::class, [
-                'choices' => [
-                    'Responsable' => 'ROLE_ADMIN',
-                    'Salarié' => 'ROLE_USER',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre prénom',
+                    ]),
                 ],
             ]);
+
+        parent::buildForm($builder, $options);
     }
 
 
@@ -43,5 +52,7 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+
+        parent::configureOptions($resolver);
     }
 }

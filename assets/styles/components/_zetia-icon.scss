@@ -1,3 +1,5 @@
+@use "../utilities/index" as utils;
+
 .zetia-icon {
     // width: 40px;
     // height: 40px;
@@ -9,7 +11,7 @@
 }
 
 .zetia-icon.zetia-icon-round {
-    border-radius: 100%;
+    @include utils.round;
 }
 
 .zetia-icon.zetia-button-danger,

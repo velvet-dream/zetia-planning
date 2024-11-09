@@ -46,7 +46,7 @@ class TaskRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->innerJoin('t.users', 'u')
-            ->andWhere('u.usr_id = :user')
+            ->andWhere('u.usrId = :user')
             ->setParameter('user', $user->getUsrId())
             ->getQuery()
             ->getResult();
