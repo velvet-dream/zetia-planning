@@ -60,6 +60,12 @@ symfony server:start
 symfony server:stop
 ```
 
+#### Migrer vers la dernière version de la BDD
+
+```bash
+php bin/console d:m:m
+```
+
 ### Un point sur la transpilation
 
 TS et SCSS sont des langages transpilés : ils sont destinés à être "traduits" respectivement en JavaScript et en CSS. Pour ce faire, il faut que la transpilation soit en cours (en mode "watch").
