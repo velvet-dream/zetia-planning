@@ -20,6 +20,7 @@ INSERT INTO `statusproject_stp` (`stp_id`, `stp_title`) VALUES (NULL, 'en attent
 INSERT INTO `statustask_stk` (`stk_id`, `stk_title`) VALUES (NULL, 'à faire'), (NULL, 'en cours'), (NULL, 'en pause'), (NULL, 'fait');
 INSERT INTO `userjob_job` (`job_id`, `job_title`) VALUES (NULL, 'Développeuse fullstack');
 ``` 
+- Démarrer le serveur avec `symfony server:start`
 
 ### Liens utiles sur de la documentation
 
