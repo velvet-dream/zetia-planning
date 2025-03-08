@@ -14,14 +14,15 @@ https://www.figma.com/design/cpyrF6WN7GIhCyP0iiZ3ez/Untitled
 Pour lancer Sass et TypeScript en mode build, lancer simplement la commande
 `symfony server:start`
 
-Merci de se référer à [la documentation](./devdocs/index.md) du projet pour contribuer à son développement et avoir des indications sur les stacks techniques employées. 
+Merci de se référer à [la documentation](./devdocs/index.md) du projet pour contribuer à son développement et avoir des indications sur les stacks techniques employées. Les étapes d'installation y sont décrites.
 
 ### Requêtes SQL utiles
 
-Lancez ces requêtes dans phpMYAdmin pour compléter quelques valeurs nécessaires à la cré"ation de nouvelles tâches / projets / etc.
+Lancez ces requêtes dans phpMYAdmin pour compléter quelques valeurs nécessaires à la création de nouvelles tâches / projets / etc.
 
 ```SQL
 INSERT INTO `statusproject_stp` (`stp_id`, `stp_title`) VALUES (NULL, 'en attente'), (NULL, 'en cours'), (NULL, 'livré');
 INSERT INTO `statustask_stk` (`stk_id`, `stk_title`) VALUES (NULL, 'à faire'), (NULL, 'en cours'), (NULL, 'en pause'), (NULL, 'fait');
 INSERT INTO `userjob_job` (`job_id`, `job_title`) VALUES (NULL, 'Développeuse fullstack');
 ```
+

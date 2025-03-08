@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+	<twig:HomeContainer title="Votre profil">
+		<twig:block name="extra"></twig:block>
+		{% set profilePath = 'images/profiles/' ~ user.usrAvatar %}
+		<img src="{{ asset(profilePath) }}" alt="Votre image de profil" class="round" width="512">
+		<ul>
+			<li>Nom:
+				{{user.usrName}}</li>
+			<li>Prénom:
+				{{user.usrFirstName}}</li>
+			<li>Adresse mail:
+				{{user.usrMail}}</li>
+		</ul>
+
+		<twig:Button text="Modifier" variant="purple" class="zetia-drawer-open" data-target="modify-usr-infos"/>
+		<twig:Drawer title="Modifier vos informations personnelles" id="modify-usr-infos">
+			{{ include('app/form.html.twig', {'button_label': 'Enregistrer les modifications', 'form': basicUserInfosForm}) }}
+		</twig:Drawer>
+
+		<twig:Button text="Changer votre email et mot de passe" variant="danger" class="zetia-drawer-open" data-target="modify-usr-auth"/>
+		<twig:Drawer title="Modifier vos identifiants de connection" id="modify-usr-auth">
+			{{ include('app/form.html.twig', {'button_label': 'Enregistrer les modifications', 'button_variant': 'danger', 'form': sensitiveUserInfosForm}) }}
+		</twig:Drawer>
+
+		{# sensitiveUserInfosForm #}
+	</twig:HomeContainer>
+{% endblock %}

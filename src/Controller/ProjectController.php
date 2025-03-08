@@ -14,35 +14,56 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/', name: 'viewProjects', methods: ['GET'])]
-    public function index(ProjectRepository $projectRepository): Response
-    {
-        return $this->render('project/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/add', name: 'addProject', methods: ['GET', 'POST'])]
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/', name: 'pct_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, ProjectRepository $projectRepository, EntityManagerInterface $entityManager): Response
     {
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
-        $form->handleRequest($request);
+        // From this route, it is possible to create a new project.
+        if ($request->getMethod() === 'POST') {
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $project->setProjectAdmin($this->getUser());
+            if ($form->isSubmitted() && $form->isValid()) {
+                $project->setProjectAdmin($this->getUser());
 
-            $entityManager->persist($project);
-            $entityManager->flush();
+                $entityManager->persist($project);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
+            }
+            // Test this
+            // else if (!$form->isValid()) {
+            //     $this->addFlash('error', $form->getErrors());
+            // }
         }
 
-        return $this->render('project/new.html.twig', [
-            'project' => $project,
-            'form' => $form,
+        return $this->render('project/index.html.twig', [
+            'projects' => $projectRepository->findAll(),
+            'form' => $form
         ]);
     }
+
+    // #[Route('/add', name: 'addProject', methods: ['GET', 'POST'])]
+    // public function add(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $project = new Project();
+    //     $form = $this->createForm(ProjectType::class, $project);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $project->setProjectAdmin($this->getUser());
+
+    //         $entityManager->persist($project);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->render('project/new.html.twig', [
+    //         'project' => $project,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/{pctId}', name: 'showProject', methods: ['GET'])]
     public function show(Project $project): Response
@@ -65,7 +86,7 @@ class ProjectController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('project/edit.html.twig', [
@@ -82,6 +103,6 @@ class ProjectController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('viewProjects', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('pct_index', [], Response::HTTP_SEE_OTHER);
     }
 }

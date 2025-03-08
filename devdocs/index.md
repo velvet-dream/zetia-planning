@@ -6,6 +6,22 @@ L'application est présentée par le cahier des charges : https://rdksolutions.s
 
 ## La Stack technique
 
+## Étapes d'installation
+
+- Installer Symfony
+- Installer composer
+- Installer PHP si nécessaire (composer install devrait le gérer)
+- Pour travailler en local, installer MAMP pour avoir un MySQL + PhpMyAdmin
+- Modifier `/.env` pour ajouter un utilisateur MySQL si besoin (voir https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url)
+- Installer les dépendance et migrer vers la dernière version de la DB (voir "Les commandes utiles" plus bas)
+- Lancer ces requêtes depuis PhpMyAdmin :
+```SQL
+INSERT INTO `statusproject_stp` (`stp_id`, `stp_title`) VALUES (NULL, 'en attente'), (NULL, 'en cours'), (NULL, 'livré');
+INSERT INTO `statustask_stk` (`stk_id`, `stk_title`) VALUES (NULL, 'à faire'), (NULL, 'en cours'), (NULL, 'en pause'), (NULL, 'fait');
+INSERT INTO `userjob_job` (`job_id`, `job_title`) VALUES (NULL, 'Développeuse fullstack');
+``` 
+- Démarrer le serveur avec `symfony server:start`
+
 ### Liens utiles sur de la documentation
 
 SQL :
@@ -40,6 +56,31 @@ HTML :
 
 TWIG :
 - https://twig.symfony.com/doc/3.x/
+
+### Les commandes utiles
+
+#### Installer les dépendances et packages
+
+```bash
+composer install
+```
+#### Lancer l'application
+
+```bash
+symfony server:start
+```
+
+#### Arrêter le serveur
+
+```bash
+symfony server:stop
+```
+
+#### Migrer vers la dernière version de la BDD
+
+```bash
+php bin/console d:m:m
+```
 
 ### Un point sur la transpilation
 

@@ -5,39 +5,50 @@
 
 {# Merge with projects.html.twig #}
 {% block main %}
-	<h1 class="zetia-title">Vos projets</h1>
+	<twig:HomeContainer title="Vos projets">
+		<twig:block name="extra">
+			<twig:Icon icon="plus" color="purple" class="zetia-drawer-open" data-target="new-project" alt="Créer un nouveau projet"/>
+			<twig:Drawer title="Créer un nouveau projet" id="new-project">
+				{{ include('app/form.html.twig', {'button_label': 'Enregistrer le projet'}) }}
+			</twig:Drawer>
+		</twig:block>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Date de début</th>
-				<th>Date de fin prévue</th>
-				<th>Date de fin effective</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for project in projects %}
+		<twig:Table>
+			<thead>
 				<tr>
-					<td>{{ project.pctTitle }}</td>
-					<td>{{ project.pctDescription }}</td>
-					<td>{{ project.pctDateDebut ? project.pctDateDebut|date('Y-m-d') : '' }}</td>
-					<td>{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('Y-m-d') : '' }}</td>
-					<td>{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('Y-m-d') : '' }}</td>
-					<td>
-						<a href="{{ path('showProject', {'pctId': project.pctId}) }}">show</a>
-						<a href="{{ path('editProject', {'pctId': project.pctId}) }}">edit</a>
-					</td>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Date de début</th>
+					<th>Date de fin prévue</th>
+					<th>Date de fin effective</th>
+					<th>Assignations</th>
+					<th>Actions</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">Aucune donnée trouvée</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for project in projects %}
+					<tr>
+						<td class="zetia-table-title">{{ project.pctTitle }}</td>
+						<td data-zetia-header="Description">{{ project.pctDescription }}</td>
+						<td data-zetia-header="Date de début">{{ project.pctDateDebut ? project.pctDateDebut|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin prévue">{{ project.pctDateFinPrevisionnelle ? project.pctDateFinPrevisionnelle|date('d-m-Y') : '---' }}</td>
+						<td data-zetia-header="Date de fin effective">{{ project.pctDateFinReelle ? project.pctDateFinReelle|date('d-m-Y') : '---' }}</td>
+						<td class="zetia-table-assignments">
+							<twig:Icon icon="user" variant="round"/>
+						</td>
+						<td class="zetia-table-controls no-whitespace">
+							<twig:Icon icon="eye" href="{{ path('showProject', {'pctId': project.pctId}) }}" alt="Voir {{ project.pctTitle }}" size="32" variant="round"/>
+							<div class="zetia-separator" role="separator"></div>
+							<twig:Icon icon="edit" href="{{ path('editProject', {'pctId': project.pctId}) }}" alt="Éditer {{ project.pctTitle }}" size="32" variant="round"/>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</twig:Table>
 
-	<a href="{{ path('addProject') }}">Créer un nouveau projet</a>
+	</twig:HomeContainer>
 {% endblock %}

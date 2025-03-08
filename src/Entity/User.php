@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'user_usr')]
-#[UniqueEntity(fields: ['usr_mail'], message: 'There is already an account with this email adress')]
+#[UniqueEntity(fields: ['usrMail'], message: 'There is already an account with this email adress')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Task>
      */
-    #[ORM\JoinTable(name: 'usertask')]
+    #[ORM\JoinTable(name: 'usertask_uts')]
     #[ORM\JoinColumn(referencedColumnName: 'usr_id', name: 'usr_id')]
     #[ORM\InverseJoinColumn(referencedColumnName: 'tsk_id', name: 'tsk_id')]
     #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'user')]
@@ -57,10 +57,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'projectAdmin', orphanRemoval: true)]
     private Collection $managedProjects;
 
+    /**
+     * @var Collection<int, Organization>
+     */
+    #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'orgMembers')]
+    private Collection $usrOrganizations;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
         $this->managedProjects = new ArrayCollection();
+        $this->usrOrganizations = new ArrayCollection();
     }
 
     public function getUsrId(): ?int
@@ -71,6 +78,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsrId(int $usr_id): self
     {
         $this->usr_id = $usr_id;
+        return $this;
+    }
+
+    public function setUsrId(int $usrId): self
+    {
+        $this->usrId = $usrId;
         return $this;
     }
 
@@ -85,6 +98,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setUsrName(string $usrName): self
+    {
+        $this->usrName = $usrName;
+        return $this;
+    }
+
     public function getUsrFirstName(): ?string
     {
         return $this->usr_first_name;
@@ -96,12 +115,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setUsrFirstName(string $usrFirstName): self
+    {
+        $this->usrFirstName = $usrFirstName;
+        return $this;
+    }
+
     public function getUsrMail(): ?string
     {
         return $this->usr_mail;
     }
 
-    public function setUsrMail(string $usr_mail): self
+    public function setUsrMail(string $usrMail): self
+    {
+        $this->usrMail = $usrMail;
+        return $this;
+    }
+
+    public function getPassword(): ?string
     {
         $this->usr_mail = $usr_mail;
         return $this;
@@ -118,6 +149,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setPassword(string $usrPassword): self
+    {
+        $this->usrPassword = $usrPassword;
+        return $this;
+    }
+
     public function getUsrRole(): ?string
     {
         return $this->usr_role;
@@ -129,6 +166,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setUsrRole(string $usrRole): self
+    {
+        $this->usrRole = $usrRole;
+        return $this;
+    }
+
     public function getUsrAvatar(): ?string
     {
         return $this->usr_avatar;
@@ -136,7 +179,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setUsrAvatar(?string $usr_avatar): static
     {
-        $this->usr_avatar = $usr_avatar;
+        $this->usrAvatar = $usrAvatar;
         return $this;
     }
 
@@ -207,7 +250,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getPasswordHash(): string
     {
-        return $this->usr_password;
+        return $this->usrPassword;
     }
 
     public function getSalt(): ?string
@@ -218,23 +261,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsername(): string
     {
-        return $this->usr_mail;
+        return $this->usrMail;
     }
 
     public function getRoles(): array
     {
         // Assuming roles are stored as a simple string
-        return [$this->usr_role];
+        return [$this->usrRole];
     }
 
     public function getUserIdentifier(): string
     {
-        return $this->usr_mail;
+        return $this->usrMail;
     }
 
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Organization>
+     */
+    public function getUsrOrganizations(): Collection
+    {
+        return $this->usrOrganizations;
+    }
+
+    public function addUsrOrganization(Organization $usrOrganization): static
+    {
+        if (!$this->usrOrganizations->contains($usrOrganization)) {
+            $this->usrOrganizations->add($usrOrganization);
+            $usrOrganization->addOrgMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsrOrganization(Organization $usrOrganization): static
+    {
+        if ($this->usrOrganizations->removeElement($usrOrganization)) {
+            $usrOrganization->removeOrgMember($this);
+        }
+
+        return $this;
     }
 }

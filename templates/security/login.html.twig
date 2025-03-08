@@ -1,13 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+	<twig:HomeContainer title="Se connecter">
+		<twig:block name="extra"></twig:block>
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password" required>
+		<div class="zetia-form-container">
+			<form action="{{ path('app_login') }}" method="post">
+				<div class="zetia-form-inputs-container">
+					<div>
+						<label for="username">Email:</label>
+						<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+					</div>
+					<div>
 
-		<button type="submit">Login</button>
-	</form>
+						<label for="password">Mot de passe:</label>
+						<input type="password" id="password" name="_password" required>
+					</div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				</div>
+
+				<twig:Button variant="purple" text="Se connecter"/>
+			</form>
+		</div>
+
+		<a href="{{ path('app_register') }}">Pas encore de compte ? Créez-en un</a>
+	</twig:HomeContainer>
 {% endblock %}
