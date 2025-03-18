@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Project;
-use App\Entity\Task;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
 use App\Repository\ProjectRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -83,7 +80,7 @@ class UserController extends AbstractController
 
                 // Create an unique file name
                 $userNameAndFirstName = $user->getUsrName() . '-' . $user->getUsrFirstName();
-                $fileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileName = htmlspecialchars(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME));
                 $normalizedFileName = strtolower($userNameAndFirstName . '-' . $fileName);
                 $uniqueFileName = uniqid($normalizedFileName);
                 $newFilename = $uniqueFileName . '.' . $imageFile->guessExtension();
