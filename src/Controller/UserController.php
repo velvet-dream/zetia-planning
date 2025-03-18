@@ -80,8 +80,8 @@ class UserController extends AbstractController
 
                 // Create an unique file name
                 $userNameAndFirstName = $user->getUsrName() . '-' . $user->getUsrFirstName();
-                $fileName = htmlspecialchars(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME));
-                $normalizedFileName = strtolower($userNameAndFirstName . '-' . $fileName);
+                $fileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $normalizedFileName = preg_replace('/\W+/', '_', strtolower($userNameAndFirstName . '-' . $fileName));
                 $uniqueFileName = uniqid($normalizedFileName);
                 $newFilename = $uniqueFileName . '.' . $imageFile->guessExtension();
 
